@@ -76,9 +76,7 @@ class Users extends BaseController
         }
 
         $users = $this->userModel->search($this->request->getGet('term'));
-        echo '<pre>';
-        print_r('TERM: ' . $this->request->getGet('term'));
-        die;
+
         $result = [];
 
         foreach ($users as $user) {
@@ -87,7 +85,7 @@ class Users extends BaseController
 
             $result[] = $data;
         }
-        
+
         return $this->response->setJson($result);
     }
     

@@ -123,35 +123,31 @@
 
 <!-- Here we send the scripts to the main template -->
 <?= $this->section('scripts'); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
   <script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script>    
 
   <script>
     $(function () {
       $( "#query" ).autocomplete({
-        source: function (request, response) {
-        //     fetch('<?= site_url('admin/users/search/'); ?>', { data: request.term })
-        //         .then( resp => resp.text() )
-        //         .then(resp => console.log(resp))
-        //         .catch( err => console.debug(err) );
+      source: function (request, response) {      
           $.ajax({
-            url: "<?php echo site_url('admin/users/search/') ?>",
-            dataType: "json",
-            data: {
-              term: request.term,
-            },
-            success: function (data) {
+              url: '<?= site_url('admin/users/search/') ?>',
+              dataType: "json",
+              data: {
+                  term: request.term,
+              },
+          success: function (data) {
               if (data.length < 1) {
-                var data = [
+              var data = [
                   {
-                    label: 'User not found.',
-                    value: -1
+                  label: 'User not found.',
+                  value: -1
                   }
-                ];
+              ];
               }
-              console.log(data);
-              response(data); // Here we have value without data
-            },
+
+              response(data); // Here we have no data
+          },
           }); // End of ajax
         },
         minLength: 1,
