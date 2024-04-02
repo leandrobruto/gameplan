@@ -1,4 +1,4 @@
-<?= $this->extend('layout/home'); ?>
+<?= $this->extend('layout/main'); ?>
 
 <!-- Here we send the title to the main template -->
 <?= $this->section('title'); ?>

@@ -64,7 +64,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="<?= site_url('manager/dashboard'); ?>" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -132,18 +132,26 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="<?= site_url('/'); ?>" class="menu-link">
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'users' ? 'active' : ''; ?>">
+              <a href="<?= site_url('admin'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Home</div>
               </a>
             </li>
 
-          <!-- Cards -->
-          <li class="menu-item">
+            <!-- Cards -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'users' ? 'active' : ''; ?>">
               <a href="<?= site_url('admin/users'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Basic">Users</div>
+              </a>
+            </li>
+
+            <!-- Configurations -->
+            <li class="menu-item">
+              <a href="<?= site_url('admin/account/profile'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div data-i18n="Basic">Configurations</div>
               </a>
             </li>
           </ul>
@@ -168,13 +176,13 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <!-- <i class="bx bx-search fs-4 lh-0"></i>
                   <input
                     type="text"
                     class="form-control border-0 shadow-none"
                     placeholder="Search..."
                     aria-label="Search..."
-                  />
+                  /> -->
                 </div>
               </div>
               <!-- /Search -->

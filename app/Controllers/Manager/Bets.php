@@ -9,6 +9,10 @@ class Bets extends BaseController
 {
     public function getIndex()
     {
-        echo 'Bets';
+        $data = [
+            'title' => 'Bets',
+        ];
+        
+        return view('Manager/Bets/index', $data);
     }
 }

@@ -9,6 +9,10 @@ class Transactions extends BaseController
 {
     public function getIndex()
     {
-        echo 'Transactions';
+        $data = [
+            'title' => 'Transactions',
+        ];
+        
+        return view('Manager/Transactions/index', $data);
     }
 }

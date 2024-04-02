@@ -9,6 +9,10 @@ class Reports extends BaseController
 {
     public function getIndex()
     {
-        echo 'Reports';
+        $data = [
+            'title' => 'Reports',
+        ];
+        
+        return view('Manager/Reports/index', $data);
     }
 }

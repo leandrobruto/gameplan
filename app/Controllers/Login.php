@@ -8,7 +8,6 @@ class Login extends BaseController
 {
     public function getIndex()
     {
-        
         $data = [
             'title'     => 'Sign in',
         ];
@@ -30,7 +29,7 @@ class Login extends BaseController
                 $user = $auth->getUserLoggedIn();
 
                 if (!$user->is_admin) {
-                    return redirect()->to(site_url('/'));
+                    return redirect()->to(site_url('manager/dashboard'));
                 }
                 
                 return redirect()->to(site_url('admin'))->with('success', "Hi $user->name, glad you're back!");

@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>GamePlan | <?= $this->renderSection('title'); ?></title>
+    <title><?= $this->renderSection('title'); ?> | GamePlan</title>
 
     <meta name="description" content="" />
 
@@ -52,8 +52,8 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="<?= site_url('assets/js/config.js'); ?>"></script>
 
-     <!-- This section will render the specific styles of the view that extends this layout -->
-     <?php echo $this->renderSection('styles'); ?>
+    <!-- This section will render the specific styles of the view that extends this layout -->
+    <?= $this->renderSection('styles'); ?>
   </head>
 
   <body>
@@ -133,55 +133,55 @@
           <ul class="menu-inner py-1">
             
             <!-- Users -->
-            <li class="menu-item">
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'dashboard' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/dashboard'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home"></i>
                 <div data-i18n="Basic">Home</div>
               </a>
             </li>
 
-            <!-- Users -->
-            <li class="menu-item">
+            <!-- Bets -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'bets' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/bets'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-football"></i>
                 <div data-i18n="Basic">Bets</div>
               </a>
             </li>
 
-            <!-- Users -->
-            <li class="menu-item">
+            <!-- Transactions -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'transactions' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/transactions'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-transfer"></i>
                 <div data-i18n="Basic">Transactions</div>
               </a>
             </li>
 
-            <!-- Users -->
-            <li class="menu-item">
+            <!-- Targets -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'targets' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/targets'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-target-lock"></i>
                 <div data-i18n="Basic">Targets</div>
               </a>
             </li>
 
-            <!-- Users -->
-            <li class="menu-item">
+            <!-- Diary -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'diary' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/diary'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-notepad"></i>
                 <div data-i18n="Basic">Diary</div>
               </a>
             </li>
 
-            <!-- Users -->
-            <li class="menu-item">
+            <!-- Reports -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'reports' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/reports'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bar-chart-alt-2"></i>
                 <div data-i18n="Basic">Reports</div>
               </a>
             </li>
 
-            <!-- Users -->
-            <li class="menu-item">
+            <!-- Configurations -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'account' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/account/profile'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Basic">Configurations</div>

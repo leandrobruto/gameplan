@@ -9,6 +9,10 @@ class Diary extends BaseController
 {
     public function getIndex()
     {
-        echo 'Diary';
+        $data = [
+            'title' => 'Diary',
+        ];
+        
+        return view('Manager/Diary/index', $data);
     }
 }

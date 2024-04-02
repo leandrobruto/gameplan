@@ -9,6 +9,10 @@ class Targets extends BaseController
 {
     public function getIndex()
     {
-        echo 'Targets';
+        $data = [
+            'title' => 'Targets',
+        ];
+        
+        return view('Manager/Targets/index', $data);
     }
 }

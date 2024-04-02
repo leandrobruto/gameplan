@@ -10,7 +10,7 @@
 <!-- Here we send the styles to the main template -->
 <?= $this->section('styles'); ?>
 
-    <link rel="stylesheet" href="<?= site_url('assets/vendor/auto-complete/jquery-ui.css'); ?>"/>
+<link rel="stylesheet" href="<?= site_url('assets/vendor/auto-complete/jquery-ui.css'); ?>"/>
 
 <?= $this->endSection(); ?>
 
@@ -111,9 +111,9 @@
                 </tbody>
             </table>
 
-            <!-- <div class="mt-3"> -->
-                <?php echo $pager->links(); ?>
-            <!-- </div> -->
+            <div class="d-flex justify-content-center mt-4">
+                <?= $pager->links('default', 'default_pagination'); ?>
+            </div>
         </div>
     </div>
 </div>

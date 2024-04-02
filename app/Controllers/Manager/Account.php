@@ -14,6 +14,10 @@ class Account extends BaseController
 
     public function getProfile()
     {
-        echo 'Profile';
+        $data = [
+            'title' => 'Profile',
+        ];
+        
+        return view('Manager/Bets/index', $data);
     }
 }
