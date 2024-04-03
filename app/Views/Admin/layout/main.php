@@ -131,7 +131,7 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
-            <!-- Dashboard -->
+            <!-- Home -->
             <li class="menu-item <?= current_url(true)->getSegment(2) === 'users' ? 'active' : ''; ?>">
               <a href="<?= site_url('admin'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -139,11 +139,43 @@
               </a>
             </li>
 
-            <!-- Cards -->
+            <!-- Users -->
             <li class="menu-item <?= current_url(true)->getSegment(2) === 'users' ? 'active' : ''; ?>">
               <a href="<?= site_url('admin/users'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Basic">Users</div>
+              </a>
+            </li>
+
+            <!-- Sports -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'sports' ? 'active' : ''; ?>">
+              <a href="<?= site_url('admin/sports'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-football"></i>
+                <div data-i18n="Basic">Sports</div>
+              </a>
+            </li>
+
+            <!-- Competition -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'competitions' ? 'active' : ''; ?>">
+              <a href="<?= site_url('admin/competitions'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-trophy"></i>
+                <div data-i18n="Basic">Competition</div>
+              </a>
+            </li>
+
+            <!-- Strategy -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'strategies' ? 'active' : ''; ?>">
+              <a href="<?= site_url('admin/strategies'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-abacus"></i>
+                <div data-i18n="Basic">Strategies</div>
+              </a>
+            </li>
+
+            <!-- Tags -->
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'tags' ? 'active' : ''; ?>">
+              <a href="<?= site_url('admin/tags'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-tag"></i>
+                <div data-i18n="Basic">Tags</div>
               </a>
             </li>
 
@@ -267,7 +299,8 @@
           
           <!-- Content wrapper -->
           <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">            
+            <div class="container-xxl flex-grow-1 container-p-y">   
+                       
               <div class="row">
                 <?php if (session()->has('success')): ?>
                   <div class="col-lg-12 mb-2 order-0">

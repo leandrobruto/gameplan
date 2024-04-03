@@ -32,21 +32,27 @@
     <div class="col-md-6 mb-3">
         <label for="sport" class="form-label">Sport</label>
         <select class="form-select" id="sport" aria-label="Sport">
-            <option value="1">Football</option>
+            <?php foreach($sports as $sport): ?>
+                <option value="<?= $sport->id; ?>"><?= $sport->name; ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
 
     <div class="col-md-6 mb-3">
         <label for="competition" class="form-label">Competition</label>
         <select class="form-select" id="competition" aria-label="Competition">
-            <option value="1">Bundesliga</option>
+            <?php foreach($competitions as $competition): ?>
+                <option value="<?= $competition->id; ?>"><?= $competition->name; ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
 
     <div class="col-md-6 mb-3">
         <label for="strategy" class="form-label">Strategy</label>
         <select class="form-select" id="strategy" aria-label="Strategy">
-            <option value="1">Winner</option>
+            <?php foreach($strategies as $strategy): ?>
+                <option value="<?= $strategy->id; ?>"><?= $strategy->name; ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
 
@@ -106,7 +112,7 @@
             <option value="1">The list is empty</option>
         </select>
     </div>
-
+    
     <div class="col-md-12 mb-3">
         <div class="form-check form-switch mb-2">
             <input type="hidden" name="pending" value="0" />

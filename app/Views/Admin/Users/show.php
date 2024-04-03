@@ -69,7 +69,7 @@
           <?php if ($user->deleted_at == null): ?>
             <button
               type="button"
-              class="btn btn-sm btn-dark"
+              class="btn btn-dark"
               data-bs-toggle="modal"
               data-bs-target="#editUserModal">
               <i class="bx bx-edit-alt tf-icons"></i>
@@ -77,24 +77,24 @@
             </button>
             <button
               type="button"
-              class="btn btn-sm btn-danger"
+              class="btn btn-danger"
               data-bs-toggle="modal"
               data-bs-target="#deleteUserModal">
               <i class="bx bx-trash-alt tf-icons"></i>
               Delete
             </button>
         
-            <a href="<?= site_url("admin/users"); ?>" class="btn btn-sm btn-light">
+            <a href="<?= site_url("admin/users"); ?>" class="btn btn-outline-primary">
               <i class="bx bx-left-arrow-alt tf-icons"></i>  
               Back
             </a>
           <?php else: ?>
-            <a title="Undo deletion" href="<?= site_url("admin/users/undoDelete/$user->id"); ?>" class="btn btn-sm btn-dark mr-2">
+            <a title="Undo deletion" href="<?= site_url("admin/users/undoDelete/$user->id"); ?>" class="btn btn-dark mr-2">
               <i class="bx bx-undo tf-icons"></i>
               Undo
             </a>
 
-            <a href="<?= site_url("admin/users"); ?>" class="btn btn-sm btn-light">
+            <a href="<?= site_url("admin/users"); ?>" class="btn btn-light">
               <i class="bx bx-left-arrow-alt tf-icons"></i>  
               Back
             </a>
@@ -127,11 +127,11 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           <i class="bx bx-x tf-icons"></i>  
           Close
         </button>
-        <button type="submit" class="btn btn-sm btn-primary">
+        <button type="submit" class="btn btn-primary">
           <i class="bx bx-save tf-icons"></i>  
           Submit
         </button>
@@ -165,11 +165,11 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             <i class="bx bx-x tf-icons"></i>  
             Close
           </button>
-          <button type="submit" class="btn btn-sm btn-danger">
+          <button type="submit" class="btn btn-danger">
             <i class="bx bx-trash-alt tf-icons"></i>  
             Delete
           </button>

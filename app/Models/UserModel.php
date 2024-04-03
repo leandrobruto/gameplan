@@ -13,8 +13,6 @@ class UserModel extends Model
     protected $useSoftDeletes   = true;
     protected $allowedFields    = ['username', 'email', 'password', 'reset_hash', 'reset_expires_in', 'activation_hash'];
 
-    protected bool $allowEmptyInserts = false;
-
     // Dates
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';

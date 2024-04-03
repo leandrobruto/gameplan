@@ -27,67 +27,44 @@
                 <input id="query" name="query" placeholder="Search.." class="form-control bg-light mb-4">
             </div>
 
-        <a href="<?= site_url("admin/users/create"); ?>" class="btn btn-success btn-sm float-right">
-            <i class="bx bx-plus tf-icons"></i>
-          Create
-        </a>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#createStrategyModal">
+              <i class="bx bx-plus tf-icons"></i>
+              Create
+            </button>
         </div>
 
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                    <th>Client</th>
-                    <th>Users</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                        <th>#</th>
+                        <th>Strategies</th>
+                        <th>created at</th>
+                        <th>Updated at</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     <?php
-                        foreach ($users as $user): ?>
+                        foreach ($strategies as $key => $strategy): ?>
                     <tr>
                         <td>
-                            <a href="<?= site_url("admin/users/show/$user->id"); ?>">
-                                <?= strtolower($user->username); ?>
+                            <?= $key + 1; ?>
+                        </td>
+                        <td>
+                            <a href="<?= site_url("admin/strategies/show/$strategy->id"); ?>">
+                                <?= $strategy->name; ?>
                             </a>    
                         </td>
                         <td>
-                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                            <li
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Lilian Fuller"
-                            >
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Sophia Wilkerson"
-                            >
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Christina Parker"
-                            >
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            </ul>
+                            <?= $strategy->created_at->humanize(); ?>
                         </td>
                         <td>
-                            <?= $user->active ?
-                                '<span class="badge bg-label-primary me-1">Active</span>' :
-                                '<span class="badge bg-label-danger me-1">Inactive</span>'
-                            ?>
+                            <?= $strategy->updated_at->humanize(); ?>
                         </td>
                         <td>
                             <div class="dropdown">
@@ -95,11 +72,11 @@
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?= site_url("admin/users/edit/$user->id"); ?>">
+                                <a class="dropdown-item" href="<?= site_url("admin/strategies/edit/$strategy->id"); ?>">
                                     <i class="bx bx-edit-alt me-1"></i>
                                     Edit
                                 </a>
-                                <a class="dropdown-item" href="<?= site_url("admin/users/delete/$user->id"); ?>">
+                                <a class="dropdown-item" href="<?= site_url("admin/strategies/delete/$strategy->id"); ?>">
                                     <i class="bx bx-trash me-1"></i>
                                     Delete
                                 </a>
@@ -119,6 +96,41 @@
 </div>
 <!--/ Hoverable Table rows -->
 
+<!-- Edit User Modal -->
+<div class="modal fade" id="createStrategyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New strategy</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+      <?= form_open("admin/strategies/create"); ?>
+        <div class="modal-body">
+
+            <?= $this->include('Admin/Strategies/form'); ?>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+            <i class="bx bx-save tf-icons"></i>  
+            Submit
+            </button>
+        </div>
+    <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit User Modal -->
+
 <?= $this->endSection(); ?>
 
 <!-- Here we send the scripts to the main template -->
@@ -131,7 +143,7 @@
       $( "#query" ).autocomplete({
       source: function (request, response) {      
           $.ajax({
-              url: '<?= site_url('admin/users/search/') ?>',
+              url: '<?= site_url('admin/strategies/search/') ?>',
               dataType: "json",
               data: {
                   term: request.term,
@@ -140,7 +152,7 @@
               if (data.length < 1) {
               var data = [
                   {
-                  label: 'User not found.',
+                  label: 'strategy not found.',
                   value: -1
                   }
               ];
@@ -156,7 +168,7 @@
             $this.val("");
             return false;
           } else {
-            window.location.href = '<?php echo base_url('admin/users/show'); ?>/' + ui.item.id;
+            window.location.href = '<?php echo base_url('admin/strategies/show'); ?>/' + ui.item.id;
           }
         }
       });
