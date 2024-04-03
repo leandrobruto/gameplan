@@ -62,131 +62,36 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <ul class="nav nav-pills flex-column flex-md-row mb-3">
-      <li class="nav-item">
-        <a class="nav-link active" href="javascript:void(0);"
-          ><i class="bx bx-import me-1"></i> Import</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="javascript:void(0);"
-          ><i class="bx bx-plus me-1"></i> Single Bet</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="javascript:void(0);"
-          ><i class="bx bx-plus me-1"></i> Multiple Bet</a
-        >
-      </li>
-    </ul>
-    <div class="row">
-        <div class="col-lg-12 col-md-4 order-1">
-          <div class="row">
-            <div class="col-lg-4 col-md-12 col-6 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-title d-flex align-items-start justify-content-between">
-                    <div class="avatar flex-shrink-0">
-                      <img
-                        src="<?= site_url('assets/img/icons/unicons/chart-success.png'); ?>"
-                        alt="Chart success"
-                        class="rounded"
-                      />
-                    </div>
-                    <div class="dropdown">
-                      <button
-                        class="btn p-0"
-                        type="button"
-                        id="cardOpt6"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </div>
-                    </div>
-                  </div>
-                  <span>Bets</span>
-                  <h3 class="card-title text-nowrap mb-1">$0,00</h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-12 col-6 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-title d-flex align-items-start justify-content-between">
-                    <div class="avatar flex-shrink-0">
-                      <img
-                        src="<?= site_url('assets/img/icons/unicons/wallet.png'); ?>"
-                        alt="Credit Card"
-                        class="rounded"
-                      />
-                    </div>
-                    <div class="dropdown">
-                      <button
-                        class="btn p-0"
-                        type="button"
-                        id="cardOpt6"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </div>
-                    </div>
-                  </div>
-                  <span>Result</span>
-                  <h3 class="card-title text-nowrap mb-1">$0,00</h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-12 col-6 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-title d-flex align-items-start justify-content-between">
-                    <div class="avatar flex-shrink-0">
-                      <img
-                        src="<?= site_url('assets/img/icons/unicons/cc-primary.png'); ?>"
-                        alt="Credit Card"
-                        class="rounded"
-                      />
-                    </div>
-                    <div class="dropdown">
-                      <button
-                        class="btn p-0"
-                        type="button"
-                        id="cardOpt6"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </div>
-                    </div>
-                  </div>
-                  <span>ROI</span>
-                  <h3 class="card-title text-nowrap mb-1">$0,00</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+  <div class="demo-inline-spacing">
+    <div class="input-group input-group-merge">
+      <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        aria-label="Search..."
+        aria-describedby="basic-addon-search31"
+      />
     </div>
+    <a href="#" type="button" class="btn btn-dark">
+      <i class="bx bx-import tf-icons"></i> 
+      <strong>Import</strong>
+    </a>
+    <button 
+      type="button" class="btn btn-secondary"
+      data-bs-toggle="modal"
+      data-bs-target="#simpleBetModal">
+      <i class="bx bx-plus tf-icons"></i> 
+      <strong>Simple Bet</strong>
+    </button>
+    <button 
+      type="button" class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#multipleBetModal">
+      <i class="bx bx-plus tf-icons"></i> 
+      <strong>Multiple Bet</strong>
+    </button>
   </div>
 </div>
 <!-- Total Revenue -->
@@ -334,6 +239,76 @@
     </div>
   </div>
 </div>
+
+<!-- Simple Bet Modal -->
+<div class="modal fade" id="simpleBetModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Bet</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+        <?= form_open("admin/users/update/"); ?>
+      </div>
+      <div class="modal-body">
+
+        <?= $this->include('Manager/Bets/form'); ?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+          <i class="bx bx-x tf-icons"></i>  
+          Close
+        </button>
+        <button type="submit" class="btn btn-sm btn-primary">
+          <i class="bx bx-save tf-icons"></i>  
+          Create
+        </button>
+      </div>
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Simple Bet Modal -->
+
+<!-- Multiple Bet Modal -->
+<div class="modal fade" id="multipleBetModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Multiple Bet</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+        <?= form_open("admin/users/update/"); ?>
+      </div>
+      <div class="modal-body">
+
+        <?= $this->include('Manager/Bets/multiple_form'); ?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+          <i class="bx bx-x tf-icons"></i>  
+          Close
+        </button>
+        <button type="submit" class="btn btn-sm btn-primary">
+          <i class="bx bx-save tf-icons"></i>  
+          Create
+        </button>
+      </div>
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Multiple Bet Modal -->
 
 <?= $this->endSection(); ?>
 

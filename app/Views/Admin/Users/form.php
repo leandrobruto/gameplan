@@ -78,8 +78,3 @@
         </div>
     </div>
 </div>
-
-<button type="submit" class="btn btn-sm btn-primary mr-2">
-    <i class="bx bx-save tf-icons"></i>
-    Submit
-</button>

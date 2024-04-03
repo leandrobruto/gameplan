@@ -42,6 +42,15 @@
       </div>
       <h6 class="pb-2 border-bottom mb-4 mt-2"></h6>
       <div class="info-container">
+
+        <?php if (session()->has('errors_model')): ?>
+          <ul>
+            <?php foreach (session('errors_model') as $error): ?>
+              <li class="text-danger"><?= $error ?></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+        
         <ul class="list-unstyled">
           <li class="mb-3">
             <span class="fw-medium me-2">Status:</span>
@@ -58,15 +67,22 @@
         </ul>
         <div class="justify-content-center mt-4">
           <?php if ($user->deleted_at == null): ?>
-            <a href="<?= site_url("admin/users/edit/$user->id"); ?>" class="btn btn-sm btn-dark mr-2">
+            <button
+              type="button"
+              class="btn btn-sm btn-dark"
+              data-bs-toggle="modal"
+              data-bs-target="#editUserModal">
               <i class="bx bx-edit-alt tf-icons"></i>
               Edit
-            </a>
-
-            <a href="<?= site_url("admin/users/delete/$user->id"); ?>" class="btn btn-sm btn-danger mr-2">
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteUserModal">
               <i class="bx bx-trash-alt tf-icons"></i>
               Delete
-            </a>
+            </button>
         
             <a href="<?= site_url("admin/users"); ?>" class="btn btn-sm btn-light">
               <i class="bx bx-left-arrow-alt tf-icons"></i>  
@@ -90,6 +106,80 @@
   </div>
   <!-- /User Card -->
 </div>
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">User Edit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+        <?= form_open("admin/users/update/$user->id"); ?>
+      </div>
+      <div class="modal-body">
+
+          <?= $this->include('Admin/Users/form'); ?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+          <i class="bx bx-x tf-icons"></i>  
+          Close
+        </button>
+        <button type="submit" class="btn btn-sm btn-primary">
+          <i class="bx bx-save tf-icons"></i>  
+          Submit
+        </button>
+      </div>
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit User Modal -->
+
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">User Delete</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+      <?= form_open("admin/users/delete/$user->id"); ?>
+
+        <div class="modal-body pt-2 pb-0">
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Attention!</strong> Are you sure about deleting the user <strong><?= esc($user->username) ?>?</strong>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-sm btn-danger">
+            <i class="bx bx-trash-alt tf-icons"></i>  
+            Delete
+          </button>
+        </div>
+      
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Delete User Modal -->
 
 <?= $this->endSection(); ?>
 
