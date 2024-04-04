@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateTableStrategies extends Migration
+class CreateTableCurrency extends Migration
 {
     public function up()
     {
@@ -18,10 +18,6 @@ class CreateTableStrategies extends Migration
             'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
-            ],
-            'description' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -41,11 +37,11 @@ class CreateTableStrategies extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('strategies');
+        $this->forge->createTable('currencies');
     }
 
     public function down()
     {
-        $this->forge->dropTable('strategies');
+        $this->forge->dropTable('currencies');
     }
 }

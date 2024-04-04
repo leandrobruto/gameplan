@@ -43,7 +43,7 @@
                   />
               </div>
             </div>
-            <a href="javascript:;" class="btn btn-sm btn-outline-primary">Save</a>
+            <a href="javascript:;" class="btn btn-outline-primary">Save</a>
           <?= form_close(); ?>
 
         </div>
@@ -94,6 +94,68 @@
     </button>
   </div>
 </div>
+
+<div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+  <div class="row">
+      <div class="col-lg-12 col-md-4 order-1">
+        <div class="row">
+          <div class="col-lg-4 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  <div class="avatar flex-shrink-0">
+                    <img
+                      src="<?= site_url('assets/img/icons/unicons/chart-success.png'); ?>"
+                      alt="Chart success"
+                      class="rounded"
+                    />
+                  </div>
+                </div>
+                <span><strong>Bets</strong></span>
+                <h3 class="card-title text-nowrap mb-1"><?= $count; ?></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  <div class="avatar flex-shrink-0">
+                    <img
+                      src="<?= site_url('assets/img/icons/unicons/wallet.png'); ?>"
+                      alt="Credit Card"
+                      class="rounded"
+                    />
+                  </div>
+                </div>
+                <span><strong>Result</strong></span>
+                <h3 class="card-title text-nowrap mb-1">$<?= $result; ?></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  <div class="avatar flex-shrink-0">
+                    <img
+                      src="<?= site_url('assets/img/icons/unicons/cc-primary.png'); ?>"
+                      alt="Credit Card"
+                      class="rounded"
+                    />
+                  </div>
+                </div>
+                <span><strong>ROI</strong></span>
+                <h3 class="card-title text-nowrap mb-1"><?= $roi; ?>%</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Total Revenue -->
 <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
   <div class="card">
@@ -107,7 +169,7 @@
           <div class="text-center">
             <div class="dropdown">
               <button
-                class="btn btn-sm btn-outline-primary dropdown-toggle"
+                class="btn btn-outline-primary dropdown-toggle"
                 type="button"
                 id="growthReportId"
                 data-bs-toggle="dropdown"
@@ -252,24 +314,26 @@
           data-bs-dismiss="modal"
           aria-label="Close">
         </button>
-        <?= form_open("admin/users/update/"); ?>
       </div>
-      <div class="modal-body">
+      <?= form_open("manager/bets/store"); ?>
+        <div class="modal-body">
 
-        <?= $this->include('Manager/Bets/form'); ?>
+          <?= $this->include('Manager/Bets/form'); ?>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
-          <i class="bx bx-x tf-icons"></i>  
-          Close
-        </button>
-        <button type="submit" class="btn btn-sm btn-primary">
-          <i class="bx bx-save tf-icons"></i>  
-          Create
-        </button>
-      </div>
-        <?= form_close(); ?>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bx bx-save tf-icons"></i>  
+            Save
+          </button>
+        </div>
+
+      <?= form_close(); ?>
     </div>
   </div>
 </div>
@@ -287,24 +351,25 @@
           data-bs-dismiss="modal"
           aria-label="Close">
         </button>
-        <?= form_open("admin/users/update/"); ?>
       </div>
-      <div class="modal-body">
+      <?= form_open("admin/users/update/"); ?>
+        <div class="modal-body">
 
-        <?= $this->include('Manager/Bets/multiple_form'); ?>
+          <?= $this->include('Manager/Bets/multiple_form'); ?>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
-          <i class="bx bx-x tf-icons"></i>  
-          Close
-        </button>
-        <button type="submit" class="btn btn-sm btn-primary">
-          <i class="bx bx-save tf-icons"></i>  
-          Create
-        </button>
-      </div>
-        <?= form_close(); ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bx bx-save tf-icons"></i>  
+            Save
+          </button>
+        </div>
+
+      <?= form_close(); ?>
     </div>
   </div>
 </div>

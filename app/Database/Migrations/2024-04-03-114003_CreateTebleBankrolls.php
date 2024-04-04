@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateTebleBets extends Migration
+class CreateTebleBankrolls extends Migration
 {
     public function up()
     {
@@ -20,41 +20,25 @@ class CreateTebleBets extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
-            'bankroll_id' => [
+            'currency_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
             ],
-            'sport_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
+            'name' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
             ],
-            'competition_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
-            ],
-            'strategy_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
-            ],
-            'stake' => [
+            'initial_balance' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',
+                'null' => true,
             ],
-            'result' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-            ],
-            'description' => [
-                'type' => 'TEXT',
-            ],
-            'is_pending' => [
-                'type' => 'BOOLEAN',
-                'null' => false,
-                'default' => false,
+            'comission' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
+                'null' => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -75,15 +59,12 @@ class CreateTebleBets extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('bankroll_id', 'bankrolls', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('sport_id', 'sports', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('competition_id', 'competitions', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('strategy_id', 'strategies', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('bets');
+        $this->forge->addForeignKey('currency_id', 'currencies', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('bankrolls');
     }
 
     public function down()
     {
-        $this->forge->dropTable('bets');
+        $this->forge->dropTable('bankrolls');
     }
 }
