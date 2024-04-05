@@ -18,4 +18,43 @@ class BetModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
+    /**
+     * @uso Controller Bets in the search method getIndex
+     * @param int $user_id
+     * @return array bets
+     */
+    public function findBetsByUser($user = null) 
+    {
+        return $this->select('bets.*, 
+                bankrolls.name AS bankroll, 
+                sports.name AS sport, 
+                competitions.name AS competition, 
+                strategies.name AS strategy')->asObject()
+                    ->join('sports', 'bets.sport_id = sports.id')
+                    ->join('competitions', 'bets.competition_id = competitions.id')
+                    ->join('strategies', 'bets.strategy_id = strategies.id')
+                    ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
+                    ->where('bets.user_id', $user->id);
+    }
+
+    public function countAllBetsByUser($user) 
+    {
+        return $this->where('bets.user_id', $user->id)
+            ->countAllResults();
+    }
+
+    public function getResultSumByUser($user) 
+    {
+        return $this->selectSum('result')
+            ->where('bets.user_id', $user->id)
+            ->first();
+    }
+
+    public function getStakeSumByUser($user) 
+    {
+        return $this->selectSum('stake')
+            ->where('user_id', $user->id)
+            ->first();
+    }
 }

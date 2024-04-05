@@ -94,7 +94,7 @@
                 </div>
               </div>
               <span>Period Result</span>
-              <h3 class="card-title text-nowrap mb-1">$0,00</h3>
+              <h3 class="card-title text-nowrap mb-1">$<?= $result; ?></h3>
               <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
             </div>
           </div>
@@ -128,7 +128,7 @@
                 </div>
               </div>
               <span>Average Profit per Bet</span>
-              <h3 class="card-title text-nowrap mb-1">$0,00</h3>
+              <h3 class="card-title text-nowrap mb-1">$<?= $result; ?></h3>
               <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
             </div>
           </div>
@@ -162,7 +162,7 @@
                 </div>
               </div>
               <span>ROI</span>
-              <h3 class="card-title text-nowrap mb-1">$0,00</h3>
+              <h3 class="card-title text-nowrap mb-1"><?= $roi; ?>%</h3>
               <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
             </div>
           </div>
@@ -196,7 +196,7 @@
                 </div>
               </div>
               <span>Final Balance</span>
-              <h3 class="card-title text-nowrap mb-1">$0,00</h3>
+              <h3 class="card-title text-nowrap mb-1">$<?= $balance; ?></h3>
               <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
             </div>
           </div>

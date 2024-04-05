@@ -10,7 +10,7 @@ class BankrollModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Bankroll';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['name'];
+    protected $allowedFields    = ['user_id', 'currency_id', 'name', 'initial_balance', 'comission'];
 
     // Dates
     protected $useTimestamps = true;
