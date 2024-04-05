@@ -20,7 +20,7 @@ class Bets extends BaseController
         $this->betModel = new \App\Models\BetModel();
         $this->matchModel = new \App\Models\MatchModel();
         $this->bankrollModel = new \App\Models\BankrollModel();
-        $this->userModel = new \App\Models\SportModel();
+        $this->sportModel = new \App\Models\SportModel();
         $this->competitionModel = new \App\Models\CompetitionModel();
         $this->strategyModel = new \App\Models\StrategyModel();
     }
@@ -28,26 +28,29 @@ class Bets extends BaseController
     public function getIndex()
     {
         $user = userLoggedIn();
-        $bets = $this->betModel->findBetsByUser($user);
 
         $data = [
             'title' => 'Bets',
             'user' => $user,
-            'bets' => $bets->paginate(10),
+            'bets' => $this->betModel->findBetsByUser($user)->paginate(10),
             'count' => $this->betModel->countAllBetsByUser($user),
 
             'bankrolls' => $this->bankrollModel->findAll(),
-            'sports' => $this->userModel->findAll(),
+            'sports' => $this->sportModel->findAll(),
             'competitions' => $this->competitionModel->findAll(),
             'strategies' => $this->strategyModel->findAll(),
             'pager' => $this->betModel->pager,
         ];
 
-        $result = $this->betModel->getResultSumByUser($user);
-        $stake = $this->betModel->getStakeSumByUser($user);
+        $reports = $this->betModel->getReportsByUser($user);
 
-        $data['result'] = $result->result;
-        $data['roi'] = $bets ? ($result->result / $stake->stake) * 100 : null;
+        if (isset($reports->result)) {
+            $data['result'] = $reports->result;
+            $data['roi'] = number_format(($reports->result / $reports->stake) * 100, 2);
+        } else {
+            $data['result'] = 0;
+            $data['roi'] = 0;
+        }
 
         return view('Manager/Bets/index', $data);
     }
@@ -57,6 +60,7 @@ class Bets extends BaseController
         if ($this->request->getMethod() === 'post') {
             
             $bet = new Bet($this->request->getPost('bet'));
+            $bet->code = $this->betModel->generateBetCode();
 
             if ($this->betModel->insert($bet)) {
 

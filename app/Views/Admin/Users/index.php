@@ -49,7 +49,7 @@
                     <tr>
                         <td>
                             <a href="<?= site_url("admin/users/show/$user->id"); ?>">
-                                <?= strtolower($user->username); ?>
+                                <?= $user->username; ?>
                             </a>    
                         </td>
                         <td>

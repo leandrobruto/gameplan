@@ -40,6 +40,10 @@ class CreateTebleBets extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
+            'code' => [
+                'type' => 'VARCHAR',
+                'constraint' => '10',
+            ],
             'stake' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',

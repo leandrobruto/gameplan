@@ -62,6 +62,7 @@
     </div>
   </div>
 </div>
+
 <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
   <div class="demo-inline-spacing">
     <div class="input-group input-group-merge">
@@ -179,9 +180,9 @@
                     <?php
                         foreach ($bets as $bet): ?>
                           <tr>
-                              <td>123123</td>
-                              <td>12/12/12</td>
-                              <td>Corinthians x Palmeiras</td>
+                              <td><?= $bet->code; ?></td>
+                              <td><?= date("F jS, Y", strtotime($bet->date)); ?></td>
+                              <td><?= $bet->event; ?></td>
                               <td><?= $bet->strategy; ?></td>
                               <td>$<?= $bet->stake; ?></td>
                               <td>$<?= $bet->result; ?></td>
@@ -190,10 +191,11 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-            <div class="d-flex justify-content-center mt-4">
-                <?= $pager->links('default', 'default_pagination'); ?>
-            </div>
+            <?php if ($pager->getPageCount() > 1): ?>
+              <div class="d-flex justify-content-center mt-4">
+                  <?= $pager->links('default', 'default_pagination'); ?>
+              </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

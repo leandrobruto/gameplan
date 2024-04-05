@@ -23,7 +23,7 @@
 
     <div class="col-md-6 mb-3">
         <label for="date" class="col-md-2 col-form-label">Date</label>
-        <input type="datetime" id="date" name="match[date]" value="2021-06-18" class="form-control" <?= old('match.date'); ?>
+        <input type="date" id="date" name="match[date]" value="<?= old('match.date'); ?>" class="form-control" <?= old('match.date'); ?>
         />
     </div>
 

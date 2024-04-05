@@ -10,7 +10,7 @@ class BetModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Bet';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['user_id', 'bankroll_id', 'sport_id', 'competition_id', 'strategy_id', 'stake', 'result', 'description', 'is_pending'];
+    protected $allowedFields    = ['user_id', 'bankroll_id', 'sport_id', 'competition_id', 'strategy_id', 'code', 'stake', 'result', 'description', 'is_pending'];
 
     // Dates
     protected $useTimestamps = true;
@@ -27,15 +27,17 @@ class BetModel extends Model
     public function findBetsByUser($user = null) 
     {
         return $this->select('bets.*, 
-                bankrolls.name AS bankroll, 
-                sports.name AS sport, 
-                competitions.name AS competition, 
-                strategies.name AS strategy')->asObject()
-                    ->join('sports', 'bets.sport_id = sports.id')
-                    ->join('competitions', 'bets.competition_id = competitions.id')
-                    ->join('strategies', 'bets.strategy_id = strategies.id')
-                    ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
-                    ->where('bets.user_id', $user->id);
+            matches.event, matches.date,
+            bankrolls.name AS bankroll, 
+            sports.name AS sport, 
+            competitions.name AS competition, 
+            strategies.name AS strategy')->asObject()
+                ->join('matches', 'bets.id = matches.bet_id')
+                ->join('sports', 'bets.sport_id = sports.id')
+                ->join('competitions', 'bets.competition_id = competitions.id')
+                ->join('strategies', 'bets.strategy_id = strategies.id')
+                ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
+                ->where('bets.user_id', $user->id);
     }
 
     public function countAllBetsByUser($user) 
@@ -44,17 +46,26 @@ class BetModel extends Model
             ->countAllResults();
     }
 
-    public function getResultSumByUser($user) 
+    public function getReportsByUser($user) 
     {
-        return $this->selectSum('result')
-            ->where('bets.user_id', $user->id)
+        return $this->selectSum('stake')
+            ->selectSum('result')
+            ->selectMax('result', 'max_result')
+            ->where('user_id', $user->id)
             ->first();
     }
 
-    public function getStakeSumByUser($user) 
+    public function generateBetCode() 
     {
-        return $this->selectSum('stake')
-            ->where('user_id', $user->id)
-            ->first();
+    
+        do {
+            
+            $betCode = random_string('numeric', 8);
+
+            $this->where('code', $betCode);
+
+        } while ($this->countAllResults() > 1);
+    
+        return $betCode;
     }
 }

@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         $user = [
             'username' => 'Ademiro',
             'email' => 'ademiro@admin.com',
-            'password' => '123qweasd',
+            'password' => '123123',
             'is_admin' => true,
             'active' => true,
         ];
