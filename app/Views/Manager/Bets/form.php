@@ -79,7 +79,7 @@
     <div class="col-md-4 mb-3">
         <label for="odd" class="form-label">Odd</label>
         <div class="input-group input-group-merge">
-            <input type="text" id="odd" name="match[odd]" class="form-control" value="<?= old('match.odd'); ?>"
+            <input type="text" id="odd" name="match[odd]" class="form-control money" value="<?= old('match.odd'); ?>"
             />
         </div>
     </div>

@@ -8,13 +8,13 @@ class ProfileSeeder extends Seeder
 {
     public function run()
     {
-        $sportModel = new \App\Models\SportModel;
+        $profileModel = new \App\Models\ProfileModel;
 
         $data = [
             ['user_id' => 1],
         ];
 
-        $sportModel->skipValidation(true)->protect(false)->insertBatch($data);
+        $profileModel->skipValidation(true)->protect(false)->insertBatch($data);
 
         // dd($bankroll->errors());
     }

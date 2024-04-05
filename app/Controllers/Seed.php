@@ -14,7 +14,7 @@ class Seed extends BaseController
         $seeder->call('UserSeeder');
         $seeder->call('ProfileSeeder');
         $seeder->call('CurrencySeeder');
-        $seeder->call('CurrencySeeder');
+        $seeder->call('BankrollSeeder');
         $seeder->call('SportSeeder');
         $seeder->call('CompetitionSeeder');
         $seeder->call('StrategySeeder');
