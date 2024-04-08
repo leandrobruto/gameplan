@@ -34,7 +34,7 @@ class Dashboard extends BaseController
         ];
 
         $bankroll = $this->bankrollModel->where('user_id', $user->id)->first();
-        
+
         $reports = $this->betModel->getReportsByUser($user);
 
         if (isset($reports->result)) {
@@ -49,6 +49,8 @@ class Dashboard extends BaseController
             $data['averageProfit'] = 0;
             $data['roi'] = 0;
             $data['balance'] = 0;
+            $data['biggest_win'] = 0;
+            $data['bankroll'] = 0;
         }
         
         return view('Manager/Dashboard/index', $data);

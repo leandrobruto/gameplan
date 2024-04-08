@@ -267,7 +267,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Starting Balance</span>
-            <h3 class="card-title mb-2">$<?= $bankroll->initial_balance; ?></h3>
+            <h3 class="card-title mb-2">$<?= $bankroll ? $bankroll->initial_balance : 0; ?></h3>
           </div>
         </div>
       </div>

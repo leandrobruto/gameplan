@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label for="date" class="col-md-2 col-form-label">Date</label>
+        <label for="date" class="col-md-2 col-2 form-label">Date</label>
         <input type="date" id="date" name="match[date]" value="<?= old('match.date'); ?>" class="form-control" <?= old('match.date'); ?>
         />
     </div>

@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class Home extends BaseController
 {
-    public function getIndex($id = null)
+    public function getIndex()
     {
         $user = service('auth')->getUserLoggedIn();
 
