@@ -18,10 +18,10 @@
         </div>
     </div>
     <div class="col-md-6 mb-3">
-        <label for="sport" class="form-label">Sport</label>
-        <select class="form-select" id="sport" name="sport_id" aria-label="Sport">
-            <?php foreach($sports as $sport): ?>
-                <option value="<?= $sport->id; ?>" <?= (old('sport_id') == $sport->id ? 'selected' : '') ?>><?= $sport->name; ?></option>
+        <label for="sport" class="form-label">Currencies</label>
+        <select class="form-select" id="curency" name="currency_id" aria-label="Sport">
+            <?php foreach($currencies as $currency): ?>
+                <option value="<?= $currency->id; ?>" <?= (old('currency_id') == $currency->id ? 'selected' : '') ?>><?= $currency->name; ?></option>
             <?php endforeach; ?>
         </select>
     </div>

@@ -87,16 +87,16 @@
   <!-- Hoverable Table rows -->
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title"><?= $title ?></h5>
-      
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#createStrategyModal">
-        <i class="bx bx-plus tf-icons"></i>
-        Create
-      </button>
+      <h5 class="card-title d-flex justify-content-between align-items-center"><?= $title ?>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#createStrategyModal">
+          <i class="bx bx-plus tf-icons"></i>
+          Create
+        </button>
+      </h5>
 
       <div class="table-responsive text-nowrap">
         <table class="table table-hover">

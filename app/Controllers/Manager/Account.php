@@ -13,6 +13,7 @@ class Account extends BaseController
     private $strategyModel;
     private $competitonsModel;
     private $bankrollModel;
+    private $currencyModel;
 
     public function __construct()
     {
@@ -21,6 +22,7 @@ class Account extends BaseController
         $this->sportModel = new \App\Models\SportModel;
         $this->strategyModel = new \App\Models\StrategyModel();
         $this->competitionModel = new \App\Models\CompetitionModel();
+        $this->currencyModel = new \App\Models\CurrencyModel();
         $this->bankrollModel = new \App\Models\BankrollModel();
 
     }
@@ -173,6 +175,7 @@ class Account extends BaseController
         $data = [
             'title' => 'Competitions',
             'competitions' => $competitions,
+            'sports' => $this->sportModel->findAll(),
             'pager' => $this->competitionModel->pager,
         ];
         
@@ -185,6 +188,7 @@ class Account extends BaseController
         $data = [
             'title' => 'Bankrolls',
             'bankrolls' => $bankrolls,
+            'currencies' => $this->currencyModel->findAll(),
             'pager' => $this->bankrollModel->pager,
         ];
         
