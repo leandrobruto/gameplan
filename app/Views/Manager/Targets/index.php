@@ -34,16 +34,10 @@
                   <span id="icon-name" class="input-group-text">
                       <i class="bx bx-dollar"></i>
                   </span>
-                  <input 
-                      type="text" 
-                      id="bank_roll"
-                      name="bank_roll"
-                      class="form-control money"
-                      value=""
-                  />
+                  <input type="text" id="bank_roll" name="bank_roll" class="form-control money"value="" />
               </div>
             </div>
-            <a href="javascript:;" class="btn btn-sm btn-outline-primary">Save</a>
+            <a href="javascript:;" class="btn btn-outline-primary">Save</a>
 
           <?= form_close(); ?>
         </div>

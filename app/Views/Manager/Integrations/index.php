@@ -17,7 +17,7 @@
 <!-- Here we send the content to the main template -->
 <?= $this->section('content'); ?>
 
-<div class="col-lg-8 mb-4 order-0">
+<div class="col-lg-12 mb-4 order-0">
   <div class="card">
     <div class="d-flex align-items-end row">
       <div class="col-sm-7">
@@ -54,6 +54,38 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-pills flex-column flex-md-row mb-3">
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('manager/account/profile'); ?>"><i class="bx bx-user me-1"></i> Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('manager/account/strategies'); ?>"
+          ><i class="bx bx-abacus me-1"></i> Strategies</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('manager/account/competitions'); ?>"
+          ><i class="bx bx-trophy me-1"></i> Competitions</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('manager/account/bankrolls'); ?>"
+          ><i class="bx bx-dollar me-1"></i> Banktrolls</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="<?= site_url('manager/account/integrations'); ?>"
+          ><i class="bx bx-link me-1"></i> Integrations</a
+        >
+      </li>
+    </ul>
+    
+
   </div>
 </div>
 

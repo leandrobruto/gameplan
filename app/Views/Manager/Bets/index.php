@@ -28,22 +28,18 @@
           </p>
 
           <?= form_open("admin/users/register"); ?>
+            
             <div class="col-md-12 mb-4">
               <small class="form-label" for="bank_roll">Initial Balance</small>
               <div class="input-group input-group-merge">
                   <span id="icon-name" class="input-group-text">
-                    <i class="bx bx-dollar"></i>
+                      <i class="bx bx-dollar"></i>
                   </span>
-                  <input 
-                    type="text" 
-                    id="bank_roll"
-                    name="bank_roll"
-                    class="form-control money"
-                    value=""
-                  />
+                  <input type="text" id="bank_roll" name="bank_roll" class="form-control money"value="" />
               </div>
             </div>
             <a href="javascript:;" class="btn btn-outline-primary">Save</a>
+
           <?= form_close(); ?>
 
         </div>
