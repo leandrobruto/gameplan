@@ -34,6 +34,9 @@ class CreateTebleBankrolls extends Migration
                 'constraint' => '10,2',
                 'null' => true,
             ],
+            'initial_date' => [
+                'type' => 'DATE',
+            ],
             'comission' => [
                 'type' => 'INT',
                 'constraint' => 5,

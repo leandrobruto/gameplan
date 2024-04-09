@@ -114,13 +114,12 @@
                 <td><?= $strategy->description; ?></td>
                 <td>Soccer</td>
                 <td>
-                  <a href="<?= site_url("manager/strategies/edit/$strategy->id"); ?>">
-                    <i class="bx bx-edit-alt me-1"></i>
-                  </a>
-                  
-                  <a href="<?= site_url("manager/strategies/edit/$strategy->id"); ?>">
+                  <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
+                    <i class="bx bx-edit me-1"></i>
+                  </button>
+                  <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
                     <i class="bx bx-trash me-1"></i>
-                  </a>
+                  </button>
                 </td>
               </tr>
             <?php endforeach; ?>

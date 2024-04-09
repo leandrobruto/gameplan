@@ -5,7 +5,7 @@
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-sport"></i>
             </span>
-            <input type="text" id="name" name="name" class="form-control" value="" />
+            <input type="text" id="name" name="name" class="form-control" value="<?= old('name'); ?>" required />
         </div>
     </div>
     <div class="col-md-6 mb-3">

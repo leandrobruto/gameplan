@@ -184,9 +184,12 @@ class Account extends BaseController
 
     public function getBankrolls()
     {
-        $bankrolls = $this->bankrollModel->findAll();
+        $user = userLoggedIn();
+        $bankrolls = $this->bankrollModel->getUserBankrolls($user);
+
         $data = [
             'title' => 'Bankrolls',
+            'user' => $user,
             'bankrolls' => $bankrolls,
             'currencies' => $this->currencyModel->findAll(),
             'pager' => $this->bankrollModel->pager,

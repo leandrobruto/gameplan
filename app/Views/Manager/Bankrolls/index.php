@@ -115,10 +115,10 @@
               <tr>
                 <td><?= $bankroll->name; ?></td>
                 <td><?= $bankroll->initial_balance; ?></td>
-                <td>$ 1000,00</td>
-                <td>Brasilian Real (R$)</td>
+                <td>$<?= $bankroll->initial_balance; ?></td>
+                <td><?= $bankroll->currency; ?></td>
                 <td><?= $bankroll->created_at->humanize(); ?></td>
-                <td>0%</td>
+                <td><?= $bankroll->comission; ?>%</td>
                 <td>
                   <a href="<?= site_url("manager/strategies/transfer/$bankroll->id"); ?>">
                     <i class="bx bx-transfer me-1"></i>

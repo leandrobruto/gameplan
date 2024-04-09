@@ -1,11 +1,15 @@
 <div class="row">
+        
+    <!-- Hidden fields that we will use in the controller -->
+    <input type="hidden" name="user_id" value="<?= $user->id; ?>" />
+
     <div class="col-md-12 mb-3">
         <label class="form-label" for="name">Name</label>
         <div class="input-group input-group-merge">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-sport"></i>
             </span>
-            <input type="text" id="name" name="name" class="form-control" value="" />
+            <input type="text" id="name" name="name" class="form-control" value="<?= old('name'); ?>" required />
         </div>
     </div>
 
@@ -29,8 +33,8 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label for="date" class="col-md-2 col-6 form-label">Date</label>
-        <input type="date" id="date" name="date" value="<?= old('date'); ?>" class="form-control" <?= old('date'); ?>
+        <label for="initial_date" class="col-md-2 col-6 form-label">Initial Date</label>
+        <input type="date" id="initial_date" name="initial_date" value="<?= old('initial_date'); ?>" class="form-control" <?= old('date'); ?>
         />
     </div>
 

@@ -30,14 +30,14 @@ class UserModel extends Model
 
     protected $validationMessages   = [
         'username' => [
-            'required' => 'O campo Username é obrigatório.',
+            'required' => 'The field Username is required.',
         ],
         'email' => [
-            'required' => 'O campo E-mail é obrigatório.',
-            'is_unique' => 'Desculpe. Esse email já existe.',
+            'required' => 'The field Email is required.',
+            'is_unique' => 'Sorry. this email already exists.',
         ],
         'password' => [
-            'required' => 'O campo Senha é obrigatório.',
+            'required' => 'The field Password is required.',
         ],
         'password_confirmation' => 'The Password confirmation field does not match the password field.'
     ];

@@ -10,7 +10,7 @@ class BankrollModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Bankroll';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['user_id', 'currency_id', 'name', 'initial_balance', 'comission', 'is_default'];
+    protected $allowedFields    = ['user_id', 'currency_id', 'name', 'initial_balance', 'initial_date', 'comission', 'is_default'];
 
     // Dates
     protected $useTimestamps = true;
@@ -18,4 +18,16 @@ class BankrollModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
+    // Validation
+    protected $validationRules      = [
+        'name' => 'required',
+    ];
+
+    public function getUserBankrolls($user = null) {
+        return $this->select('bankrolls.*, currencies.name AS currency')
+                ->join('currencies', 'currencies.id = bankrolls.currency_id')
+                ->where('bankrolls.user_id', $user->id)
+                ->find();
+    }
 }
