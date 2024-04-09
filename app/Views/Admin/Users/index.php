@@ -23,14 +23,16 @@
         <div class="card-body">
             <h5 class="card-title"><?= $title ?></h5>
 
-            <div class="ui-widget">
-                <input id="query" name="query" placeholder="Search.." class="form-control bg-light mb-4">
-            </div>
+            <div class=" d-flex justify-content-between align-items-center">
+                <div class="ui-widget">
+                    <input id="query" name="query" placeholder="Search.." class="form-control bg-light mb-4">
+                </div>
 
-        <a href="<?= site_url("admin/users/create"); ?>" class="btn btn-success btn-sm float-right">
-            <i class="bx bx-plus tf-icons"></i>
-          Create
-        </a>
+                <a href="<?= site_url("admin/users/create"); ?>" class="btn btn-primary float-right">
+                    <i class="bx bx-plus tf-icons"></i>
+                Create
+                </a>
+            </div>
         </div>
 
         <div class="table-responsive text-nowrap">

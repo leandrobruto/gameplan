@@ -110,11 +110,16 @@
           <tbody class="table-border-bottom-0">
             <?php foreach ($strategies as $strategy): ?>
               <tr>
-                <td><?= $strategy->name; ?></td>
-                <td><?= $strategy->description; ?></td>
-                <td>Soccer</td>
+                <td id="name"><?= $strategy->name; ?></td>
+                <td id="description"><?= $strategy->description; ?></td>
+                <td id="sport">Soccer</td>
                 <td>
-                  <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
+                  <button class="btn btn-link edit" 
+                    onclick="editModalInfo(
+                      '<?= $strategy->name; ?>', 
+                      '<?= $strategy->description; ?>', 
+                      '<?= $strategy->sport_id; ?>')" 
+                      data-bs-toggle="modal" data-bs-target="#editStrategyModal" type="button">
                     <i class="bx bx-edit me-1"></i>
                   </button>
                   <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
@@ -125,14 +130,13 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-          <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex justify-content-center mt-4">
 
         </div>
       </div>
     </div>
   </div>
   <!--/ Hoverable Table rows -->
-
 </div>
 
 <!-- Create Strategy Modal -->
@@ -165,6 +169,36 @@
 </div>
 <!-- / Create Strategy Modal -->
 
+<!-- Edit Strategy Modal -->
+<div class="modal fade" id="editStrategyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Strategy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <?= form_open("manager/strategies/store"); ?>
+        <div class="modal-body">
+
+          <?= $this->include('Manager/Strategies/form'); ?>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bx bx-save tf-icons"></i>  
+            Update Strategy
+          </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit Strategy Modal -->
+
 <?= $this->endSection(); ?>
 
 <!-- Here we send the scripts to the main template -->
@@ -172,5 +206,17 @@
 
   <script src="<?php echo site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
+
+  <script type="text/javascript">
+    
+    function editModalInfo(name, description, sport) {
+      console.log(name + ' ' + description + ' ' + sport);
+
+      $("[name='name']").val(name);
+      $("[name='description']").val(description);
+      $("[name='sport']").val(sport);
+    }
+
+  </script>
 
 <?= $this->endSection(); ?>

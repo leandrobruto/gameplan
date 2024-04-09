@@ -132,8 +132,8 @@
 
           <ul class="menu-inner py-1">
             <!-- Home -->
-            <li class="menu-item <?= current_url(true)->getSegment(2) === 'users' ? 'active' : ''; ?>">
-              <a href="<?= site_url('admin'); ?>" class="menu-link">
+            <li class="menu-item <?= current_url(true)->getSegment(2) === 'dashboard' ? 'active' : ''; ?>">
+              <a href="<?= site_url('admin/dashboard'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Home</div>
               </a>
@@ -237,7 +237,11 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="<?= site_url('assets/img/avatars/monkito.jpeg'); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                      <?php if (userLoggedIn()->avatar): ?>
+                        <img src="<?= site_url("admin/users/image/" . userLoggedIn()->avatar); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                      <?php else: ?>
+                        <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                      <?php endif; ?>
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -246,7 +250,11 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="<?= site_url('assets/img/avatars/monkito.jpeg'); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                              <?php if (userLoggedIn()->avatar): ?>
+                                <img src="<?= site_url("admin/users/image/" . userLoggedIn()->avatar); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                              <?php else: ?>
+                                <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                              <?php endif; ?>
                             </div>
                           </div>
                           <div class="flex-grow-1">

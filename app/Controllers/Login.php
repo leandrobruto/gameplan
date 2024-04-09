@@ -32,7 +32,7 @@ class Login extends BaseController
                     return redirect()->to(site_url('manager/dashboard'));
                 }
                 
-                return redirect()->to(site_url('admin'))->with('success', "Hi $user->name, glad you're back!");
+                return redirect()->to(site_url('admin/dashboard'))->with('success', "Hi $user->name, glad you're back!");
             } else {
                 return redirect()->back()->with('attention', "We can't find your login credentials!");
             }

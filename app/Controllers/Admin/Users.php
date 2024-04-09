@@ -19,10 +19,12 @@ class Users extends BaseController
 
     public function getIndex()
     {
+        $user = userLoggedIn();
+
         $data = [
             'title' => 'Users listing',
+            'user' => $this->userModel->getUserWithProfile($user),
             'users' => $this->userModel->getAllUsersWithProfile()->withDeleted(true)->paginate(10),
-            'profile' => $this->profileModel->withDeleted(true),
             'pager' => $this->userModel->pager,
         ];
         
