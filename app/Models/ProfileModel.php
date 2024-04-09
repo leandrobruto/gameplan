@@ -10,7 +10,10 @@ class ProfileModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Profile';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['user_id', 'name', 'cpf', 'phone', 'avatar'];
+    protected $allowedFields    = [
+        'user_id', 'first_name', 'last_name', 'cpf', 'phone', 'avatar', 
+        'default_stake', 'default_date_range_id', 'default_sport_id'
+    ];
 
     // Validation
     // protected $validationRules      = [
@@ -29,7 +32,7 @@ class ProfileModel extends Model
      * @return array objetos
      */
     public function findProfileByUserId(int $user_id) {
-        return $this->select('profiles.*', 'users.*')
+        return $this->select('profiles.*, users.*')
                 ->join('users', 'users.id = profiles.user_id')
                 ->where('profiles.user_id', $user_id)
                 ->first();

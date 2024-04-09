@@ -21,11 +21,11 @@ class Users extends BaseController
     {
         $data = [
             'title' => 'Users listing',
-            'users' => $this->userModel->withDeleted(true)->paginate(10),
+            'users' => $this->userModel->getAllUsersWithProfile()->withDeleted(true)->paginate(10),
             'profile' => $this->profileModel->withDeleted(true),
             'pager' => $this->userModel->pager,
         ];
-
+        
         return view('Admin/Users/index', $data);
     }
 
@@ -93,7 +93,6 @@ class Users extends BaseController
     {
         $user = $this->findUserOr404($id);
         $profile = $this->profileModel->findProfileByUserId($user->id);
-        $user->profile = $profile;
 
         $data = [
             'title'     => "User Details",

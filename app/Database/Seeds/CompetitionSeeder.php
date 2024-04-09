@@ -11,9 +11,18 @@ class CompetitionSeeder extends Seeder
         $competitionModel = new \App\Models\CompetitionModel;
 
         $data = [
-            ['name' => 'Bundesliga'],
-            ['name' => 'Champions League'],
-            ['name' => 'Tennis'],
+            [
+                'sport_id' => 1, 
+                'name' => 'Bundesliga'
+            ],
+            [
+                'sport_id' => 1, 
+                'name' => 'Champions League'
+            ],
+            [
+                'sport_id' => 3, 
+                'name' => 'Tennis'
+            ],
         ];
 
         $competitionModel->skipValidation(true)->protect(false)->insertBatch($data);

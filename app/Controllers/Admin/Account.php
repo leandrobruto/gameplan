@@ -14,6 +14,7 @@ class Account extends BaseController
     private $competitonsModel;
     private $bankrollModel;
     private $currencyModel;
+    private $dateModel;
 
     public function __construct()
     {
@@ -24,7 +25,7 @@ class Account extends BaseController
         $this->competitionModel = new \App\Models\CompetitionModel();
         $this->currencyModel = new \App\Models\CurrencyModel();
         $this->bankrollModel = new \App\Models\BankrollModel();
-
+        $this->dateRangeModel = new \App\Models\DateRangeModel();
     }
 
     public function getIndex()
@@ -42,6 +43,8 @@ class Account extends BaseController
             'title' => 'Profile',
             'user' => $user,
             'profile' => $profile,
+            'sports' => $this->sportModel->findAll(),
+            'date_ranges' =>$this->dateRangeModel->findAll(),
         ];
         
         return view('Admin/Account/index', $data);

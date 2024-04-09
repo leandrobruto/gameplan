@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
         $userModel = new \App\Models\UserModel;
 
         $user = [
-            'username' => 'Ademiro',
+            'username' => 'ademiro',
             'email' => 'ademiro@admin.com',
             'password' => '123123',
             'is_admin' => true,

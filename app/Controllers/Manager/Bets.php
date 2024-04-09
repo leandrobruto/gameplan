@@ -34,7 +34,7 @@ class Bets extends BaseController
             'user' => $user,
             'bets' => $this->betModel->findBetsByUser($user)->paginate(10),
             'count' => $this->betModel->countAllBetsByUser($user),
-
+            'bankroll' => $this->bankrollModel->first(),
             'bankrolls' => $this->bankrollModel->findAll(),
             'sports' => $this->sportModel->findAll(),
             'competitions' => $this->competitionModel->findAll(),
@@ -56,7 +56,7 @@ class Bets extends BaseController
     }
 
     public function postStore()
-    {
+    {dd($this->request->getPost());
         if ($this->request->getMethod() === 'post') {
             
             $bet = new Bet($this->request->getPost('bet'));

@@ -38,6 +38,8 @@ class Register extends BaseController
 
                 $profile = new \App\Entities\Profile();
                 $profile->user_id = $this->userModel->getInsertID();
+                $profile->first_name = $this->request->getPost('first_name');
+                $profile->last_name = $this->request->getPost('last_name');
                 
                 $this->profileModel->protect(false)->insert($profile);
 

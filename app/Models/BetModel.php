@@ -26,7 +26,7 @@ class BetModel extends Model
      */
     public function findBetsByUser($user = null) 
     {
-        return $this->select('bets.*, 
+        return $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi,
             matches.event, matches.date,
             bankrolls.name AS bankroll, 
             sports.name AS sport, 
@@ -37,7 +37,8 @@ class BetModel extends Model
                 ->join('competitions', 'bets.competition_id = competitions.id')
                 ->join('strategies', 'bets.strategy_id = strategies.id')
                 ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
-                ->where('bets.user_id', $user->id);
+                ->where('bets.user_id', $user->id)
+                ->orderBy('matches.date', 'DESC');
     }
 
     public function countAllBetsByUser($user) 

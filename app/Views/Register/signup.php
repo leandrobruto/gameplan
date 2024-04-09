@@ -97,6 +97,34 @@
                     
                 <?= form_open("register/signUp"); ?>
                 
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input
+                                type="text"
+                                id="first_name"
+                                name="first_name"
+                                class="form-control"
+                                placeholder="First Name"
+                                value="<?= old('first_name'); ?>"
+                                autofocus
+                            />
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="username" class="form-label">Last Name</label>
+                            <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                class="form-control"
+                                placeholder="Last Name"
+                                value="<?= old('last_name'); ?>"
+                                autofocus
+                            />
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input
@@ -105,6 +133,7 @@
                             name="username"
                             class="form-control"
                             placeholder="Enter your name"
+                            value="<?= old('username'); ?>"
                             autofocus
                         />
                     </div>
@@ -117,6 +146,7 @@
                             name="email"
                             class="form-control"
                             placeholder="Enter your email"
+                            value="<?= old('email'); ?>"
                         />
                     </div>
 

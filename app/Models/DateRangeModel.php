@@ -4,13 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class StrategyModel extends Model
+class DateRangeModel extends Model
 {
-    protected $table            = 'strategies';
+    protected $table            = 'date_ranges';
     protected $primaryKey       = 'id';
-    protected $returnType       = 'App\Entities\Strategy';
+    protected $returnType       = 'App\Entities\DateRange';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['sport_id', 'name'];
+    protected $allowedFields    = ['name'];
 
     // Dates
     protected $useTimestamps = true;

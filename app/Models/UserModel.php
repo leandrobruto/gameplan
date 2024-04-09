@@ -107,6 +107,11 @@ class UserModel extends Model
         return $this->where('email', $email)->first();
     }
 
+    public function findUserByUsernameOrEmail(string $data) 
+    {
+        return $this->where('email', $data)->orWhere('username', $data)->first();
+    }
+
     public function findUserToResetPassword(string $token) {
 
         $token = new Token($token);
@@ -146,5 +151,17 @@ class UserModel extends Model
 
             $this->protect(false)->save($user);
         }
+    }
+
+    public function getUserWithProfile($user) {
+        return $this->select('users.*, profiles.*')
+                ->join('profiles', 'profiles.user_id = users.id')
+                ->where('profiles.user_id', $user->id)
+                ->first();
+    }
+
+    public function getAllUsersWithProfile() {
+        return $this->select('users.*, profiles.*')
+                ->join('profiles', 'profiles.user_id = users.id');
     }
 }

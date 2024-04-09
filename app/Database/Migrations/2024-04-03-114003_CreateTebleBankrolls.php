@@ -40,6 +40,11 @@ class CreateTebleBankrolls extends Migration
                 'unsigned' => true,
                 'null' => true,
             ],
+            'is_default' => [
+                'type' => 'BOOLEAN',
+                'null' => true,
+                'default' => false,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

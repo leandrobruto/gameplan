@@ -12,10 +12,11 @@ class Seed extends BaseController
         $seeder = \Config\Database::seeder();
 
         $seeder->call('UserSeeder');
+        $seeder->call('DateRangeSeeder');
+        $seeder->call('SportSeeder');
         $seeder->call('ProfileSeeder');
         $seeder->call('CurrencySeeder');
         $seeder->call('BankrollSeeder');
-        $seeder->call('SportSeeder');
         $seeder->call('CompetitionSeeder');
         $seeder->call('StrategySeeder');
         $seeder->call('BetSeeder');

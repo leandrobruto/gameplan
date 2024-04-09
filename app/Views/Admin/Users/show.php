@@ -23,9 +23,9 @@
     <div class="card-body">
       <div class="user-avatar-section">
         <div class=" d-flex align-items-center flex-column">
-          <?php if ($user->profile->avatar): ?>
+          <?php if ($profile->avatar): ?>
             <a href="<?= site_url("admin/profiles/editImage/$user->id"); ?>">
-              <img class="img-fluid rounded my-2" src="<?= site_url("admin/profiles/image/{$user->profile->avatar}") ?>" alt="<?= esc($user->profile->name) ?>" height="110" width="110" />
+              <img class="img-fluid rounded my-2" src="<?= site_url("admin/profiles/image/{$profile->avatar}") ?>" alt="<?= esc($profile->name) ?>" height="110" width="110" />
             </a>
           <?php else: ?>
             <a href="<?= site_url("admin/profiles/editImage/$user->id"); ?>">
@@ -52,6 +52,14 @@
         <?php endif; ?>
         
         <ul class="list-unstyled">
+          <li class="mb-3">
+            <span class="fw-medium me-2">Full Name:</span>
+            <span><?= $profile->first_name . ' ' . $profile->last_name; ?></span>
+          </li>
+          <li class="mb-3">
+            <span class="fw-medium me-2">Email:</span>
+            <span><?= $user->email; ?></span>
+          </li>
           <li class="mb-3">
             <span class="fw-medium me-2">Status:</span>
             <span class="badge <?= $user->active ? 'bg-label-primary' : 'bg-label-danger' ?>"><?= ($user->active ? 'Active' : 'Inactive'); ?></span>

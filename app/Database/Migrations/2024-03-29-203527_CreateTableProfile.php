@@ -20,9 +20,14 @@ class CreateTableProfiles extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
-            'name' => [
+
+            'first_name' => [
                 'type' => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => 50,
+            ],
+            'last_name' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
             ],
             'cpf' => [
                 'type' => 'VARCHAR',
@@ -36,6 +41,21 @@ class CreateTableProfiles extends Migration
             'avatar' => [
                 'type' => 'VARCHAR',
                 'constraint' => '200',
+            ],
+            'default_stake' => [
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
+                'null' => true,
+            ],
+            'default_date_range_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
+            ],
+            'default_sport_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -55,7 +75,9 @@ class CreateTableProfiles extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id')->addUniqueKey('cpf');
-        $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('default_date_range_id', 'date_ranges', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('default_sport_id', 'sports', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('profiles');
     }
 

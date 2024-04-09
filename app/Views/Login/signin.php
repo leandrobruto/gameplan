@@ -113,11 +113,11 @@
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
               class="form-control"
-              placeholder="Enter your email"
+              placeholder="Enter your Username or Email"
               autofocus
               required
             />

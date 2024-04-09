@@ -14,7 +14,7 @@ class Auth {
     {
         $userModel = new \App\Models\UserModel();
 
-        $user = $userModel->findUserByEmail($email);
+        $user = $userModel->findUserByUsernameOrEmail($email);
 
         /* If the user cannot be found by email, it returns false */
         if ($user == null) {

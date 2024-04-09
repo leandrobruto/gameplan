@@ -15,6 +15,11 @@ class CreateTableStrategies extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
+            'sport_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
+            ],
             'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
@@ -41,6 +46,7 @@ class CreateTableStrategies extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
+        $this->forge->addForeignKey('sport_id', 'sports', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('strategies');
     }
 

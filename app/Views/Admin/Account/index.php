@@ -75,12 +75,12 @@
 
           <div class="mb-3 col-md-6">
             <label for="firstName" class="form-label">First Name</label>
-            <input class="form-control" type="text" id="firstName" name="firstName" value="Chico" autofocus />
+            <input class="form-control" type="text" id="firstName" name="firstName" value="<?= $profile->first_name; ?>" autofocus />
           </div>
 
           <div class="mb-3 col-md-6">
             <label for="lastName" class="form-label">Last Name</label>
-            <input class="form-control" type="text" name="lastName" id="lastName" value="Tripa" />
+            <input class="form-control" type="text" name="lastName" id="lastName" value="<?= $profile->last_name; ?>" />
           </div>
           
           <div class="mb-3 col-md-6">
@@ -105,8 +105,31 @@
             <label for="cpf" class="form-label">CPF</label>
             <input type="text" class="form-control cpf" name="cpf" id="cpf" value="<?php echo old('cpf', esc($profile->cpf)); ?>">
           </div>
+
+          <div class="mb-3 col-md-6">
+            <label for="default_stake" class="form-label">Default Stake</label>
+            <input type="text"class=" form-control" id="default_stake" name="profile[default_stake]" value="<?= $user->default_stake; ?>" />
+          </div>
+
+          <div class="mb-3 col-md-6">
+            <label for="sport" class="form-label">Default Date Range</label>
+            <select class="form-select" id="sport" name="bet[sport_id]" aria-label="Sport">
+              <?php foreach($date_ranges as $range): ?>
+                <option value="<?= $range->id; ?>" <?= (old('profile.default_date_range_id') == $range->id ? 'selected' : '') ?>><?= $range->name; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+
+          <div class="mb-3 col-md-6">
+            <label for="sport" class="form-label">Sport</label>
+            <select class="form-select" id="sport" name="bet[sport_id]" aria-label="Sport">
+              <?php foreach($sports as $sport): ?>
+                <option value="<?= $sport->id; ?>" <?= (old('profile.default_sport_id') == $sport->id ? 'selected' : '') ?>><?= $sport->name; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
         </div>
-        
+
         <div class="mt-2">
           <button type="submit" class="btn btn-primary me-2">Save changes</button>
           <button type="reset" class="btn btn-outline-secondary">Cancel</button>

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateTableCompetitions extends Migration
+class CreateTableDateRange extends Migration
 {
     public function up()
     {
@@ -14,11 +14,6 @@ class CreateTableCompetitions extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
                 'auto_increment' => true,
-            ],
-            'sport_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
             ],
             'name' => [
                 'type' => 'VARCHAR',
@@ -42,12 +37,11 @@ class CreateTableCompetitions extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('sport_id', 'sports', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('competitions');
+        $this->forge->createTable('date_ranges');
     }
 
     public function down()
     {
-        $this->forge->dropTable('competitions');
+        $this->forge->dropTable('date_ranges');
     }
 }

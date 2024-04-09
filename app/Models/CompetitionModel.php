@@ -10,7 +10,7 @@ class CompetitionModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Competition';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['name'];
+    protected $allowedFields    = ['sport_id', 'name'];
 
     // Dates
     protected $useTimestamps = true;
