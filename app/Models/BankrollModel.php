@@ -30,7 +30,9 @@ class BankrollModel extends Model
             'user_id' => $user_id,
             'name' => 'My Bankroll',
             'currency_id' => 1,
+            'initial_balance' => 0.00,
             'initial_date' => date("Y/m/d"),
+            'comission' => 0,
             'is_default' => 1,
         ];
     }

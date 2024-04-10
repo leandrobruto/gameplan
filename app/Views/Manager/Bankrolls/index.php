@@ -114,7 +114,7 @@
             <?php foreach ($bankrolls as $bankroll): ?>
               <tr>
                 <td><?= $bankroll->name; ?></td>
-                <td><?= $bankroll->initial_balance; ?></td>
+                <td>$<?= $bankroll->initial_balance; ?></td>
                 <td>$<?= $bankroll->initial_balance; ?></td>
                 <td><?= $bankroll->currency; ?></td>
                 <td><?= $bankroll->created_at->humanize(); ?></td>
@@ -129,7 +129,7 @@
                   </a>
                   
                   <a href="<?= site_url("manager/strategies/edit/$bankroll->id"); ?>">
-                    <i class="bx bx-trash me-1"></i>
+                    <i class="bx bx-trash text-danger me-1"></i>
                   </a>
                 </td>
               </tr>

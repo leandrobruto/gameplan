@@ -122,7 +122,7 @@
                       data-bs-toggle="modal" data-bs-target="#editStrategyModal" type="button">
                     <i class="bx bx-edit me-1"></i>
                   </button>
-                  <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
+                  <button class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
                     <i class="bx bx-trash me-1"></i>
                   </button>
                 </td>

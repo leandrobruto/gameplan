@@ -38,7 +38,7 @@
 
         <button type="submit" class="btn btn-primary">
           <i class="bx bx-save tf-icons"></i>  
-          Submit
+          Save
         </button>
 
         <a href="<?= site_url("admin/users"); ?>" class="btn btn-light text-dark">

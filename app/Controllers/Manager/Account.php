@@ -157,10 +157,12 @@ class Account extends BaseController
 
     public function getStrategies()
     {
+        $user = userLoggedIn();
         $strategies = $this->strategyModel->findAll();
         
         $data = [
             'title' => 'Strategies',
+            'user' => $user,
             'strategies' => $strategies,
             'sports' => $this->sportModel->findAll(),
             'pager' => $this->strategyModel->pager,
@@ -171,9 +173,12 @@ class Account extends BaseController
 
     public function getCompetitions()
     {
+        $user = userLoggedIn();
         $competitions = $this->competitionModel->findAll();
+
         $data = [
             'title' => 'Competitions',
+            'user' => $user,
             'competitions' => $competitions,
             'sports' => $this->sportModel->findAll(),
             'pager' => $this->competitionModel->pager,

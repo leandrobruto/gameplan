@@ -34,6 +34,7 @@ class Dashboard extends BaseController
         ];
 
         $bankroll = $this->bankrollModel->where('user_id', $user->id)->first();
+        $data['bankroll'] = $bankroll;
 
         $reports = $this->betModel->getReportsByUser($user);
 
@@ -43,14 +44,13 @@ class Dashboard extends BaseController
             $data['roi'] = number_format(($reports->result / $reports->stake) * 100, 2);
             $data['balance'] = number_format($bankroll->initial_balance + $reports->result, 2);
             $data['biggest_win'] = $reports->max_result;
-            $data['bankroll'] = $bankroll;
+            
         } else {
             $data['result'] = 0;
             $data['averageProfit'] = 0;
             $data['roi'] = 0;
             $data['balance'] = 0;
             $data['biggest_win'] = 0;
-            $data['bankroll'] = 0;
         }
         
         return view('Manager/Dashboard/index', $data);

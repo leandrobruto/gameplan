@@ -23,14 +23,14 @@
         <div class="card-body">
             <h5 class="card-title"><?= $title ?></h5>
 
-            <div class=" d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between">
                 <div class="ui-widget">
-                    <input id="query" name="query" placeholder="Search.." class="form-control bg-light mb-4">
+                    <input id="query" name="query" placeholder="Search.." class="form-control bg-light">
                 </div>
 
                 <a href="<?= site_url("admin/users/create"); ?>" class="btn btn-primary float-right">
                     <i class="bx bx-plus tf-icons"></i>
-                Create
+                    Create
                 </a>
             </div>
         </div>
@@ -42,7 +42,6 @@
                     <th>User</th>
                     <th>Name</th>
                     <th>Status</th>
-                    <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -76,22 +75,13 @@
                                     '<span class="badge bg-label-danger me-1">Inactive</span>'
                                 ?>
                             </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= site_url("admin/users/edit/$user->id"); ?>">
-                                            <i class="bx bx-edit-alt me-1"></i>
-                                            Edit
-                                        </a>
-                                        <a class="dropdown-item" href="<?= site_url("admin/users/delete/$user->id"); ?>">
-                                            <i class="bx bx-trash me-1"></i>
-                                            Delete
-                                        </a>
-                                    </div>
-                                </div>
+                            <td class="d-flex justify-content-center p-3">
+                                <a class="btn" href="<?= site_url("admin/users/edit/$user->id"); ?>">
+                                    <i class="bx bx-edit-alt me-1"></i>
+                                </a>
+                                <a class="btn" href="<?= site_url("admin/users/delete/$user->id"); ?>">
+                                    <i class="bx bx-trash text-danger me-1"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

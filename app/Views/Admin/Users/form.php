@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <div class="col-md-3 mb-3">
+    <div class="col-6 mb-3">
         <div class="form-check form-switch mb-2">
             <input type="hidden" name="user[active]" value="0" />
             <input type="checkbox" class="form-check-input" name="user[active]" id="active" value="1" <?php if (old('active', $user->active)): ?> checked="" <?php endif; ?> />
@@ -95,7 +95,7 @@
         </div>
     </div>
 
-    <div class="col-md-3 mb-3">
+    <div class="col-6 mb-3">
         <div class="form-check form-switch mb-2">
             <input type="hidden" name="user[is_admin]" value="0" />
             <input type="checkbox" class="form-check-input" name="user[is_admin]" id="is_admin" value="1" <?php if (old('is_admin', $user->is_admin)): ?> checked="" <?php endif; ?> />

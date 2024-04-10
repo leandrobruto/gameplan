@@ -57,9 +57,9 @@ class Users extends BaseController
             if ($this->userModel->protect(false)->insert($user)) {
 
                 $profile = new \App\Entities\Profile($this->request->getPost('profile'));
+                $profile->user_id = $this->userModel->getInsertID();
                 $profile->default_date_range_id = 1;
                 $profile->default_sport_id = 1;
-                $profile->user_id = $this->userModel->getInsertID();
                 
                 // Store User Profile
                 $this->profileModel->protect(false)->insert($profile);

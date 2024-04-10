@@ -293,7 +293,7 @@
     $("#addRow").click(function () {
         var html = '';
         html += '<div class="row" id="inputFormRow">'
-        html += '<div class="col-md-6 mb-3">'
+        html += '<div class="col-md-8 col-7 mb-3">'
         html += '<label class="form-label" for="selection">Selection</label>'
         html += '<div class="input-group input-group-merge">'
         html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
@@ -301,14 +301,14 @@
         html += '</div>'
         html += '</div>'
 
-        html += '<div class="col-md-4 mb-3">'
+        html += '<div class="col-md-2 col-3 mb-3">'
         html += '<label for="odd" class="form-label">Odd</label>'
         html += '<div class="input-group input-group-merge">'
         html += '<input type="text" id="odd" name="odd[]" class="form-control" value="" />'
         html += '</div>'
         html += '</div>'
-        html += '<div class="col-md-2 mb-3 align-self-end">'
-        html += '<button id="removeRow" type="button" class="btn btn-danger">'
+        html += '<div class="col-md-2 col-2 px-1 mb-3 d-flex align-self-end">'
+        html += '<button id="removeRow" type="button" class="btn btn-danger p-2">'
         html += '<i class="bx bx-trash tf-icons"></i></button>'
         html += '</div>'
         html += '</div>';

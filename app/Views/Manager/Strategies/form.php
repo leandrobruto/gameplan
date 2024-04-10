@@ -1,4 +1,8 @@
 <div class="row">
+
+    <!-- Hidden fields that we will use in the controller -->
+    <input type="hidden" name="user_id" value="<?= $user->id; ?>" />
+
     <div class="col-md-12 mb-3">
         <label class="form-label" for="name">Name</label>
         <div class="input-group input-group-merge">

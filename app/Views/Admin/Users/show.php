@@ -144,11 +144,11 @@
             <span><?= $user->updated_at->humanize(); ?></span>
           </li>
         </ul>
-        <div class="justify-content-center mt-4">
+        <div class="text-center mt-4">
           <?php if ($user->deleted_at == null): ?>
             <button
               type="button"
-              class="btn btn-dark"
+              class="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#editUserModal">
               <i class="bx bx-edit-alt tf-icons"></i>
@@ -212,7 +212,7 @@
         </button>
         <button type="submit" class="btn btn-primary">
           <i class="bx bx-save tf-icons"></i>  
-          Submit
+          Update
         </button>
       </div>
         <?= form_close(); ?>

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 mb-3">
+    <div class="col-8 mb-3">
         <label class="form-label" for="selection">Selection</label>
         <div class="input-group input-group-merge">
             <span class="input-group-text"><i class="bx bx-football"></i></span>
@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-4 mb-3">
         <label for="odd" class="form-label">Odd</label>
             <div class="input-group input-group-merge">
             <input type="text" id="odd" name="odd[]" class="form-control" value="" />
@@ -19,9 +19,10 @@
 
 <div>
     <button id="addRow" type="button" class="btn btn-primary mb-3">
-        <i class="bx bx-plus tf-icons"></i></button>
+        <i class="bx bx-add-to-queue tf-icons"></i></button>
     </button>
 </div>
+
 <div class="row">
     <div class="col-md-12 mb-3">
         <label class="form-label" for="description">Description</label>
