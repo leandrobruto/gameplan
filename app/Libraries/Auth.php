@@ -80,9 +80,10 @@ class Auth {
         $profileModel = new \App\Models\ProfileModel();
 
         /* Retrieves user according to session key 'user_id' */
-        $user = $userModel->find(session()->get('user_id'));
-        $profile = $profileModel->where('user_id', $user->id)->first();
-        $user->avatar = $profile->avatar;
+        $user = $userModel->select('profiles.*, users.*')
+            ->join('profiles', 'profiles.user_id = users.id')
+            ->where('users.id', session()->get('user_id'))
+            ->first();
 
         /* Only return the user object if it is found and is active */
         if ($user && $user->active) {
