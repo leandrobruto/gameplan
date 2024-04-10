@@ -12,16 +12,19 @@ class StrategySeeder extends Seeder
 
         $data = [
             [
+                'user_id' => 1,
                 'sport_id' => 1, 
                 'name' => 'Match Winner',
                 'description' => 'Match Winner',
             ],
             [
+                'user_id' => 1,
                 'sport_id' => 1, 
                 'name' => 'Draw no Bet',
                 'description' => 'Draw no Bet',
             ],
             [
+                'user_id' => 1,
                 'sport_id' => 1, 
                 'name' => 'Double Chance',
                 'description' => 'Double Chance',

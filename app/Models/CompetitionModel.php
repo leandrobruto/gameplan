@@ -10,7 +10,7 @@ class CompetitionModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Competition';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['sport_id', 'name'];
+    protected $allowedFields    = ['user_id', 'sport_id', 'name'];
 
     // Dates
     protected $useTimestamps = true;
@@ -18,4 +18,25 @@ class CompetitionModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
+    public function getDefaultCompetitions($user_id)
+    {
+        return [
+            [
+                'user_id' => $user_id,
+                'sport_id' => 1,
+                'name' => 'Bundesliga',
+            ],
+            [
+                'user_id' => $user_id,
+                'sport_id' => 1,
+                'name' => 'Champions League',
+            ],
+            [
+                'user_id' => $user_id,
+                'sport_id' => 1,
+                'name' => 'Campeonato Cearense',
+            ]
+        ];
+    }
 }

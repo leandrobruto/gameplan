@@ -39,8 +39,8 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                    <th>Client</th>
-                    <th>Users</th>
+                    <th>User</th>
+                    <th>Name</th>
                     <th>Status</th>
                     <th>Actions</th>
                     </tr>

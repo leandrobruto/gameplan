@@ -12,14 +12,17 @@ class CompetitionSeeder extends Seeder
 
         $data = [
             [
+                'user_id' => 1,
                 'sport_id' => 1, 
                 'name' => 'Bundesliga'
             ],
             [
+                'user_id' => 1,
                 'sport_id' => 1, 
                 'name' => 'Champions League'
             ],
             [
+                'user_id' => 1,
                 'sport_id' => 3, 
                 'name' => 'Tennis'
             ],

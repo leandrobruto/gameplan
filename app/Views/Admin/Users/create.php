@@ -32,7 +32,7 @@
         </ul>
       <?php endif; ?>
 
-      <?= form_open("admin/users/register"); ?>
+      <?= form_open("admin/users/store"); ?>
 
         <?= $this->include('Admin/Users/form'); ?>
 

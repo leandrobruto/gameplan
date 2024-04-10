@@ -154,47 +154,56 @@
   </div>
 </div>
 
-<div class="col-xl-12 col-md-12 col-sm-6">
-    <!-- Hoverable Table rows -->
-    <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><?= $title ?></h5>
+<!-- Hoverable Table rows -->
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title d-flex justify-content-between align-items-center"><?= $title ?></h5>
 
-          <div class="table-responsive text-nowrap">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Date</th>
-                      <th>Event</th>
-                      <th>Market</th>
-                      <th>Stake</th>
-                      <th>Result</th>
-                      <th>ROI</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    <?php
-                        foreach ($bets as $bet): ?>
-                          <tr>
-                              <td><?= $bet->code; ?></td>
-                              <td><?= date("F jS, Y", strtotime($bet->date)); ?></td>
-                              <td><?= $bet->event; ?></td>
-                              <td><?= $bet->strategy; ?></td>
-                              <td>$<?= $bet->stake; ?></td>
-                              <td>$<?= $bet->result; ?></td>
-                              <td><?= number_format($bet->roi, 2); ?>%</td>
-                          </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <?php if ($pager->getPageCount() > 1): ?>
-              <div class="d-flex justify-content-center mt-4">
-                  <?= $pager->links('default', 'default_pagination'); ?>
-              </div>
-            <?php endif; ?>
-        </div>
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Market</th>
+            <th>Stake</th>
+            <th>Result</th>
+            <th>ROI</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <?php foreach ($bets as $bet): ?>
+            <tr>
+              <td><?= $bet->code; ?></td>
+              <td><?= date("F jS, Y", strtotime($bet->date)); ?></td>
+              <td><?= $bet->event; ?></td>
+              <td><?= $bet->strategy; ?></td>
+              <td>$<?= $bet->stake; ?></td>
+              <td>$<?= $bet->result; ?></td>
+              <td><?= number_format($bet->roi, 2); ?>%</td>
+              <td>
+                <button class="btn btn-link edit" 
+                  onclick="" 
+                  data-bs-toggle="modal" data-bs-target="#editBetModal" type="button">
+                  <i class="bx bx-edit me-1"></i>
+                </button>
+
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#DeleteBetModal" type="button">
+                  <i class="bx bx-trash me-1"></i>
+                </button>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center mt-4">
+        <?php if ($pager->getPageCount() > 1): ?>
+          <?= $pager->links('default', 'default_pagination'); ?>
+        <?php endif; ?>
+      </div>
     </div>
+  </div>
 </div>
 <!--/ Hoverable Table rows -->
 

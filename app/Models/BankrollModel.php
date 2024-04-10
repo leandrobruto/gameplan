@@ -24,6 +24,17 @@ class BankrollModel extends Model
         'name' => 'required',
     ];
 
+    public function getDefaultBankroll($user_id)
+    {
+        return [
+            'user_id' => $user_id,
+            'name' => 'My Bankroll',
+            'currency_id' => 1,
+            'initial_date' => date("Y/m/d"),
+            'is_default' => 1,
+        ];
+    }
+
     public function getUserBankrolls($user = null) {
         return $this->select('bankrolls.*, currencies.name AS currency')
                 ->join('currencies', 'currencies.id = bankrolls.currency_id')

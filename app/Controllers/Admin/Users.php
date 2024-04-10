@@ -10,11 +10,17 @@ class Users extends BaseController
 {
     private $userModel;
     private $profileModel;
+    private $bankrollModel;
+    private $competitionModel;
+    private $strategyModel;
     
     public function __construct()
     {
         $this->userModel = new \App\Models\UserModel();
         $this->profileModel = new \App\Models\ProfileModel();
+        $this->bankrollModel = new \App\Models\BankrollModel();
+        $this->competitionModel = new \App\Models\CompetitionModel();
+        $this->strategyModel = new \App\Models\StrategyModel();
     }
 
     public function getIndex()
@@ -42,7 +48,7 @@ class Users extends BaseController
         return view('Admin/Users/create', $data);
     }
 
-    public function postRegister()
+    public function postStore()
     {
         if ($this->request->getMethod() === 'post') {
             
@@ -55,7 +61,23 @@ class Users extends BaseController
                 $profile->default_sport_id = 1;
                 $profile->user_id = $this->userModel->getInsertID();
                 
+                // Store User Profile
                 $this->profileModel->protect(false)->insert($profile);
+
+                $bankroll = $this->bankrollModel->getDefaultBankroll($this->userModel->getInsertID());
+
+                // Store Default User Bankroll
+                $this->bankrollModel->protect(false)->insert($bankroll);
+
+                $competition = $this->competitionModel->getDefaultCompetitions($this->userModel->getInsertID());
+
+                // Store Default User Competitions
+                $this->competitionModel->protect(false)->insertBatch($competition);
+
+                $strategy = $this->strategyModel->getDefaultStrategies($this->userModel->getInsertID());
+
+                // Store Default User Strategies
+                $this->strategyModel->protect(false)->insertBatch($strategy);
 
                 return redirect()->to(site_url("admin/users/show/" . $this->userModel->getInsertID()))
                                 ->with('success', "User $user->nome successfully registered!");
