@@ -26,7 +26,7 @@ class Dashboard extends BaseController
         $user = userLoggedIn();
 
         $data = [
-            'title' => 'Bets',
+            'title' => 'Home',
             'user' => $user,
             'bets' => $this->betModel->findBetsByUser($user)->paginate(10),
             'count' => $this->betModel->countAllBetsByUser($user),

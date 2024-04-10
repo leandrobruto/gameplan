@@ -22,7 +22,7 @@
     <div class="d-flex align-items-end row">
       <div class="col-sm-7">
         <div class="card-body">
-          <h5 class="card-title text-primary"><?= $this->renderSection('title'); ?> 🎉🦎⚽</h5>
+          <h5 class="card-title text-primary"><?= $title; ?> 🎉🦎⚽</h5>
           <p class="mb-2">
             Define your Initial Bankroll.
           </p>
