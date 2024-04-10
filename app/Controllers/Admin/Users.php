@@ -19,11 +19,8 @@ class Users extends BaseController
 
     public function getIndex()
     {
-        $user = userLoggedIn();
-
         $data = [
             'title' => 'Users listing',
-            'user' => $this->userModel->getUserWithProfile($user),
             'users' => $this->userModel->getAllUsersWithProfile()->withDeleted(true)->paginate(10),
             'pager' => $this->userModel->pager,
         ];
@@ -34,10 +31,12 @@ class Users extends BaseController
     public function getCreate()
     {
         $user = new user();
+        $profile = new Profile();
 
         $data = [
             'title'     => "Creating a new user",
             'user' => $user,
+            'profile' => $profile,
         ];
 
         return view('Admin/Users/create', $data);
@@ -47,11 +46,13 @@ class Users extends BaseController
     {
         if ($this->request->getMethod() === 'post') {
             
-            $user = new User($this->request->getPost());
+            $user = new User($this->request->getPost('user'));
 
             if ($this->userModel->protect(false)->insert($user)) {
 
-                $profile = new Profile();
+                $profile = new \App\Entities\Profile($this->request->getPost('profile'));
+                $profile->default_date_range_id = 1;
+                $profile->default_sport_id = 1;
                 $profile->user_id = $this->userModel->getInsertID();
                 
                 $this->profileModel->protect(false)->insert($profile);

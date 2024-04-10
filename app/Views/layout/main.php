@@ -232,7 +232,15 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="<?= site_url('assets/img/avatars/monkito.jpeg'); ?>" alt class="w-px-40 h-auto rounded-circle" />
+
+                      <?php $userLoggedIn = userLoggedIn(); ?>
+                      
+                      <?php if ($userLoggedIn->avatar): ?>
+                        <img src="<?= site_url("admin/users/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                      <?php else: ?>
+                        <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                      <?php endif; ?>
+
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -241,7 +249,13 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="<?= site_url('assets/img/avatars/monkito.jpeg'); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                              
+                              <?php if ($userLoggedIn->avatar): ?>
+                                <img src="<?= site_url("admin/users/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                              <?php else: ?>
+                                <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                              <?php endif; ?>
+                            
                             </div>
                           </div>
                           <div class="flex-grow-1">

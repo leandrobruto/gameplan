@@ -37,12 +37,12 @@
             <strong>Attention!</strong> Are you sure about deleting the user <strong><?= esc($user->username) ?>?</strong>
           </div>
 
-          <button type="submit" class="btn btn-danger btn-sm mr-2">
+          <button type="submit" class="btn btn-danger mr-2">
             <i class="bx bx-trash-alt tf-icons"></i>
               Delete
           </button>
 
-          <a href="<?= site_url("admin/users/show/$user->id"); ?>" class="btn btn-light text-dark btn-sm">
+          <a href="<?= site_url("admin/users/show/$user->id"); ?>" class="btn btn-light text-dark">
             <i class="bx bx-left-arrow-alt tf-icons"></i>
             Back
           </a>

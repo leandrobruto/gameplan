@@ -38,12 +38,12 @@
             <input class="form-control" name="photo_user" type="file" id="formFile" />
           </div>
 
-          <button type="submit" class="btn btn-sm btn-primary mr-2">
-            <i class="bx bx-save tf-icons"></i>
-            Submit
+          <button type="submit" class="btn btn-primary mr-2">
+            <i class="bx bx-image-add tf-icons"></i>
+            Save
           </button>
 
-          <a href="<?= site_url("admin/users/$profile->user_id"); ?>" class="btn btn-sm btn-light">
+          <a href="<?= site_url("admin/users/show/$profile->user_id"); ?>" class="btn btn-light">
             <i class="bx bx-left-arrow-alt tf-icons"></i>  
               Back
           </a>

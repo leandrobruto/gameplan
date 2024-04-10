@@ -245,6 +245,7 @@
                       <?php else: ?>
                         <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                       <?php endif; ?>
+
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -253,11 +254,13 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
+
                               <?php if ($userLoggedIn->avatar): ?>
                                 <img src="<?= site_url("admin/users/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                               <?php else: ?>
                                 <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                               <?php endif; ?>
+                              
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -271,13 +274,13 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="<?= site_url('admin/account/profile'); ?>">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="<?= site_url('admin/account/profile'); ?>">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
                       </a>

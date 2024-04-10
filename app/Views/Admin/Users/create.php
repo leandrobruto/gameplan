@@ -24,11 +24,24 @@
     </div>
     <div class="card-body">
 
+      <?php if (session()->has('errors_model')): ?>
+        <ul>
+            <?php foreach (session('errors_model') as $error): ?>
+                <li class="text-danger"><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
+
       <?= form_open("admin/users/register"); ?>
 
         <?= $this->include('Admin/Users/form'); ?>
 
-        <a href="<?= site_url("admin/users"); ?>" class="btn btn-light text-dark btn-sm">
+        <button type="submit" class="btn btn-primary">
+          <i class="bx bx-save tf-icons"></i>  
+          Submit
+        </button>
+
+        <a href="<?= site_url("admin/users"); ?>" class="btn btn-light text-dark">
           <i class="bx bx-left-arrow-alt tf-icons"></i>
           Voltar
         </a>

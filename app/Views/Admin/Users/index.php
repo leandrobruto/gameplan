@@ -57,18 +57,18 @@
                                         class="avatar avatar-md pull-up"
                                         title="@<?= $user->username; ?>"
                                     >
-                                    <?php if($user->avatar): ?>
-                                        <img src="<?= site_url("admin/profiles/image/$user->avatar"); ?>" alt="user-avatar" class="rounded-circle" />
-                                    <?php else: ?>
-                                        <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt="user-avatar" class="rounded-circle" />
-                                    <?php endif; ?>
+                                        <a href="<?= site_url("admin/users/show/$user->id"); ?>">
+                                            <?php if($user->avatar): ?>
+                                                <img src="<?= site_url("admin/profiles/image/$user->avatar"); ?>" alt="user-avatar" class="rounded-circle" />
+                                            <?php else: ?>
+                                                <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt="user-avatar" class="rounded-circle" />
+                                            <?php endif; ?>
+                                        </a>
                                     </li>
                                 </ul>
                             </td>
                             <td>
-                                <a href="<?= site_url("admin/users/show/$user->id"); ?>">
-                                    <?= $user->first_name . ' ' . $user->last_name; ?>
-                                </a>    
+                                <?= $user->first_name . ' ' . $user->last_name; ?>
                             </td>
                             <td>
                                 <?= $user->active ?
