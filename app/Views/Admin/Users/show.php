@@ -10,7 +10,62 @@
 <!-- Here we send the styles to the main template -->
 <?= $this->section('styles'); ?>
 
+<style>
+  .profilepic {
+  position: relative;
+  width: 125px;
+  height: 125px;
+  border-radius: 5%;
+  overflow: hidden;
+  background-color: #111;
+  }
 
+  .profilepic:hover .profilepic__content {
+    opacity: 1;
+  }
+
+  .profilepic:hover .profilepic__image {
+    opacity: .5;
+  }
+
+  .profilepic__image {
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+  }
+
+  .profilepic__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+  }
+
+  .profilepic__icon {
+    color: white;
+    padding-bottom: 8px;
+  }
+
+  .fas {
+    font-size: 20px;
+  }
+
+  .profilepic__text {
+    text-transform: uppercase;
+    font-size: 12px;
+    width: 50%;
+    text-align: center;
+  }
+
+</style>
 
 <?= $this->endSection(); ?>
 
@@ -23,15 +78,31 @@
     <div class="card-body">
       <div class="user-avatar-section">
         <div class=" d-flex align-items-center flex-column">
-          <?php if ($profile->avatar): ?>
-            <a href="<?= site_url("admin/profiles/editImage/$user->id"); ?>">
-              <img class="img-fluid rounded my-2" src="<?= site_url("admin/profiles/image/{$profile->avatar}") ?>" alt="<?= esc($profile->name) ?>" height="110" width="110" />
+            <a class="mb-2" href="<?= site_url("admin/profiles/editImage/$user->id"); ?>">
+              <div class="profilepic">
+
+                <?php if ($profile->avatar): ?>
+                  <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$profile->avatar}") ?>" alt="user-avatar"
+                    class="d-block rounded"
+                    height="125"
+                    width="125"
+                    id="uploadedAvatar" />
+                <?php else: ?>
+                    <img class="profilepic__image" src="<?= site_url('assets/img/avatars/avatar-default.png') ?>" alt="user-avatar"
+                      class="d-block rounded"
+                      height="125"
+                      width="125"
+                      id="uploadedAvatar" />
+                <?php endif; ?>
+
+                <div class="profilepic__content">
+                  <span class="profilepic__icon">
+                    <i class="bx bx-camera me-1"></i>
+                  </span>
+                  <span class="profilepic__text">Change Photo</span>
+                </div>
+              </div>
             </a>
-          <?php else: ?>
-            <a href="<?= site_url("admin/profiles/editImage/$user->id"); ?>">
-              <img class="img-fluid rounded my-4" src="<?php echo site_url('assets/img/avatars/avatar-default.png') ?>" alt="Avatar default" height="110" width="110" />
-            </a>
-          <?php endif; ?>
           
           <span>@<?= strtolower(esc($user->username)); ?></span>
 

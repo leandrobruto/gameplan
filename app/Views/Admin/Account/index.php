@@ -1,4 +1,4 @@
-<?= $this->extend('layout/main'); ?>
+<?= $this->extend('admin/layout/main'); ?>
 
 <!-- Here we send the title to the main template -->
 <?= $this->section('title'); ?>
@@ -10,7 +10,62 @@
 <!-- Here we send the styles to the main template -->
 <?= $this->section('styles'); ?>
 
+<style>
+  .profilepic {
+  position: relative;
+  width: 125px;
+  height: 125px;
+  /* border-radius: 50%; */
+  overflow: hidden;
+  background-color: #111;
+  }
 
+  .profilepic:hover .profilepic__content {
+    opacity: 1;
+  }
+
+  .profilepic:hover .profilepic__image {
+    opacity: .5;
+  }
+
+  .profilepic__image {
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+  }
+
+  .profilepic__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+  }
+
+  .profilepic__icon {
+    color: white;
+    padding-bottom: 8px;
+  }
+
+  .fas {
+    font-size: 20px;
+  }
+
+  .profilepic__text {
+    text-transform: uppercase;
+    font-size: 12px;
+    width: 50%;
+    text-align: center;
+  }
+
+</style>
 
 <?= $this->endSection(); ?>
 
@@ -39,14 +94,19 @@
     <!-- Account -->
     <div class="card-body">
       <div class="d-flex align-items-start align-items-sm-center gap-4">
-        <img
-          src="<?= site_url("admin/profiles/image/{$user->profile->avatar}") ?>"
-          alt="user-avatar"
+        <div class="profilepic">
+          <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->profile->avatar}") ?>" alt="user-avatar"
           class="d-block rounded"
-          height="100"
-          width="100"
-          id="uploadedAvatar"
-        />
+          height="125"
+          width="125"
+          id="uploadedAvatar" />
+          <div class="profilepic__content">
+            <span class="profilepic__icon">
+              <i class="bx bx-camera me-1"></i>
+            </span>
+            <span class="profilepic__text">Change Photo</span>
+          </div>
+        </div>
         <div class="button-wrapper">
           <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
             <span class="d-none d-sm-block">Upload new photo</span>
