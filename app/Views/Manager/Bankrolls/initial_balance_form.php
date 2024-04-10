@@ -1,4 +1,4 @@
-<?php if ($bankroll->initial_balance <= 0): ?>
+<?php if (defaultBankroll()->initial_balance <= 0): ?>
   <div class="col-lg-12 mb-4 order-0">
     <div class="card">
       <div class="d-flex align-items-end row">
@@ -9,7 +9,7 @@
               Define your Initial Bankroll.
             </p>
 
-            <?= form_open("manager/bankrolls/update/$bankroll->id"); ?>
+            <?= form_open("manager/bankrolls/update/" . defaultBankroll()->id); ?>
               
               <div class="col-md-12 mb-4">
                 <small class="form-label" for="initial_balance">Initial Balance</small>
