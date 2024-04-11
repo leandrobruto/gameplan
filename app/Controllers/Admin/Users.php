@@ -131,6 +131,7 @@ class Users extends BaseController
     public function getEdit($id = null)
     {
         $user = $this->findUserOr404($id);
+        $profile = $this->profileModel->findProfileByUserId($user->id);
 
         if ($user->deleted_at != null) {
             return redirect()->back()->with('info', "The user $user->name is deleted. Therefore, it is not possible to edit it.");
@@ -139,6 +140,7 @@ class Users extends BaseController
         $data = [
             'title'     => "Editing the user $user->name",
             'user' => $user,
+            'profile' =>$profile,
         ];
 
         return view('Admin/Users/edit', $data);

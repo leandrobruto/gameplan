@@ -41,7 +41,6 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>sports</th>
                         <th>created at</th>
                         <th>Updated at</th>
@@ -52,12 +51,7 @@
                         foreach ($sports as $key => $sport): ?>
                     <tr>
                         <td>
-                            <?= $key + 1; ?>
-                        </td>
-                        <td>
-                            <a href="<?= site_url("admin/sports/show/$sport->id"); ?>">
-                                <?= $sport->name; ?>
-                            </a>    
+                            <?= $sport->name; ?>
                         </td>
                         <td>
                             <?= $sport->created_at->humanize(); ?>

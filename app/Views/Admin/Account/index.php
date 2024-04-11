@@ -128,11 +128,10 @@
 
             <?= form_close() ?>
           </label>
-
           <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
           <div class="col-lg-12">
-        <span class="fw-semibold d-block">@<?= userLoggedIn()->username; ?></span>
-        </div>
+            <span class="fw-semibold d-block">@<?= userLoggedIn()->username; ?></span>
+          </div>
         </div>
       </div>
     </div>
@@ -240,10 +239,10 @@
 
 <!-- Upload Photo Modal -->
 <div class="modal fade" id="uploadPhotoModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Create New Sport</h5>
+        <h5 class="modal-title" id="exampleModalLabel2">Upload photo</h5>
         <button
           type="button"
           class="btn-close"

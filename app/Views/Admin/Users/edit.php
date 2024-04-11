@@ -34,7 +34,7 @@
 
           <?= $this->include('Admin/Users/form'); ?>
 
-          <a href="<?= site_url("admin/users/show/$user->id"); ?>" class="btn btn-sm btn-light text-dark">
+          <a href="<?= site_url("admin/users/show/$user->id"); ?>" class="btn btn-light text-dark">
             <i class="bx bx-left-arrow-alt tf-icons"></i>
             Back
           </a>

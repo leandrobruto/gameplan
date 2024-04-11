@@ -73,17 +73,17 @@
               <tr>
                 <td><?= $competition->name; ?></td>
                 <td>Soccer</td>
-                <td>
+                <td class="d-flex justify-content-end mr-2">
                   <a href="<?= site_url("manager/strategies/transfer/$competition->id"); ?>">
-                    <i class="bx bx-transfer me-1"></i>
+                    <i class="bx bx-transfer me-3"></i>
                   </a>
 
                   <a href="<?= site_url("manager/strategies/edit/$competition->id"); ?>">
-                    <i class="bx bx-edit-alt me-1"></i>
+                    <i class="bx bx-edit-alt me-3"></i>
                   </a>
                   
                   <a href="<?= site_url("manager/strategies/edit/$competition->id"); ?>">
-                    <i class="bx bx-trash text-danger me-1"></i>
+                    <i class="bx bx-trash text-danger me-3"></i>
                   </a>
                 </td>
               </tr>

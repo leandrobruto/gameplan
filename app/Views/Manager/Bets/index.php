@@ -141,16 +141,14 @@
               <td>$<?= $bet->stake; ?></td>
               <td>$<?= $bet->result; ?></td>
               <td><?= number_format($bet->roi, 2); ?>%</td>
-              <td>
-                <button class="btn btn-link edit" 
-                  onclick="" 
-                  data-bs-toggle="modal" data-bs-target="#editBetModal" type="button">
-                  <i class="bx bx-edit me-1"></i>
-                </button>
+              <td class="d-flex justify-content-end">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#editBetModal" type="button">
+                  <i class="bx bx-edit me-3"></i>
+                </a>
 
-                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#DeleteBetModal" type="button">
-                  <i class="bx bx-trash me-1"></i>
-                </button>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteBetModal" type="button">
+                  <i class="bx bx-trash text-danger me-3"></i>
+                </a>
               </td>
             </tr>
           <?php endforeach; ?>

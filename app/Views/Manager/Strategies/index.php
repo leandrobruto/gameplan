@@ -75,18 +75,18 @@
                 <td id="name"><?= $strategy->name; ?></td>
                 <td id="description"><?= $strategy->description; ?></td>
                 <td id="sport">Soccer</td>
-                <td>
-                  <button class="btn btn-link edit" 
+                <td class="d-flex justify-content-end">
+                  <a href="#" class="" 
                     onclick="editModalInfo(
                       '<?= $strategy->name; ?>', 
                       '<?= $strategy->description; ?>', 
                       '<?= $strategy->sport_id; ?>')" 
                       data-bs-toggle="modal" data-bs-target="#editStrategyModal" type="button">
-                    <i class="bx bx-edit me-1"></i>
-                  </button>
-                  <button class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
-                    <i class="bx bx-trash me-1"></i>
-                  </button>
+                    <i class="bx bx-edit me-3"></i>
+                    </a>
+                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
+                    <i class="bx bx-trash me-3"></i>
+                    </a>
                 </td>
               </tr>
             <?php endforeach; ?>
