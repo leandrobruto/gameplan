@@ -21,16 +21,16 @@
 
 <div class="col-xl-12 col-md-12 col-sm-6 mb-4">
 
-  <h5 class="card-title"><?= $title ?></h5>
+  <h4 class="card-title"><?= $title ?></h4>
 
   <div class="row">
     <div class="col-6">
-    <div class="ui-widget">
-      <div class="input-group input-group-merge">
-        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-        <input id="query" name="query" placeholder="Search.." class="form-control bg-light">
+      <div class="ui-widget">
+        <div class="input-group input-group-merge">
+          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+          <input id="query" name="query" placeholder="Search.." class="form-control bg-light">
+        </div>
       </div>
-    </div>
     </div>
     <div class="col-6 d-flex justify-content-end">
       <a href="#" type="button" class="btn btn-dark me-2">

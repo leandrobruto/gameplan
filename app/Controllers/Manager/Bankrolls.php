@@ -61,7 +61,7 @@ class Bankrolls extends BaseController
         $post = $this->request->getPost();
 
         $bankroll->fill($post);
-        
+
         if (!$bankroll->hasChanged()) {
             return redirect()->back()->with('info', "There is no data to update.");
         }
@@ -76,6 +76,48 @@ class Bankrolls extends BaseController
         }
     }
 
+    public function postDefault($id = null)
+    {
+        if ($this->request->getMethod() === 'post') 
+        {
+            $bankroll = $this->findBankrollOr404($id);
+
+            if ($bankroll->deleted_at != null) 
+            {
+                return redirect()->back()->with('info', "The bankroll $bankroll->nome is deleted. Therefore, it is not possible to edit it.");
+            }
+            
+            if ($bankroll->is_default == 1) 
+            {
+                return redirect()->back()->with('success', "Default Bankroll was set successfully!");
+            }
+
+        } 
+        else 
+        {
+            /* It's not POST */
+            return redirect()->back();
+        }
+
+        $post = $this->request->getPost();
+
+        $bankroll->fill($post);
+
+        if (!$bankroll->hasChanged()) 
+        {
+            return redirect()->back()->with('info', "There is no data to update.");
+        }
+        
+        $user = userLoggedIn();
+        if ($this->bankrollModel->set('is_default', 0)->where('is_default', 1)->where('user_id', $user->id)->update())
+        {
+            if ($this->bankrollModel->save($bankroll)) 
+            {
+                return redirect()->back()->with('success', "Default Bankroll was set successfully!");
+            }
+        }
+    }
+
     /**
      * @param int $id
      * @return object Bankroll
@@ -83,7 +125,7 @@ class Bankrolls extends BaseController
     private function findBankrollOr404($id = null)
     {
         if (!$id || !$bankroll = $this->bankrollModel->withDeleted(true)->where('id', $id)->first()) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the bakkroll $id");
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the bankroll $id");
         }
         
         return $bankroll;

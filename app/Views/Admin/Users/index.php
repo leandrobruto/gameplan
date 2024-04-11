@@ -21,17 +21,22 @@
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title"><?= $title ?></h5>
+            <h4 class="card-title"><?= $title ?></h4>
 
-            <div class="d-flex justify-content-between">
-                <div class="ui-widget">
-                    <input id="query" name="query" placeholder="Search.." class="form-control bg-light">
+            <div class="row">
+                <div class="col-6">
+                    <div class="ui-widget">
+                        <div class="input-group input-group-merge">
+                            <input id="query" name="query" placeholder="Search.." class="form-control bg-light">
+                        </div>
+                    </div>
                 </div>
-
-                <a href="<?= site_url("admin/users/create"); ?>" class="btn btn-primary float-right">
-                    <i class="bx bx-plus tf-icons"></i>
-                    Create
-                </a>
+                <div class="col-6 d-flex justify-content-end">
+                    <a href="<?= site_url("admin/users/create"); ?>" class="btn btn-primary float-right">
+                        <i class="bx bx-plus tf-icons"></i>
+                        Create
+                    </a>
+                </div>
             </div>
         </div>
 

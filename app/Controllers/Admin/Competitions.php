@@ -26,7 +26,7 @@ class Competitions extends BaseController
         return view('Admin/Competitions/index', $data);
     }
 
-    public function postCreate()
+    public function postStore()
     {
         if ($this->request->getMethod() === 'post') {
             
@@ -44,5 +44,27 @@ class Competitions extends BaseController
             /* It's not POST */
             return redirect()->back();
         }
+    }
+
+    public function getSearch()
+    {
+        if (!$this->request->isAjax()) 
+        {
+            exit('Page not found');
+        }
+
+        $user = userLoggedIn();
+        $competitions = $this->competitionModel->search($this->request->getGet('term'), $user);
+
+        $result = [];
+
+        foreach ($competitions as $competition) {
+            $data['id'] = $competition->id;
+            $data['value'] = $competition->name;
+
+            $result[] = $data;
+        }
+
+        return $this->response->setJson($result);
     }
 }

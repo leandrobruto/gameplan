@@ -109,7 +109,7 @@
           aria-label="Close">
         </button>
       </div>
-      <?= form_open("admin/competitions/create"); ?>
+      <?= form_open("admin/competitions/store"); ?>
         <div class="modal-body">
 
             <?= $this->include('Admin/Competitions/form'); ?>

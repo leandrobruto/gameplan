@@ -39,6 +39,25 @@ class CompetitionModel extends Model
             ]
         ];
     }
+    
+    /**
+     * @uso Controller Competitions in the search method with autocomplete
+     * @param string $term
+     * @return array competitions
+     */
+    public function search ($term, $user) 
+    {
+        if ($term === null) {
+            return [];
+        }
+
+        return $this->select('competitions.id, competitions.name')
+                    ->join('users', 'users.id = competitions.user_id')
+                    ->like('name', $term)
+                    ->where('users.id', $user->id)
+                    ->get()
+                    ->getResult();
+    }
 
     public function getCompetitionsByUser($user) {
         return $this->select('competitions.*')

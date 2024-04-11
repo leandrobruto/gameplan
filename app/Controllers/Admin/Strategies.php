@@ -26,7 +26,7 @@ class Strategies extends BaseController
         return view('Admin/Strategies/index', $data);
     }
 
-    public function postCreate()
+    public function postStore()
     {
         if ($this->request->getMethod() === 'post') {
             
@@ -44,5 +44,27 @@ class Strategies extends BaseController
             /* It's not POST */
             return redirect()->back();
         }
+    }
+
+    public function getSearch()
+    {
+        if (!$this->request->isAjax()) 
+        {
+            exit('Page not found');
+        }
+
+        $user = userLoggedIn();
+        $strategies = $this->strategyModel->search($this->request->getGet('term'), $user);
+
+        $result = [];
+
+        foreach ($strategies as $strategy) {
+            $data['id'] = $strategy->id;
+            $data['value'] = $strategy->name;
+
+            $result[] = $data;
+        }
+
+        return $this->response->setJson($result);
     }
 }

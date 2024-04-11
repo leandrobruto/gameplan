@@ -19,7 +19,7 @@ class SportModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-     /**
+    /**
      * @uso Controller Sports in the search method with autocomplete
      * @param string $term
      * @return array sports

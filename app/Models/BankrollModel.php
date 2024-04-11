@@ -43,4 +43,28 @@ class BankrollModel extends Model
                 ->where('bankrolls.user_id', $user->id)
                 ->find();
     }
+
+    
+
+    public function getBankrollEvolution($user)
+    {
+        $resultSum = $this->selectSum('bets.result')
+            ->join('bets', 'bets.bankroll_id = bankrolls.id')
+            ->where('bankrolls.user_id', $user->id)
+            ->where('bankrolls.is_default', 1)
+            ->first();
+
+            // dd($resultSum);
+        if (!empty($resultSum->result))
+        {
+            return $this->select('bankrolls.initial_balance, (bankrolls.initial_balance + ' . $resultSum->result . ') as current_balance')
+                ->join('bets', 'bets.bankroll_id = bankrolls.id')
+                ->join('users', 'users.id = bankrolls.user_id')
+                ->where('bankrolls.user_id', $user->id)
+                ->where('bankrolls.is_default', 1)
+                ->first();
+        }
+
+        return null;
+    }
 }

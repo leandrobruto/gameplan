@@ -43,6 +43,25 @@ class StrategyModel extends Model
         ];
     }
 
+    /**
+     * @uso Controller Strategies in the search method with autocomplete
+     * @param string $term
+     * @return array strategies
+     */
+    public function search ($term, $user) 
+    {
+        if ($term === null) {
+            return [];
+        }
+
+        return $this->select('strategies.id, strategies.name')
+                    ->join('users', 'users.id = strategies.user_id')
+                    ->like('name', $term)
+                    ->where('users.id', $user->id)
+                    ->get()
+                    ->getResult();
+    }
+
     public function getStrategiesByUser($user) {
         return $this->select('strategies.*')
                 ->join('users', 'users.id = strategies.user_id')
