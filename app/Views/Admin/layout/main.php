@@ -219,6 +219,41 @@
               </div>
               <!-- /Search -->
 
+              <div class="btn-group" id="dropdown-icon-demo">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary dropdown-toggle hide-arrow"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-offset="10,20"
+                >
+                  <i class="bx bx-wallet"></i> My Bankroll
+                </button>
+                <ul class="dropdown-menu">
+                  
+                  <?php foreach (myBankrolls() as $bankroll): ?>
+                    <li>
+                      <?= form_open("manager/bankrolls/default/$bankroll->id"); ?>
+                        <input type="hidden" name="is_default" value="1">
+
+                        <button type="submit" class="dropdown-item d-flex align-items-center">
+                          <i class="bx bx-wallet scaleX-n1-rtl px-1"></i><?= $bankroll->name; ?>
+                        </button>
+                      <?= form_close(); ?>
+                    </li>
+                  <?php endforeach; ?>
+
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a href="<?= site_url('manager/account/profile'); ?>" class="dropdown-item d-flex align-items-center"
+                      ><i class="bx bx-cog scaleX-n1-rtl px-1"></i> Manage Bankroll</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <li class="nav-item lh-1 me-3">
