@@ -39,4 +39,11 @@ class CompetitionModel extends Model
             ]
         ];
     }
+
+    public function getCompetitionsByUser($user) {
+        return $this->select('competitions.*')
+                ->join('users', 'users.id = competitions.user_id')
+                ->where('competitions.user_id', $user->id)
+                ->find();
+    }
 }

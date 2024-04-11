@@ -42,4 +42,11 @@ class StrategyModel extends Model
             ]
         ];
     }
+
+    public function getStrategiesByUser($user) {
+        return $this->select('strategies.*')
+                ->join('users', 'users.id = strategies.user_id')
+                ->where('strategies.user_id', $user->id)
+                ->find();
+    }
 }

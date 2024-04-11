@@ -19,36 +19,39 @@
 
 <?= $this->include('Manager/Bankrolls/initial_balance_form'); ?>
 
-<div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
-  <div class="demo-inline-spacing">
-    <div class="input-group input-group-merge">
-      <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search..."
-        aria-label="Search..."
-        aria-describedby="basic-addon-search31"
-      />
+<div class="col-xl-12 col-md-12 col-sm-6 mb-4">
+
+  <h5 class="card-title"><?= $title ?></h5>
+
+  <div class="row">
+    <div class="col-6">
+    <div class="ui-widget">
+      <div class="input-group input-group-merge">
+        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+        <input id="query" name="query" placeholder="Search.." class="form-control bg-light">
+      </div>
     </div>
-    <a href="#" type="button" class="btn btn-dark">
-      <i class="bx bx-import tf-icons"></i> 
-      <strong>Import</strong>
-    </a>
-    <button 
-      type="button" class="btn btn-secondary"
-      data-bs-toggle="modal"
-      data-bs-target="#simpleBetModal">
-      <i class="bx bx-plus tf-icons"></i> 
-      <strong>Simple Bet</strong>
-    </button>
-    <button 
-      type="button" class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#multipleBetModal">
-      <i class="bx bx-plus tf-icons"></i> 
-      <strong>Multiple Bet</strong>
-    </button>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <a href="#" type="button" class="btn btn-dark me-2">
+        <i class="bx bx-import tf-icons"></i> 
+        <strong>Import</strong>
+      </a>
+      <button 
+        type="button" class="btn btn-secondary me-2"
+        data-bs-toggle="modal"
+        data-bs-target="#simpleBetModal">
+        <i class="bx bx-plus tf-icons"></i> 
+        <strong>Simple Bet</strong>
+      </button>
+      <button 
+        type="button" class="btn btn-primary me-2"
+        data-bs-toggle="modal"
+        data-bs-target="#multipleBetModal">
+        <i class="bx bx-plus tf-icons"></i> 
+        <strong>Multiple Bet</strong>
+      </button>
+    </div>
   </div>
 </div>
 

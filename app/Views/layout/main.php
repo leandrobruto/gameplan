@@ -188,13 +188,17 @@
               </a>
             </li>
 
-            <!-- Admin Panel -->
-            <li class="menu-item">
-              <a href="<?= site_url('admin/dashboard'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                <div data-i18n="Basic">Admin Panel</div>
-              </a>
-            </li>
+            <?php $userLoggedIn = userLoggedIn(); ?>
+
+            <?php if ($userLoggedIn->is_admin): ?>
+              <!-- Admin Panel -->
+              <li class="menu-item">
+                <a href="<?= site_url('admin/dashboard'); ?>" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                  <div data-i18n="Basic">Admin Panel</div>
+                </a>
+              </li>
+            <?php endif; ?>
           </ul>
         </aside>
         <!-- / Menu -->
@@ -271,8 +275,6 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-
-                      <?php $userLoggedIn = userLoggedIn(); ?>
                       
                       <?php if ($userLoggedIn->avatar): ?>
                         <img src="<?= site_url("admin/users/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />

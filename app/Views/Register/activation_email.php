@@ -30,7 +30,7 @@
                                 <!-- Header -->
                                 <tr>
                                     <td align="center" valign="middle" class="header" >
-                                        <p><?= esc($user->name); ?>, Now there is very little left!</h1></p>
+                                        <p><?= esc($user->username); ?>, Now there is very little left!</h1></p>
                                     </td>
                                 </tr>
                                 <!-- Content -->

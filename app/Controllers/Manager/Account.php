@@ -158,7 +158,7 @@ class Account extends BaseController
     public function getStrategies()
     {
         $user = userLoggedIn();
-        $strategies = $this->strategyModel->findAll();
+        $strategies = $this->strategyModel->getStrategiesByUSer($user);
         
         $data = [
             'title' => 'Strategies',
@@ -174,7 +174,7 @@ class Account extends BaseController
     public function getCompetitions()
     {
         $user = userLoggedIn();
-        $competitions = $this->competitionModel->findAll();
+        $competitions = $this->competitionModel->getCompetitionsByUser($user);
 
         $data = [
             'title' => 'Competitions',
@@ -210,18 +210,5 @@ class Account extends BaseController
         ];
         
         return view('Manager/Integrations/index', $data);
-    }
-
-      /**
-     * @param int $id
-     * @return object User
-     */
-    private function findUserOr404($id = null)
-    {
-        if (!$id || !$user = $this->userModel->withDeleted(true)->where('id', $id)->first()) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the user $id");
-        }
-        
-        return $user;
     }
 }
