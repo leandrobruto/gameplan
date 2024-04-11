@@ -105,27 +105,30 @@
     <!-- Account -->
     <div class="card-body">
       <div class="d-flex align-items-start align-items-sm-center gap-4">
-        <div class="profilepic">
-          <?php if ($user->avatar): ?>
-            <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->avatar}") ?>" alt="user-avatar"
-              class="d-block rounded"
-              height="100"
-              width="100"
-              id="uploadedAvatar" />
-          <?php else: ?>
-            <img class="profilepic__image" src="<?= site_url("assets/img/avatars/avatar-default.png") ?>" alt="user-avatar"
-              class="d-block rounded"
-              height="100"
-              width="100"
-              id="uploadedAvatar" />
-          <?php endif; ?>
-          <div class="profilepic__content">
-            <span class="profilepic__icon">
-              <i class="bx bx-camera me-1"></i>
-            </span>
-            <span class="profilepic__text">Change Photo</span>
+        <a href="#" data-bs-toggle="modal"
+          data-bs-target="#uploadPhotoModal">
+          <div class="profilepic">
+            <?php if ($user->avatar): ?>
+              <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->avatar}") ?>" alt="user-avatar"
+                class="d-block rounded"
+                height="100"
+                width="100"
+                id="uploadedAvatar" />
+            <?php else: ?>
+              <img class="profilepic__image" src="<?= site_url("assets/img/avatars/avatar-default.png") ?>" alt="user-avatar"
+                class="d-block rounded"
+                height="100"
+                width="100"
+                id="uploadedAvatar" />
+            <?php endif; ?>
+            <div class="profilepic__content">
+              <span class="profilepic__icon">
+                <i class="bx bx-camera me-1"></i>
+              </span>
+              <span class="profilepic__text">Change Photo</span>
+            </div>
           </div>
-        </div>
+        </a>
         <div class="button-wrapper">
           <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
             <span class="d-none d-sm-block">Upload new photo</span>
@@ -222,6 +225,42 @@
     </div>
   </div>
 </div>
+
+<!-- Upload Photo Modal -->
+<div class="modal fade" id="uploadPhotoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Upload photo</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+      <div class="card">
+        <div class="card-body py-2">
+
+          <?= form_open_multipart("admin/profiles/uploadImage/$profile->user_id"); ?>
+
+            <div class="mb-3">
+              <label for="formFile" class="form-label">File input</label>
+              <input class="form-control" name="photo_user" type="file" id="formFile" />
+            </div>
+
+            <button type="submit" class="btn btn-primary mr-2">
+              <i class="bx bx-image-add tf-icons"></i>
+              Save
+            </button>
+
+          <?= form_close(); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Upload Photo Modal -->
 
 <?= $this->endSection(); ?>
 
