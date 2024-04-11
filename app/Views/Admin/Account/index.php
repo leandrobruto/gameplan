@@ -1,4 +1,4 @@
-<?= $this->extend('admin/layout/main'); ?>
+<?= $this->extend('Admin/layout/main'); ?>
 
 <!-- Here we send the title to the main template -->
 <?= $this->section('title'); ?>
@@ -13,9 +13,9 @@
 <style>
   .profilepic {
   position: relative;
-  width: 125px;
-  height: 125px;
-  /* border-radius: 50%; */
+  width: 100px;
+  height: 100px;
+  border-radius: 7%;
   overflow: hidden;
   background-color: #111;
   }
@@ -60,7 +60,7 @@
 
   .profilepic__text {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 10px;
     width: 50%;
     text-align: center;
   }
@@ -95,11 +95,19 @@
     <div class="card-body">
       <div class="d-flex align-items-start align-items-sm-center gap-4">
         <div class="profilepic">
-          <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->profile->avatar}") ?>" alt="user-avatar"
-          class="d-block rounded"
-          height="125"
-          width="125"
-          id="uploadedAvatar" />
+          <?php if ($user->avatar): ?>
+            <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->avatar}") ?>" alt="user-avatar"
+              class="d-block rounded"
+              height="100"
+              width="100"
+              id="uploadedAvatar" />
+          <?php else: ?>
+            <img class="profilepic__image" src="<?= site_url("assets/img/avatars/avatar-default.png") ?>" alt="user-avatar"
+              class="d-block rounded"
+              height="100"
+              width="100"
+              id="uploadedAvatar" />
+          <?php endif; ?>
           <div class="profilepic__content">
             <span class="profilepic__icon">
               <i class="bx bx-camera me-1"></i>

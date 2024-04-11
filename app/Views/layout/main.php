@@ -187,6 +187,14 @@
                 <div data-i18n="Basic">Configurations</div>
               </a>
             </li>
+
+            <!-- Admin Panel -->
+            <li class="menu-item">
+              <a href="<?= site_url('admin/dashboard'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div data-i18n="Basic">Admin Panel</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->
@@ -219,6 +227,37 @@
                 </div>
               </div> -->
               <!-- /Search -->
+              
+              <div class="btn-group" id="dropdown-icon-demo">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary dropdown-toggle hide-arrow"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-offset="10,20"
+                >
+                  <i class="bx bx-wallet"></i> My Bankroll
+                </button>
+                <ul class="dropdown-menu">
+                  
+                  <?php foreach (myBankrolls() as $bankroll): ?>
+                    <li>
+                      <a href="<?= site_url('manager/account/bankrolls'); ?>" class="dropdown-item d-flex align-items-center"
+                        ><i class="bx bx-wallet scaleX-n1-rtl px-1"></i><?= $bankroll->name; ?></a
+                      >
+                    </li>
+                  <?php endforeach; ?>
+
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a href="<?= site_url('manager/account/profile'); ?>" class="dropdown-item d-flex align-items-center"
+                      ><i class="bx bx-cog scaleX-n1-rtl px-1"></i> Manage Bankroll</a
+                    >
+                  </li>
+                </ul>
+              </div>
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->

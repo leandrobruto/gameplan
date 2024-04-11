@@ -26,15 +26,15 @@ class Sports extends BaseController
         return view('Admin/Sports/index', $data);
     }
 
-    public function postCreate()
+    public function postStore()
     {
         if ($this->request->getMethod() === 'post') {
             
             $sport = new Sport($this->request->getPost());
 
             if ($this->sportModel->protect(false)->insert($sport)) {
-                return redirect()->to(site_url("admin/sports/show/" . $this->sportModel->getInsertID()))
-                                ->with('success', "Sport $sport->name successfully registered!");
+                return redirect()->to(site_url("admin/sports"))
+                                ->with('success', "Sport successfully registered!");
             } else {
                 return redirect()->back()->with('errors_model', $this->sportModel->errors())
                                         ->with('attention', "Please check the errors below.")
@@ -44,5 +44,50 @@ class Sports extends BaseController
             /* It's not POST */
             return redirect()->back();
         }
+    }
+
+    public function getSearch()
+    {
+        if (!$this->request->isAjax()) 
+        {
+            exit('Page not found');
+        }
+
+        $sports = $this->sportModel->search($this->request->getGet('term'));
+
+        $result = [];
+
+        foreach ($sports as $sport) {
+            $data['id'] = $sport->id;
+            $data['value'] = $sport->name;
+
+            $result[] = $data;
+        }
+
+        return $this->response->setJson($result);
+    }
+
+    public function postDelete($id = null)
+    {
+        $sport = $this->findSportOr404($id);
+
+        if ($this->request->getMethod() === 'post') {
+            $this->sportModel->delete($id);
+            return redirect()->to(site_url('admin/sports'))
+                            ->with('success', "Sport successfully deleted.");
+        }
+    }
+
+     /**
+     * @param int $id
+     * @return object Sport
+     */
+    private function findSportOr404($id = null)
+    {
+        if (!$id || !$sport = $this->sportModel->withDeleted(true)->where('id', $id)->first()) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the sport $id");
+        }
+        
+        return $sport;
     }
 }

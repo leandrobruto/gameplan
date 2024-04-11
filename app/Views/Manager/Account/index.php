@@ -10,7 +10,62 @@
 <!-- Here we send the styles to the main template -->
 <?= $this->section('styles'); ?>
 
+<style>
+  .profilepic {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 7%;
+  overflow: hidden;
+  background-color: #111;
+  }
 
+  .profilepic:hover .profilepic__content {
+    opacity: 1;
+  }
+
+  .profilepic:hover .profilepic__image {
+    opacity: .5;
+  }
+
+  .profilepic__image {
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+  }
+
+  .profilepic__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+  }
+
+  .profilepic__icon {
+    color: white;
+    padding-bottom: 8px;
+  }
+
+  .fas {
+    font-size: 20px;
+  }
+
+  .profilepic__text {
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 50%;
+    text-align: center;
+  }
+
+</style>
 
 <?= $this->endSection(); ?>
 
@@ -36,7 +91,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="<?= site_url('manager/account/bankrolls'); ?>"
-        ><i class="bx bx-dollar me-1"></i> Banktrolls</a
+        ><i class="bx bx-dollar me-1"></i> Bankrolls</a
       >
     </li>
     <li class="nav-item">
@@ -50,14 +105,27 @@
     <!-- Account -->
     <div class="card-body">
       <div class="d-flex align-items-start align-items-sm-center gap-4">
-        <img
-          src="<?= site_url("admin/profiles/image/{$user->profile->avatar}") ?>"
-          alt="user-avatar"
-          class="d-block rounded"
-          height="100"
-          width="100"
-          id="uploadedAvatar"
-        />
+        <div class="profilepic">
+          <?php if ($user->avatar): ?>
+            <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->avatar}") ?>" alt="user-avatar"
+              class="d-block rounded"
+              height="100"
+              width="100"
+              id="uploadedAvatar" />
+          <?php else: ?>
+            <img class="profilepic__image" src="<?= site_url("assets/img/avatars/avatar-default.png") ?>" alt="user-avatar"
+              class="d-block rounded"
+              height="100"
+              width="100"
+              id="uploadedAvatar" />
+          <?php endif; ?>
+          <div class="profilepic__content">
+            <span class="profilepic__icon">
+              <i class="bx bx-camera me-1"></i>
+            </span>
+            <span class="profilepic__text">Change Photo</span>
+          </div>
+        </div>
         <div class="button-wrapper">
           <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
             <span class="d-none d-sm-block">Upload new photo</span>

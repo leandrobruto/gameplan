@@ -72,7 +72,7 @@
 <!-- Here we send the content to the main template -->
 <?= $this->section('content'); ?>
 
-<div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+<div class="col-xl-5 col-lg-5 col-md-5 order-1 order-md-0">
   <!-- User Card -->
   <div class="card mb-4">
     <div class="card-body">
@@ -154,6 +154,7 @@
               <i class="bx bx-edit-alt tf-icons"></i>
               Edit
             </button>
+            
             <button
               type="button"
               class="btn btn-danger"

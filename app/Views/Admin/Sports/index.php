@@ -45,7 +45,6 @@
                         <th>sports</th>
                         <th>created at</th>
                         <th>Updated at</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -66,22 +65,26 @@
                         <td>
                             <?= $sport->updated_at->humanize(); ?>
                         </td>
-                        <td>
-                            <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
+                        <td class="d-flex justify-content-center p-3">
+                            <button 
+                                type="button"
+                                class="btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editSportModal">
+                                <i class="bx bx-edit-alt me-1"></i>
                             </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?= site_url("admin/sports/edit/$sport->id"); ?>">
-                                    <i class="bx bx-edit-alt me-1"></i>
-                                    Edit
-                                </a>
-                                <a class="dropdown-item" href="<?= site_url("admin/sports/delete/$sport->id"); ?>">
-                                    <i class="bx bx-trash me-1"></i>
-                                    Delete
-                                </a>
-                            </div>
-                            </div>
+                            <button 
+                                type="button"
+                                class="btn"
+                                data-sportid="<?= $sport->id ?>"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteSportModal">
+                                <i class="bx bx-trash text-danger me-1"></i>
+                            </button>
+                            <!-- Button to trigger the modal with the variable -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-myvariable="Hello World">
+                            Launch modal
+                            </button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -96,7 +99,7 @@
 </div>
 <!--/ Hoverable Table rows -->
 
-<!-- Edit User Modal -->
+<!-- Create Sport Modal -->
 <div class="modal fade" id="createSportModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -109,7 +112,7 @@
           aria-label="Close">
         </button>
       </div>
-      <?= form_open("admin/sports/create"); ?>
+      <?= form_open("admin/sports/store"); ?>
         <div class="modal-body">
 
             <?= $this->include('Admin/Sports/form'); ?>
@@ -117,31 +120,116 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-            <i class="bx bx-x tf-icons"></i>  
-            Close
+                <i class="bx bx-x tf-icons"></i>  
+                Close
             </button>
             <button type="submit" class="btn btn-primary">
-            <i class="bx bx-save tf-icons"></i>  
-            Submit
+                <i class="bx bx-save tf-icons"></i>  
+                Save
             </button>
         </div>
     <?= form_close(); ?>
     </div>
   </div>
 </div>
-<!-- / Edit User Modal -->
+<!-- / Create Sport Modal -->
+
+<!-- Edit Sport Modal -->
+<div class="modal fade" id="editSportModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel2">Edit Sport</h5>
+            <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+            </button>
+        </div>
+        <?= form_open("admin/sports/store"); ?>
+            <div class="modal-body">
+
+                <?= $this->include('Admin/Sports/form'); ?>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="bx bx-x tf-icons"></i>  
+                    Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bx bx-save tf-icons"></i>  
+                    Save
+                </button>
+            </div>
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit Sport Modal -->
+
+<!-- Delete Sport Modal -->
+<div class="modal fade" id="deleteSportModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel2">Deleting Sport</h5>
+            <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+            </button>
+        </div>
+        <div class="card">
+            <div class="card-body py-2">
+                
+                <?= form_open("admin/sports/delete/$sport->id"); ?>
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Attention!</strong> Are you sure about deleting the sport <strong><?= esc($sport->name) ?>?</strong>
+                </div>
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="bx bx-trash-alt tf-icons"></i>
+                    Delete
+                </button>
+
+            </div>
+          </div>
+
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Delete Sport Modal -->
 
 <?= $this->endSection(); ?>
 
 <!-- Here we send the scripts to the main template -->
 <?= $this->section('scripts'); ?>
+<script>
+  $('#deleteSportModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var sportID = button.data('sportid'); // Extract info from data-* attribute
 
-  <script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script>    
-
+    $.ajax({
+        url: '<?= site_url('admin/sports/delete/') ?>' + sportID,
+        method: 'POST',
+        success: function (data) {
+            console.log(data);
+        },
+    }); // End of ajax
+  });
+</script>
+  <script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script>  
+  <!-- <script src="<?= site_url('assets/js/sweetalert.js'); ?>"></script> -->
+  
   <script>
     $(function () {
       $( "#query" ).autocomplete({
-      source: function (request, response) {      
+      source: function (request, response) {
           $.ajax({
               url: '<?= site_url('admin/sports/search/') ?>',
               dataType: "json",
@@ -168,12 +256,32 @@
             $this.val("");
             return false;
           } else {
-            window.location.href = '<?php echo base_url('admin/sports/show'); ?>/' + ui.item.id;
+            window.location.href = '<?php echo base_url('admin/sports'); ?>';
           }
         }
       });
     });
 
+    // $('#swal-del-sport').click(function(){
+    //     Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You won't be able to revert this!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Yes, delete it!"
+    //         // width: '100em'
+    //         }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             Swal.fire({
+    //             title: "Deleted!",
+    //             text: "Sport has been deleted.",
+    //             icon: "success"
+    //             });
+    //         }
+    //     });
+    // });
   </script>
 
 <?= $this->endSection(); ?>

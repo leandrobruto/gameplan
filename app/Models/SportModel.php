@@ -18,4 +18,22 @@ class SportModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
+     /**
+     * @uso Controller Sports in the search method with autocomplete
+     * @param string $term
+     * @return array sports
+     */
+    public function search ($term) 
+    {
+        if ($term === null) {
+            return [];
+        }
+
+        return $this->select('id, name')
+                    ->like('name', $term)
+                    ->withDeleted(true)
+                    ->get()
+                    ->getResult();
+    }
 }
