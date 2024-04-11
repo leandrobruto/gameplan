@@ -81,10 +81,6 @@
                                 data-bs-target="#deleteSportModal">
                                 <i class="bx bx-trash text-danger me-1"></i>
                             </button>
-                            <!-- Button to trigger the modal with the variable -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-myvariable="Hello World">
-                            Launch modal
-                            </button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
