@@ -34,11 +34,10 @@ class Bets extends BaseController
             'user' => $user,
             'bets' => $this->betModel->findBetsByUser($user)->paginate(10),
             'count' => $this->betModel->countAllBetsByUser($user),
-            'bankroll' => $this->bankrollModel->first(),
-            'bankrolls' => $this->bankrollModel->findAll(),
+            'bankrolls' => $this->bankrollModel->getUserBankrolls($user),
             'sports' => $this->sportModel->findAll(),
-            'competitions' => $this->competitionModel->findAll(),
-            'strategies' => $this->strategyModel->findAll(),
+            'competitions' => $this->competitionModel->getCompetitionsByUser($user),
+            'strategies' => $this->strategyModel->getStrategiesByUser($user),
             'pager' => $this->betModel->pager,
         ];
 

@@ -109,7 +109,7 @@
           data-bs-target="#uploadPhotoModal">
           <div class="profilepic">
             <?php if ($user->avatar): ?>
-              <img class="profilepic__image" src="<?= site_url("admin/profiles/image/{$user->avatar}") ?>" alt="user-avatar"
+              <img class="profilepic__image" src="<?= site_url("manager/account/image/$user->avatar") ?>" alt="user-avatar"
                 class="d-block rounded"
                 height="100"
                 width="100"
@@ -157,12 +157,12 @@
 
           <div class="mb-3 col-md-6">
             <label for="firstName" class="form-label">First Name</label>
-            <input class="form-control" type="text" id="firstName" name="firstName" value="Chico" autofocus />
+            <input class="form-control" type="text" id="firstName" name="firstName" value="<?= $user->first_name; ?>" autofocus />
           </div>
 
           <div class="mb-3 col-md-6">
             <label for="lastName" class="form-label">Last Name</label>
-            <input class="form-control" type="text" name="lastName" id="lastName" value="Tripa" />
+            <input class="form-control" type="text" name="lastName" id="lastName" value="<?= $user->last_name; ?>" />
           </div>
           
           <div class="mb-3 col-md-6">
@@ -242,11 +242,11 @@
       <div class="card">
         <div class="card-body py-2">
 
-          <?= form_open_multipart("admin/profiles/uploadImage/$profile->user_id"); ?>
+          <?= form_open_multipart("manager/account/uploadImage/$profile->user_id"); ?>
 
             <div class="mb-3">
               <label for="formFile" class="form-label">File input</label>
-              <input class="form-control" name="photo_user" type="file" id="formFile" />
+              <input class="form-control" name="user_avatar" type="file" id="formFile" />
             </div>
 
             <button type="submit" class="btn btn-primary mr-2">

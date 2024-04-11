@@ -269,9 +269,9 @@
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                  <a href="https://www.instagram.com/le.andru/" class="btn btn-light text-dark btn-sm">
-                    <i class="bx bx-left-arrow-alt tf-icons"></i>
+                <li class="nav-item lh-1 me-1">
+                  <a href="https://www.instagram.com/le.andru/" class="btn btn-light text-primary">
+                    <i class="bx bx-bell tf-icons"></i>
                   </a>
                 </li>
 
@@ -281,7 +281,7 @@
                     <div class="avatar avatar-online">
                       
                       <?php if ($userLoggedIn->avatar): ?>
-                        <img src="<?= site_url("admin/users/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="<?= site_url("manager/account/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                       <?php else: ?>
                         <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                       <?php endif; ?>
@@ -296,7 +296,7 @@
                             <div class="avatar avatar-online">
                               
                               <?php if ($userLoggedIn->avatar): ?>
-                                <img src="<?= site_url("admin/users/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="<?= site_url("manager/account/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                               <?php else: ?>
                                 <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                               <?php endif; ?>

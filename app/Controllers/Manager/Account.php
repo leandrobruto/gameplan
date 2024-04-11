@@ -152,7 +152,25 @@ class Account extends BaseController
             unlink($imagePath);
         }
 
-        return redirect()->to(site_url("manager/account"))->with('success', 'image changed successfully!');
+        return redirect()->to(site_url("manager/account/profile"))->with('success', 'image changed successfully!');
+    }
+
+    public function getImage(string $image = null)
+    {
+        if ($image) {
+            $pathImage = WRITEPATH . 'uploads/users/' . $image;
+
+            $infoImage = new \finfo(FILEINFO_MIME);
+
+            $imageType = $infoImage->file($pathImage);
+            
+            header("Content-Type: $imageType");
+            header("Content-Length: " . filesize($pathImage));
+            
+            readfile($pathImage);
+
+            exit;
+        }
     }
 
     public function getStrategies()
