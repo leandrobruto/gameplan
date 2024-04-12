@@ -33,28 +33,6 @@ class Dashboard extends BaseController
             'reports' => $reports = $this->betModel->getBetsReports($user, $bankroll),
             'pager' => $this->betModel->pager,
         ];
-
-        // $bankroll = $this->bankrollModel->where('user_id', $user->id)->first();
-        // $data['bankroll'] = $bankroll;
-
-        // $reports = $this->betModel->getBetsReports($user, $bankroll);
-        // dd($reports);
-        // $reports = $this->betModel->getReportsByUser($user);
-
-        // if (isset($reports->result)) {
-        //     $data['result'] = $reports->result;
-        //     $data['averageProfit'] = number_format($reports->result / 2, 2);
-        //     $data['roi'] = number_format(($reports->result / $reports->stake) * 100, 2);
-        //     $data['balance'] = number_format($bankroll->initial_balance + $reports->result, 2);
-        //     $data['biggest_win'] = $reports->max_result;
-            
-        // } else {
-        //     $data['result'] = 0;
-        //     $data['averageProfit'] = 0;
-        //     $data['roi'] = 0;
-        //     $data['balance'] = 0;
-        //     $data['biggest_win'] = 0;
-        // }
         
         return view('Manager/Dashboard/index', $data);
     }

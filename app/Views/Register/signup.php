@@ -136,6 +136,7 @@
                             value="<?= old('username'); ?>"
                             autofocus
                         />
+                        <small id="attempt_username">Choose your Username.</small>
                     </div>
 
                     <div class="mb-3">
@@ -214,7 +215,34 @@
 
 <script src="<?= site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
 <script src="<?= site_url('assets/vendor/mask/app.js') ?>"></script>
+<script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script> 
 
-</script>
+<script>
+    $(function () {
+        $( "#username" ).autocomplete({
+            source: function (request, response) {      
+                $.ajax({
+                    url: '<?= site_url('register/search/') ?>',
+                    dataType: "json",
+                    data: {
+                        term: request.term,
+                    },
+                    success: function (data) {console.log(data[0].value.length);
+                        if (data[0].value.toLowerCase() === request.term.toLowerCase()) {
+                            $('#attempt_username').text('This Username already exists.');
+                        } else if (data[0].value.length < 4)){
+                            $('#attempt_username').text('Username.');
+                        } else {
+                            $('#attempt_username').text('Choose your Username.');
+                        }
+
+                        response(data); // Here we have no data
+                    },
+                }); // End of ajax
+            },
+        });
+    });
+
+  </script>
 
 <?= $this->endSection(); ?>

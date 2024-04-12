@@ -71,7 +71,7 @@
           </div>
           <span>ROI</span>
           <h3 class="card-title text-nowrap mb-1">
-            <?= $reports->roi ? number_format($reports->roi, 2) : 0; ?>%
+            <?= floatval(number_format($reports->roi, 2)); ?>%
           </h3>
         </div>
       </div>

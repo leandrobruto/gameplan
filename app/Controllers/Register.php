@@ -118,4 +118,24 @@ class Register extends BaseController
 
         $email->send();
     }
+
+    public function getSearch()
+    {
+        if (!$this->request->isAjax()) 
+        {
+            exit('Page not found');
+        }
+
+        $users = $this->userModel->search($this->request->getGet('term'));
+
+        $result = [];
+
+        foreach ($users as $user) {
+            $data['value'] = $user->username;
+
+            $result[] = $data;
+        }
+
+        return $this->response->setJson($result);
+    }
 }
