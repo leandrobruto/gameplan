@@ -136,7 +136,7 @@
                             value="<?= old('username'); ?>"
                             autofocus
                         />
-                        <small id="attempt_username">Choose your Username.</small>
+                        <small class="" id="attempt_username">Choose your Username.</small>
                     </div>
 
                     <div class="mb-3">
@@ -220,25 +220,44 @@
 <script>
     $(function () {
         $( "#username" ).autocomplete({
-            source: function (request, response) {      
-                $.ajax({
-                    url: '<?= site_url('register/search/') ?>',
-                    dataType: "json",
-                    data: {
-                        term: request.term,
-                    },
-                    success: function (data) {console.log(data[0].value.length);
-                        if (data[0].value.toLowerCase() === request.term.toLowerCase()) {
-                            $('#attempt_username').text('This Username already exists.');
-                        } else if (data[0].value.length < 4)){
-                            $('#attempt_username').text('Username.');
-                        } else {
-                            $('#attempt_username').text('Choose your Username.');
-                        }
+            source: function (request, response) {
+                
+                $('#attempt_username').removeClass();
+                
+                if (request.term.length < 3){
+                    $('#attempt_username')
+                        .text('Your username must be at least 3 characters long.');
+                
+                } else if (request.term.length > 15) {
+                    $('#attempt_username').text('Your username must be shorter than 15 characters long.');
+ 
+                } else {
+                    $.ajax({
+                        url: '<?= site_url('register/search/') ?>',
+                        dataType: "json",
+                        data: {
+                            term: request.term,
+                        },
+                        success: function (data) {
 
-                        response(data); // Here we have no data
-                    },
-                }); // End of ajax
+                            $('#attempt_username').removeClass();
+                            
+                            if (data.length > 0 && data[0].value.toLowerCase() === request.term.toLowerCase()) {
+                                $('#attempt_username').text('The username ' + request.term + ' is already in use.')
+                                    .addClass('text-danger')
+                                    .append('<i class="bx bx-error px-1"></i>');
+                            
+                                } else {
+                                $('#attempt_username')
+                                    .text(request.term.toLowerCase() + ' is avaliable.')
+                                    .addClass('text-success')
+                                    .append('<i class="bx bx-check px-1"></i>');
+                            }
+
+                            response(data); // Here we have no data
+                        },
+                    }); // End of ajax
+                }
             },
         });
     });

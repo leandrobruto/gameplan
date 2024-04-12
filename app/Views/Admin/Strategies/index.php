@@ -37,10 +37,8 @@
                     <thead>
                         <tr>
                             <th>Strategies</th>
+                            <th>Description</th>
                             <th>Sport</th>
-                            <th>created at</th>
-                            <th>Updated at</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -52,13 +50,10 @@
                                     </a>    
                                 </td>
                                 <td>
+                                    <?= $strategy->description; ?>
+                                </td>
+                                <td>
                                     <?= $strategy->sport_name; ?>
-                                </td>
-                                <td>
-                                    <?= $strategy->created_at->humanize(); ?>
-                                </td>
-                                <td>
-                                    <?= $strategy->updated_at->humanize(); ?>
                                 </td>
                                 <td class="d-flex justify-content-end">
                                     <a class="me-3" href="<?= site_url("admin/strategies/edit/$strategy->id"); ?>">

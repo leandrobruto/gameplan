@@ -26,6 +26,12 @@ class CompetitionSeeder extends Seeder
                 'sport_id' => 3, 
                 'name' => 'Tennis'
             ],
+
+            [
+                'user_id' => 1,
+                'sport_id' => 5, 
+                'name' => 'CBLOL'
+            ],
         ];
 
         $competitionModel->skipValidation(true)->protect(false)->insertBatch($data);
