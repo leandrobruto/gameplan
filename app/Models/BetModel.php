@@ -56,19 +56,33 @@ class BetModel extends Model
             ->first();
     }
 
-    public function getBetsReports($user) 
+    public function getBetsReports($user, $bankrolls) 
     {
-        $reports = $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi')
-            ->selectCount('bets.id', 'total_bets')
+        $reports = $this->selectCount('bets.id', 'total_bets')
             ->selectSum('stake', 'stake_sum')
             ->selectSum('result', 'result_sum')
             ->selectMin('result', 'min_result')
             ->selectMax('result', 'max_result')
             ->where('user_id', $user->id)
-            ->where('bankroll_id', 1)
+            ->where('bankroll_id', $bankrolls->id)
             ->first();
 
-            dd($reports);
+        // Select ROI total
+        $subquery = $this->selectSum('result')
+            ->selectSum('stake')
+            ->join('users', 'users.id = bets.user_id')
+            ->join('bankrolls', 'bankrolls.id = bets.bankroll_id')
+            ->where('users.id', $user->id)
+            ->where('bankrolls.id', $bankrolls->id)
+            ->first();
+
+        if (!empty($subquery->result) || !empty($subquery->stake))
+        {
+            $subquery->roi = ($subquery->result / $subquery->stake) * 100;
+            $reports->roi = $subquery->roi;
+        }
+
+        return $reports;
     }
 
     public function generateBetCode() 

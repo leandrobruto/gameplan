@@ -72,7 +72,7 @@
                   </div>
                 </div>
                 <span><strong>Bets</strong></span>
-                <h3 class="card-title text-nowrap mb-1"><?= $count; ?></h3>
+                <h3 class="card-title text-nowrap mb-1"><?= $reports->total_bets; ?></h3>
               </div>
             </div>
           </div>
@@ -89,7 +89,9 @@
                   </div>
                 </div>
                 <span><strong>Result</strong></span>
-                <h3 class="card-title text-nowrap mb-1">$<?= $result; ?></h3>
+                <h3 class="card-title text-nowrap mb-1">
+                  $<?= $reports->result_sum ? $reports->result_sum : '0.00'; ?>
+                </h3>
               </div>
             </div>
           </div>
@@ -106,7 +108,7 @@
                   </div>
                 </div>
                 <span><strong>ROI</strong></span>
-                <h3 class="card-title text-nowrap mb-1"><?= $roi; ?>%</h3>
+                <h3 class="card-title text-nowrap mb-1"><?= number_format($reports->roi, 2); ?>%</h3>
               </div>
             </div>
           </div>

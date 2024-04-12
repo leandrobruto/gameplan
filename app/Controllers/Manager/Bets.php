@@ -28,28 +28,19 @@ class Bets extends BaseController
     public function getIndex()
     {
         $user = userLoggedIn();
-$this->betModel->getBetsReports($user);
+        $bankroll = defaultBankroll();
+        
         $data = [
             'title' => 'Bets',
             'user' => $user,
             'bets' => $this->betModel->findBetsByUser($user)->paginate(10),
-            'count' => $this->betModel->countAllBetsByUser($user),
             'bankrolls' => $this->bankrollModel->getUserBankrolls($user),
             'sports' => $this->sportModel->findAll(),
             'competitions' => $this->competitionModel->getCompetitionsByUser($user)->find(),
             'strategies' => $this->strategyModel->getStrategiesByUser($user)->find(),
+            'reports' => $this->betModel->getBetsReports($user, $bankroll),
             'pager' => $this->betModel->pager,
         ];
-
-        $reports = $this->betModel->getReportsByUser($user);
-
-        if (isset($reports->result)) {
-            $data['result'] = $reports->result;
-            $data['roi'] = number_format(($reports->result / $reports->stake) * 100, 2);
-        } else {
-            $data['result'] = 0;
-            $data['roi'] = 0;
-        }
 
         return view('Manager/Bets/index', $data);
     }

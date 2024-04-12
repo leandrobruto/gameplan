@@ -457,7 +457,7 @@
                   <td><?= $bet->strategy; ?></td>
                   <td><?= $bet->sport; ?></td>
                   <td><?= $bet->event; ?></td>
-                  <td><?= $bet->stake; ?></td>
+                  <td>$<?= $bet->stake; ?></td>
                   <td>$<?= $bet->result; ?></td>
                 </tr>
               <?php endforeach; ?>
