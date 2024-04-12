@@ -21,75 +21,61 @@
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title"><?= $title ?></h5>
+            <h5 class="card-title d-flex justify-content-between align-items-center"><?= $title ?>
+                <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#createStrategyModal">
+                <i class="bx bx-plus tf-icons"></i>
+                Create
+                </button>
+            </h5>
 
-            <div class="ui-widget">
-                <input id="query" name="query" placeholder="Search.." class="form-control bg-light mb-4">
-            </div>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Strategies</th>
+                            <th>Sport</th>
+                            <th>created at</th>
+                            <th>Updated at</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <?php foreach ($strategies as $key => $strategy): ?>
+                            <tr>
+                                <td>
+                                    <a href="<?= site_url("admin/strategies/show/$strategy->id"); ?>">
+                                        <?= $strategy->name; ?>
+                                    </a>    
+                                </td>
+                                <td>
+                                    to put
+                                </td>
+                                <td>
+                                    <?= $strategy->created_at->humanize(); ?>
+                                </td>
+                                <td>
+                                    <?= $strategy->updated_at->humanize(); ?>
+                                </td>
+                                <td class="d-flex justify-content-end">
+                                    <a class="me-3" href="<?= site_url("admin/strategies/edit/$strategy->id"); ?>">
+                                        <i class="bx bx-edit-alt me-1"></i>
+                                    </a>
+                                    <a class="me-3" href="<?= site_url("admin/strategies/delete/$strategy->id"); ?>">
+                                        <i class="bx bx-trash text-danger me-1"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
 
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#createStrategyModal">
-              <i class="bx bx-plus tf-icons"></i>
-              Create
-            </button>
-        </div>
-
-        <div class="table-responsive text-nowrap">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Strategies</th>
-                        <th>created at</th>
-                        <th>Updated at</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    <?php
-                        foreach ($strategies as $key => $strategy): ?>
-                    <tr>
-                        <td>
-                            <?= $key + 1; ?>
-                        </td>
-                        <td>
-                            <a href="<?= site_url("admin/strategies/show/$strategy->id"); ?>">
-                                <?= $strategy->name; ?>
-                            </a>    
-                        </td>
-                        <td>
-                            <?= $strategy->created_at->humanize(); ?>
-                        </td>
-                        <td>
-                            <?= $strategy->updated_at->humanize(); ?>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?= site_url("admin/strategies/edit/$strategy->id"); ?>">
-                                    <i class="bx bx-edit-alt me-1"></i>
-                                    Edit
-                                </a>
-                                <a class="dropdown-item" href="<?= site_url("admin/strategies/delete/$strategy->id"); ?>">
-                                    <i class="bx bx-trash me-1"></i>
-                                    Delete
-                                </a>
-                            </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-
-            <div class="d-flex justify-content-center mt-4">
-                <?= $pager->links('default', 'default_pagination'); ?>
+                <div class="d-flex justify-content-center mt-4">
+                    
+                </div>
             </div>
         </div>
     </div>

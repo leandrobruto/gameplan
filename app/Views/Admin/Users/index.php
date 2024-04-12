@@ -18,12 +18,13 @@
 <?= $this->section('content'); ?>
 
 <div class="col-xl-12 col-md-12 col-sm-6">
+
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title"><?= $title ?></h4>
+            <h5 class="card-title"><?= $title ?></h5>
 
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-6">
                     <div class="ui-widget">
                         <div class="input-group input-group-merge">
@@ -38,20 +39,19 @@
                     </a>
                 </div>
             </div>
-        </div>
 
-        <div class="table-responsive text-nowrap">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th>User</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    <?php foreach ($users as $user): ?>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
+                            <th>User</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <?php foreach ($users as $user): ?>
+                            <tr>
                             <td>
                                 <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                     <li
@@ -80,7 +80,7 @@
                                     '<span class="badge bg-label-danger me-1">Inactive</span>'
                                 ?>
                             </td>
-                            <td class="d-flex justify-content-center p-3">
+                            <td class="d-flex justify-content-end p-3">
                                 <a class="btn" href="<?= site_url("admin/users/edit/$user->id"); ?>">
                                     <i class="bx bx-edit-alt me-1"></i>
                                 </a>
@@ -89,19 +89,17 @@
                                 </a>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center mt-4">
 
-            <?php if ($pager->getPageCount() > 1): ?>
-              <div class="d-flex justify-content-center mt-4">
-                  <?= $pager->links('default', 'default_pagination'); ?>
-              </div>
-            <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
+    <!--/ Hoverable Table rows -->
 </div>
-<!--/ Hoverable Table rows -->
 
 <?= $this->endSection(); ?>
 

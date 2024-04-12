@@ -82,10 +82,10 @@
                       '<?= $strategy->description; ?>', 
                       '<?= $strategy->sport_id; ?>')" 
                       data-bs-toggle="modal" data-bs-target="#editStrategyModal" type="button">
-                    <i class="bx bx-edit me-3"></i>
+                      <i class="bx bx-edit me-3"></i>
                     </a>
                     <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
-                    <i class="bx bx-trash me-3"></i>
+                      <i class="bx bx-trash me-3"></i>
                     </a>
                 </td>
               </tr>

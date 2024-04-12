@@ -18,10 +18,12 @@
 <?= $this->section('content'); ?>
 
 <div class="col-xl-12 col-md-12 col-sm-6">
+
   <!-- Hoverable Table rows -->
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title"><?= $title ?></h4>
+
+    <h5 class="card-title"><?= $title ?></h5>
 
       <div class="row mb-4">
         <div class="col-6">
@@ -42,7 +44,7 @@
           </button>
         </div>
       </div>
-        
+
       <div class="table-responsive text-nowrap">
         <table class="table table-hover">
           <thead>
@@ -53,47 +55,42 @@
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
-            <?php
-              foreach ($sports as $key => $sport): ?>
-            <tr>
-              <td>
-                <?= $sport->name; ?>
-              </td>
-              <td>
-                <?= $sport->created_at->humanize(); ?>
-              </td>
-              <td>
-                  <?= $sport->updated_at->humanize(); ?>
-              </td>
-              <td class="d-flex justify-content-center p-3">
-                <button 
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editSportModal">
-                  <i class="bx bx-edit-alt me-1"></i>
-                </button>
-                <button 
-                  type="button"
-                  class="btn"
-                  data-sportid="<?= $sport->id ?>"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteSportModal">
-                  <i class="bx bx-trash text-danger me-1"></i>
-                </button>
+            <?php foreach ($sports as $key => $sport): ?>
+              <tr>
+                <td>
+                  <?= $sport->name; ?>
+                </td>
+                <td>
+                  <?= $sport->created_at->humanize(); ?>
+                </td>
+                <td>
+                    <?= $sport->updated_at->humanize(); ?>
+                </td>
+                <td class="d-flex justify-content-end">
+                  <a href="#" 
+                    data-bs-toggle="modal"
+                    data-bs-target="#editSportModal">
+                    <i class="bx bx-edit-alt me-3"></i>
+                  </a>
+                  <a href="#"
+                    data-sportid="<?= $sport->id ?>"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteSportModal">
+                    <i class="bx bx-trash text-danger me-3"></i>
+                </a>
               </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
-      </table>
+        </table>
+          <div class="d-flex justify-content-center mt-4">
 
-      <div class="d-flex justify-content-center mt-4">
-          <?= $pager->links('default', 'default_pagination'); ?>
+        </div>
       </div>
     </div>
   </div>
+  <!--/ Hoverable Table rows -->
 </div>
-<!--/ Hoverable Table rows -->
 
 <!-- Create Sport Modal -->
 <div class="modal fade" id="createSportModal" tabindex="-1" aria-hidden="true">

@@ -9,17 +9,23 @@ use App\Entities\Competition;
 class Competitions extends BaseController
 {
     private $competitionModel;
+    private $sportModel;
 
     public function __construct()
     {
         $this->competitionModel = new \App\Models\CompetitionModel();
+        $this->sportModel = new \App\Models\SportModel();
     }
 
     public function getIndex()
     {
+        $user = userLoggedIn();
+
         $data = [
             'title' => 'Competitions listing',
+            'user' => $user,
             'competitions' => $this->competitionModel->withDeleted(true)->paginate(10),
+            'sports' => $this->sportModel->findAll(),
             'pager' => $this->competitionModel->pager,
         ];
 

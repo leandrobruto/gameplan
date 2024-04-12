@@ -9,17 +9,23 @@ use App\Entities\Strategy;
 class Strategies extends BaseController
 {
     private $strategyModel;
+    private $sportModel;
 
     public function __construct()
     {
         $this->strategyModel = new \App\Models\StrategyModel();
+        $this->sportModel = new \App\Models\SportModel();
     }
 
     public function getIndex()
     {
+        $user = userLoggedIn();
+
         $data = [
             'title' => 'Strategies listing',
+            'user' => $user,
             'strategies' => $this->strategyModel->withDeleted(true)->paginate(10),
+            'sports' => $this->sportModel->findAll(),
             'pager' => $this->strategyModel->pager,
         ];
 
