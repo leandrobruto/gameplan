@@ -24,7 +24,7 @@ class BetModel extends Model
      * @param int $user_id
      * @return array bets
      */
-    public function findBetsByUser($user = null) 
+    public function getBetsByUser($user, $bankroll) 
     {
         return $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi,
             matches.event, matches.date,
@@ -38,6 +38,7 @@ class BetModel extends Model
                 ->join('strategies', 'bets.strategy_id = strategies.id')
                 ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
                 ->where('bets.user_id', $user->id)
+                ->where('bets.bankroll_id', $bankroll->id)
                 ->orderBy('matches.date', 'DESC');
     }
 
@@ -56,30 +57,29 @@ class BetModel extends Model
             ->first();
     }
 
-    public function getBetsReports($user, $bankrolls) 
+    public function getBetsReports($user, $bankroll) 
     {
-        $reports = $this->selectCount('bets.id', 'total_bets')
-            ->selectSum('stake', 'stake_sum')
-            ->selectSum('result', 'result_sum')
-            ->selectMin('result', 'min_result')
-            ->selectMax('result', 'max_result')
+        $reports = $this->selectCount('bets.id', 'total_bets') // Número de Bets
+            ->selectSum('stake', 'stake_sum')                  // Soma de todas as Stakes
+            ->selectSum('result', 'result_sum')                // Soma de todos os Resultados
+            ->selectMin('result', 'min_result')                // Resultado Mínimo
+            ->selectMax('result', 'max_result')                // Resultado Máximo
+            ->selectAvg('result', 'average_profit')            // Lucro Médio
             ->where('user_id', $user->id)
-            ->where('bankroll_id', $bankrolls->id)
+            ->where('bankroll_id', $bankroll->id)
             ->first();
 
-        // Select ROI total
-        $subquery = $this->selectSum('result')
-            ->selectSum('stake')
-            ->join('users', 'users.id = bets.user_id')
-            ->join('bankrolls', 'bankrolls.id = bets.bankroll_id')
-            ->where('users.id', $user->id)
-            ->where('bankrolls.id', $bankrolls->id)
-            ->first();
-
-        if (!empty($subquery->result) || !empty($subquery->stake))
+        if (!empty($reports->result_sum) || !empty($reports->stake_sum))
         {
-            $subquery->roi = ($subquery->result / $subquery->stake) * 100;
-            $reports->roi = $subquery->roi;
+            $balance = $this->select('bankrolls.initial_balance')
+                ->join('users', 'users.id = bets.user_id')
+                ->join('bankrolls', 'bankrolls.id = bets.bankroll_id')
+                ->where('bankrolls.id', $bankroll->id)
+                ->first();
+
+            $reports->roi = ($reports->result_sum / $reports->stake_sum) * 100;             // Cálculo do ROI
+            $reports->initial_balance = $bankroll->initial_balance;                         // Intitial Balance
+            $reports->current_balance = $bankroll->initial_balance + $reports->result_sum;  // Current Balance
         }
 
         return $reports;

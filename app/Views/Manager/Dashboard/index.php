@@ -50,7 +50,7 @@
             </div>
           </div>
           <span>Period Result</span>
-          <h3 class="card-title text-nowrap mb-1">$<?= $result; ?></h3>
+          <h3 class="card-title text-nowrap mb-1">$<?= $reports->result_sum; ?></h3>
           <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
         </div>
       </div>
@@ -84,7 +84,7 @@
             </div>
           </div>
           <span>Average Profit per Bet</span>
-          <h3 class="card-title text-nowrap mb-1">$<?= $averageProfit; ?></h3>
+          <h3 class="card-title text-nowrap mb-1">$<?= number_format($reports->average_profit, 2); ?></h3>
           <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
         </div>
       </div>
@@ -118,7 +118,7 @@
             </div>
           </div>
           <span>ROI</span>
-          <h3 class="card-title text-nowrap mb-1"><?= $roi; ?>%</h3>
+          <h3 class="card-title text-nowrap mb-1"><?= number_format($reports->roi, 2); ?>%</h3>
           <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
         </div>
       </div>
@@ -152,7 +152,7 @@
             </div>
           </div>
           <span>Final Balance</span>
-          <h3 class="card-title text-nowrap mb-1">$<?= $balance; ?></h3>
+          <h3 class="card-title text-nowrap mb-1">$<?= $reports->current_balance; ?></h3>
           <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
         </div>
       </div>
@@ -198,7 +198,7 @@
                 </div>
               </div>
               <span class="d-block mb-1">Settled Bets</span>
-              <h3 class="card-title text-nowrap mb-2"><?= $count; ?></h3>
+              <h3 class="card-title text-nowrap mb-2"><?= $reports->total_bets; ?></h3>
             </div>
           </div>
         </div>
@@ -227,7 +227,7 @@
                 </div>
               </div>
               <span class="fw-semibold d-block mb-1">Starting Balance</span>
-              <h3 class="card-title mb-2">$<?= $bankroll ? $bankroll->initial_balance : 0; ?></h3>
+              <h3 class="card-title mb-2">$<?= $reports->initial_balance; ?></h3>
             </div>
           </div>
         </div>
@@ -334,7 +334,7 @@
                 </div>
               </div>
               <span class="d-block mb-1">Total Bets Won</span>
-              <h3 class="card-title text-nowrap mb-2">$<?= $result; ?></h3>
+              <h3 class="card-title text-nowrap mb-2"><?= $reports->total_bets; ?></h3>
               <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
             </div>
           </div>
@@ -364,7 +364,7 @@
                 </div>
               </div>
               <span class="fw-semibold d-block mb-1">Bigest Win</span>
-              <h3 class="card-title mb-2">$<?= $biggest_win; ?></h3>
+              <h3 class="card-title mb-2">$<?= $reports->max_result; ?></h3>
               <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
             </div>
           </div>

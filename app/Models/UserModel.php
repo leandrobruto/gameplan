@@ -71,8 +71,11 @@ class UserModel extends Model
             return [];
         }
 
-        return $this->select('id, username')
-                    ->like('username', $term)
+        return $this->select('users.id, users.username, profiles.first_name, profiles.last_name')
+                    ->like('users.username', $term)
+                    ->orLike('profiles.first_name', $term)
+                    ->orLike('profiles.last_name', $term)
+                    ->join('profiles', 'profiles.user_id = users.id')
                     ->withDeleted(true)
                     ->get()
                     ->getResult();

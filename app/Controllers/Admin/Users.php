@@ -106,8 +106,13 @@ class Users extends BaseController
 
         foreach ($users as $user) {
             $data['id'] = $user->id;
-            $data['value'] = $user->username;
-
+            
+            if (str_contains($user->username, $this->request->getGet('term'))){
+                $data['value'] = $user->username;
+            } else {
+                $data['value'] = $user->first_name . ' ' . $user->last_name;
+            }
+            
             $result[] = $data;
         }
 

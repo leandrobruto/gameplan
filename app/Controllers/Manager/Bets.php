@@ -33,7 +33,7 @@ class Bets extends BaseController
         $data = [
             'title' => 'Bets',
             'user' => $user,
-            'bets' => $this->betModel->findBetsByUser($user)->paginate(10),
+            'bets' => $this->betModel->getBetsByUser($user, $bankroll)->paginate(10),
             'bankrolls' => $this->bankrollModel->getUserBankrolls($user),
             'sports' => $this->sportModel->findAll(),
             'competitions' => $this->competitionModel->getCompetitionsByUser($user)->find(),
