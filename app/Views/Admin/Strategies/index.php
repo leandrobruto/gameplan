@@ -52,7 +52,7 @@
                                     </a>    
                                 </td>
                                 <td>
-                                    to put
+                                    <?= $strategy->sport_name; ?>
                                 </td>
                                 <td>
                                     <?= $strategy->created_at->humanize(); ?>

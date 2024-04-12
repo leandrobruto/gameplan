@@ -74,7 +74,7 @@
               <tr>
                 <td id="name"><?= $strategy->name; ?></td>
                 <td id="description"><?= $strategy->description; ?></td>
-                <td id="sport">Soccer</td>
+                <td id="sport"><?= $strategy->sport_name; ?></td>
                 <td class="d-flex justify-content-end">
                   <a href="#" class="" 
                     onclick="editModalInfo(

@@ -58,14 +58,15 @@ class StrategyModel extends Model
                     ->join('users', 'users.id = strategies.user_id')
                     ->like('name', $term)
                     ->where('users.id', $user->id)
+                    ->withDelete(true)
                     ->get()
                     ->getResult();
     }
 
     public function getStrategiesByUser($user) {
-        return $this->select('strategies.*')
+        return $this->select('strategies.*, sports.name AS sport_name')
                 ->join('users', 'users.id = strategies.user_id')
-                ->where('strategies.user_id', $user->id)
-                ->find();
+                ->join('sports', 'sports.id = strategies.sport_id')
+                ->where('strategies.user_id', $user->id);
     }
 }

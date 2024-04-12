@@ -20,11 +20,12 @@ class Competitions extends BaseController
     public function getIndex()
     {
         $user = userLoggedIn();
+        $competitions = $this->competitionModel->getCompetitionsByUser($user);
 
         $data = [
             'title' => 'Competitions listing',
             'user' => $user,
-            'competitions' => $this->competitionModel->withDeleted(true)->paginate(10),
+            'competitions' => $competitions->withDeleted(true)->paginate(10),
             'sports' => $this->sportModel->findAll(),
             'pager' => $this->competitionModel->pager,
         ];

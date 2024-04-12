@@ -20,11 +20,12 @@ class Strategies extends BaseController
     public function getIndex()
     {
         $user = userLoggedIn();
+        $strategies = $this->strategyModel->getStrategiesByUSer($user);
 
         $data = [
             'title' => 'Strategies listing',
             'user' => $user,
-            'strategies' => $this->strategyModel->withDeleted(true)->paginate(10),
+            'strategies' => $strategies->withDeleted(true)->paginate(10),
             'sports' => $this->sportModel->findAll(),
             'pager' => $this->strategyModel->pager,
         ];

@@ -155,7 +155,7 @@ class Account extends BaseController
             unlink($imagePath);
         }
 
-        return redirect()->to(site_url("manager/account"))->with('success', 'image changed successfully!');
+        return redirect()->to(site_url("manager/account"))->with('success', 'Image changed successfully!');
     }
 
     public function getStrategies()

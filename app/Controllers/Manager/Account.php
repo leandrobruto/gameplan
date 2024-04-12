@@ -152,7 +152,7 @@ class Account extends BaseController
             unlink($imagePath);
         }
 
-        return redirect()->to(site_url("manager/account/profile"))->with('success', 'image changed successfully!');
+        return redirect()->to(site_url("manager/account/profile"))->with('success', 'Image changed successfully!');
     }
 
     public function getImage(string $image = null)
@@ -176,12 +176,12 @@ class Account extends BaseController
     public function getStrategies()
     {
         $user = userLoggedIn();
-        $strategies = $this->strategyModel->getStrategiesByUSer($user);
+        $strategies = $this->strategyModel->getStrategiesByUser($user);
         
         $data = [
             'title' => 'Strategies',
             'user' => $user,
-            'strategies' => $strategies,
+            'strategies' => $this->strategyModel->paginate(10),
             'sports' => $this->sportModel->findAll(),
             'pager' => $this->strategyModel->pager,
         ];
@@ -197,7 +197,7 @@ class Account extends BaseController
         $data = [
             'title' => 'Competitions',
             'user' => $user,
-            'competitions' => $competitions,
+            'competitions' => $competitions->paginate(10),
             'sports' => $this->sportModel->findAll(),
             'pager' => $this->competitionModel->pager,
         ];

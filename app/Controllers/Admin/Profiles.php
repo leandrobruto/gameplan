@@ -105,7 +105,7 @@ class Profiles extends BaseController
             unlink($imagePath);
         }
 
-        return redirect()->to(site_url("admin/users/show/$profile->user_id"))->with('success', 'image changed successfully!');
+        return redirect()->to(site_url("admin/users/show/$profile->user_id"))->with('success', 'Image changed successfully!');
     }
 
     public function getImage(string $image = null)

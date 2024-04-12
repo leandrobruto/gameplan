@@ -44,7 +44,7 @@
                         <?php foreach ($competitions as $competition): ?>
                             <tr>
                                 <td><?= $competition->name; ?></td>
-                                <td>Soccer</td>
+                                <td><?= $competition->sport_name; ?></td>
                                 <td class="d-flex justify-content-end mr-2">
                                 <a href="<?= site_url("admin/strategies/transfer/$competition->id"); ?>">
                                     <i class="bx bx-transfer me-3"></i>
