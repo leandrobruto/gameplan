@@ -54,7 +54,6 @@ class BankrollModel extends Model
             ->where('bankrolls.is_default', 1)
             ->first();
 
-            // dd($resultSum);
         if (!empty($resultSum->result))
         {
             return $this->select('bankrolls.initial_balance, (bankrolls.initial_balance + ' . $resultSum->result . ') as current_balance')

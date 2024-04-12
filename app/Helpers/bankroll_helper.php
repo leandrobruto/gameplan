@@ -7,7 +7,7 @@ if (!function_exists('defaultBankroll'))
         $user = userLoggedIn();
         $bankrollModel = new \App\Models\BankrollModel();
 
-        return $bankrollModel->where('user_id', $user->id)->first();
+        return $bankrollModel->where('user_id', $user->id)->where('is_default', 1)->first();
     }
 }
 

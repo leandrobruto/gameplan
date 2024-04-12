@@ -28,7 +28,7 @@ class Bets extends BaseController
     public function getIndex()
     {
         $user = userLoggedIn();
-
+$this->betModel->getBetsReports($user);
         $data = [
             'title' => 'Bets',
             'user' => $user,

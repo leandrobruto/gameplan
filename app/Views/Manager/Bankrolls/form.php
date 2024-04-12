@@ -33,7 +33,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label for="initial_date" class="col-md-2 col-6 form-label">Initial Date</label>
+        <label for="initial_date" class="form-label">Initial Date</label>
         <input type="date" id="initial_date" name="initial_date" value="<?= old('initial_date'); ?>" class="form-control" <?= old('date'); ?>
         />
     </div>

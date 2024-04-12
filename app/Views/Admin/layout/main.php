@@ -227,7 +227,7 @@
                   aria-expanded="false"
                   data-bs-offset="10,20"
                 >
-                  <i class="bx bx-wallet"></i> My Bankroll
+                  <i class="bx bx-wallet"></i> <?= defaultBankroll()->name; ?>
                 </button>
                 <ul class="dropdown-menu">
                   
@@ -247,7 +247,7 @@
                     <hr class="dropdown-divider" />
                   </li>
                   <li>
-                    <a href="<?= site_url('manager/account/profile'); ?>" class="dropdown-item d-flex align-items-center"
+                    <a href="<?= site_url('manager/account/bankrolls'); ?>" class="dropdown-item d-flex align-items-center"
                       ><i class="bx bx-cog scaleX-n1-rtl px-1"></i> Manage Bankroll</a
                     >
                   </li>

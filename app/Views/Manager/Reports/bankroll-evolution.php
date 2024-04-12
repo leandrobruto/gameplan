@@ -62,7 +62,11 @@
                 </div>
                 <span><strong>Initital Balance</strong></span>
                 <h3 class="card-title text-nowrap mb-1">
-                  $<?= $reports != null ? reports->initial_balance : '0.00'; ?>
+                <?php if (!empty($reports)): ?>
+                    $<?= $reports->initial_balance; ?>
+                  <?php else: ?>
+                    $0.00
+                  <?php endif; ?>
                 </h3>
               </div>
             </div>
@@ -77,7 +81,11 @@
                 </div>
                 <span><strong>Final Balance</strong></span>
                 <h3 class="card-title text-nowrap mb-1">
-                  $<?= $reports != null ? $reports->current_balance : '0.00'; ?>
+                  <?php if (!empty($reports)): ?>
+                    $<?= $reports->current_balance; ?>
+                  <?php else: ?>
+                    $0.00
+                  <?php endif; ?>
                 </h3>
               </div>
             </div>
@@ -95,39 +103,5 @@
 
   <script src="<?php echo site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
-
-  <script type="text/javascript">
-    // add row
-    $("#addRow").click(function () {
-        var html = '';
-        html += '<div class="row" id="inputFormRow">'
-        html += '<div class="col-md-8 col-7 mb-3">'
-        html += '<label class="form-label" for="selection">Selection</label>'
-        html += '<div class="input-group input-group-merge">'
-        html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
-        html += '<input type="text" id="selection" name="event[]" class="form-control" />'
-        html += '</div>'
-        html += '</div>'
-
-        html += '<div class="col-md-2 col-3 mb-3">'
-        html += '<label for="odd" class="form-label">Odd</label>'
-        html += '<div class="input-group input-group-merge">'
-        html += '<input type="text" id="odd" name="odd[]" class="form-control" value="" />'
-        html += '</div>'
-        html += '</div>'
-        html += '<div class="col-md-2 col-2 px-1 mb-3 d-flex align-self-end">'
-        html += '<button id="removeRow" type="button" class="btn btn-danger p-2">'
-        html += '<i class="bx bx-trash tf-icons"></i></button>'
-        html += '</div>'
-        html += '</div>';
-
-        $('#newRow').append(html);
-    });
-
-    // remove row
-    $(document).on('click', '#removeRow', function () {
-        $(this).closest('#inputFormRow').remove();
-    });
-  </script>
 
 <?= $this->endSection(); ?>

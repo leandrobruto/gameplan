@@ -56,9 +56,23 @@ class BetModel extends Model
             ->first();
     }
 
+    public function getBetsReports($user) 
+    {
+        $reports = $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi')
+            ->selectCount('bets.id', 'total_bets')
+            ->selectSum('stake', 'stake_sum')
+            ->selectSum('result', 'result_sum')
+            ->selectMin('result', 'min_result')
+            ->selectMax('result', 'max_result')
+            ->where('user_id', $user->id)
+            ->where('bankroll_id', 1)
+            ->first();
+
+            dd($reports);
+    }
+
     public function generateBetCode() 
     {
-    
         do {
             
             $betCode = random_string('numeric', 8);
