@@ -48,15 +48,6 @@ class BetModel extends Model
             ->countAllResults();
     }
 
-    public function getReportsByUser($user) 
-    {
-        return $this->selectSum('stake')
-            ->selectSum('result')
-            ->selectMax('result', 'max_result')
-            ->where('user_id', $user->id)
-            ->first();
-    }
-
     public function getBetsReports($user, $bankroll) 
     {
         $reports = $this->selectCount('bets.id', 'total_bets') // Número de Bets
@@ -71,12 +62,6 @@ class BetModel extends Model
 
         if (!empty($reports->result_sum) || !empty($reports->stake_sum))
         {
-            $balance = $this->select('bankrolls.initial_balance')
-                ->join('users', 'users.id = bets.user_id')
-                ->join('bankrolls', 'bankrolls.id = bets.bankroll_id')
-                ->where('bankrolls.id', $bankroll->id)
-                ->first();
-
             $reports->roi = ($reports->result_sum / $reports->stake_sum) * 100;             // Cálculo do ROI
             $reports->initial_balance = $bankroll->initial_balance;                         // Intitial Balance
             $reports->current_balance = $bankroll->initial_balance + $reports->result_sum;  // Current Balance

@@ -21,7 +21,7 @@
 
 <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
 
-  <h4 class="card-title"><?= $title ?></h4>
+  <h5 class="card-title"><?= $title ?></h5>
 
   <div class="row">
       <div class="col-lg-12 col-md-4 order-1">
@@ -34,7 +34,7 @@
                     <span class="badge bg-label-primary p-2"><i class="bx bx-coin text-primary"></i></span>
                   </div>
                 </div>
-                <span><strong>Minimum</strong></span>
+                <span>Minimum</span>
                 <h3 class="card-title text-nowrap mb-1">$0.00</h3>
               </div>
             </div>
@@ -47,7 +47,7 @@
                     <span class="badge bg-label-primary p-2"><i class="bx bx-coin-stack text-primary"></i></span>
                     </div>
                   </div>
-                <span><strong>Maximum</strong></span>
+                <span>Maximum</span>
                 <h3 class="card-title text-nowrap mb-1">$0.00</h3>
               </div>
             </div>
@@ -60,7 +60,7 @@
                     <span class="badge bg-label-primary p-2"><i class="bx bx-money text-primary"></i></span>
                   </div>
                 </div>
-                <span><strong>Initital Balance</strong></span>
+                <span>Initital Balance</span>
                 <h3 class="card-title text-nowrap mb-1">
                 <?php if (!empty($reports)): ?>
                     $<?= $reports->initial_balance; ?>
@@ -79,7 +79,7 @@
                     <span class="badge bg-label-primary p-2"><i class="bx bx-wallet text-primary"></i></span>
                   </div>
                 </div>
-                <span><strong>Final Balance</strong></span>
+                <span>Final Balance</span>
                 <h3 class="card-title text-nowrap mb-1">
                   <?php if (!empty($reports)): ?>
                     $<?= $reports->current_balance; ?>

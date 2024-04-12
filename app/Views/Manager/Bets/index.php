@@ -21,7 +21,7 @@
 
 <div class="col-xl-12 col-md-12 col-sm-6 mb-4">
 
-  <h4 class="card-title"><?= $title ?></h4>
+  <h5 class="card-title"><?= $title ?></h5>
 
   <div class="row">
     <div class="col-6">
@@ -71,7 +71,7 @@
                     />
                   </div>
                 </div>
-                <span><strong>Bets</strong></span>
+                <span>Bets</span>
                 <h3 class="card-title text-nowrap mb-1"><?= $reports->total_bets; ?></h3>
               </div>
             </div>
@@ -88,7 +88,7 @@
                     />
                   </div>
                 </div>
-                <span><strong>Result</strong></span>
+                <span>Result</span>
                 <h3 class="card-title text-nowrap mb-1">
                   $<?= $reports->result_sum ? $reports->result_sum : '0.00'; ?>
                 </h3>
@@ -107,8 +107,10 @@
                     />
                   </div>
                 </div>
-                <span><strong>ROI</strong></span>
-                <h3 class="card-title text-nowrap mb-1"><?= number_format($reports->roi, 2); ?>%</h3>
+                <span>ROI</span>
+                <h3 class="card-title text-nowrap mb-1">
+                  <?= $reports->roi ? number_format($reports->roi, 2) : 0; ?>%
+                </h3>
               </div>
             </div>
           </div>
@@ -121,7 +123,6 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title d-flex justify-content-between align-items-center"><?= $title ?></h5>
 
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
@@ -160,6 +161,10 @@
         </tbody>
       </table>
       <div class="d-flex justify-content-center mt-4">
+        <?php if (empty($bets)): ?>
+            No Bets Found.
+        <?php endif; ?>
+
         <?php if ($pager->getPageCount() > 1): ?>
           <?= $pager->links('default', 'default_pagination'); ?>
         <?php endif; ?>

@@ -32,26 +32,11 @@
                 class="rounded"
               />
             </div>
-            <div class="dropdown">
-              <button
-                class="btn p-0"
-                type="button"
-                id="cardOpt6"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-              </div>
-            </div>
           </div>
           <span>Period Result</span>
-          <h3 class="card-title text-nowrap mb-1">$<?= $reports->result_sum; ?></h3>
-          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
+          <h3 class="card-title text-nowrap mb-1">
+            $<?= $reports->result_sum ? $reports->result_sum : '0.00'; ?>
+          </h3>
         </div>
       </div>
     </div>
@@ -66,26 +51,9 @@
                 class="rounded"
               />
             </div>
-            <div class="dropdown">
-              <button
-                class="btn p-0"
-                type="button"
-                id="cardOpt6"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-              </div>
-            </div>
           </div>
           <span>Average Profit per Bet</span>
           <h3 class="card-title text-nowrap mb-1">$<?= number_format($reports->average_profit, 2); ?></h3>
-          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
         </div>
       </div>
     </div>
@@ -100,26 +68,11 @@
                 class="rounded"
               />
             </div>
-            <div class="dropdown">
-              <button
-                class="btn p-0"
-                type="button"
-                id="cardOpt6"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-              </div>
-            </div>
           </div>
           <span>ROI</span>
-          <h3 class="card-title text-nowrap mb-1"><?= number_format($reports->roi, 2); ?>%</h3>
-          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
+          <h3 class="card-title text-nowrap mb-1">
+            <?= $reports->roi ? number_format($reports->roi, 2) : 0; ?>%
+          </h3>
         </div>
       </div>
     </div>
@@ -134,26 +87,11 @@
                 class="rounded"
               />
             </div>
-            <div class="dropdown">
-              <button
-                class="btn p-0"
-                type="button"
-                id="cardOpt6"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-              </div>
-            </div>
           </div>
           <span>Final Balance</span>
-          <h3 class="card-title text-nowrap mb-1">$<?= $reports->current_balance; ?></h3>
-          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +0.00%</small>
+          <h3 class="card-title text-nowrap mb-1">
+            $<?= $reports->current_balance ? $reports->current_balance : '0.00'; ?>
+          </h3>
         </div>
       </div>
     </div>
@@ -464,6 +402,10 @@
             </tbody>
           </table>
           <div class="d-flex justify-content-center mt-4">
+            <?php if (empty($bets)): ?>
+                No Strategies Found.
+            <?php endif; ?>
+
             <?php if ($pager->getPageCount() > 1): ?>
               <?= $pager->links('default', 'default_pagination'); ?>
             <?php endif; ?>
@@ -502,6 +444,10 @@
               </tbody>
             </table>
             <div class="d-flex justify-content-center mt-4">
+              <?php if (empty($bets)): ?>
+                  No Bets Found.
+              <?php endif; ?>
+
               <?php if ($pager->getPageCount() > 1): ?>
                 <?= $pager->links('default', 'default_pagination'); ?>
               <?php endif; ?>
