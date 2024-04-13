@@ -27,11 +27,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img
-                  src="../assets/img/icons/unicons/chart-success.png"
-                  alt="chart success"
-                  class="rounded"
-                />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-time text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Period Result</span>
@@ -46,11 +44,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img
-                  src="../assets/img/icons/unicons/chart-success.png"
-                  alt="chart success"
-                  class="rounded"
-                />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-bar-chart text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Average Profit per Bet</span>
@@ -65,11 +61,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img
-                  src="../assets/img/icons/unicons/chart-success.png"
-                  alt="chart success"
-                  class="rounded"
-                />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-dollar text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">ROI</span>
@@ -84,11 +78,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img
-                  src="../assets/img/icons/unicons/chart-success.png"
-                  alt="chart success"
-                  class="rounded"
-                />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-wallet text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Final Balance</span>
@@ -119,7 +111,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-file-blank text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Settled Bets</span>
@@ -132,7 +126,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-coin text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Starting Balance</span>
@@ -145,7 +141,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-coin-stack text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Final Balance</span>
@@ -160,7 +158,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-bar-chart text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Bankroll Evolution</span>
@@ -191,7 +191,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-wink-tongue text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="d-block mb-1">Total Bets Won</span>
@@ -206,7 +208,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-happy-heart-eyes text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Biggest Win</span>
@@ -219,10 +223,12 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-meh text-primary"></i>
+                </span>
               </div>
             </div>
-            <span class="fw-semibold d-block mb-1">Tottal Bets Lost</span>
+            <span class="fw-semibold d-block mb-1">Total Bets Lost</span>
             <h3 class="card-title mb-2">$14,857</h3>
           </div>
         </div>
@@ -232,7 +238,9 @@
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                <span class="badge bg-label-primary p-2">
+                  <i class="bx bx-dizzy text-primary"></i>
+                </span>
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Biggest Loss</span>

@@ -31,7 +31,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <span class="badge bg-label-primary p-2"><i class="bx bx-coin text-primary"></i></span>
+                    <span class="badge bg-label-primary p-2">
+                      <i class="bx bx-coin text-primary"></i>
+                    </span>
                   </div>
                 </div>
                 <span>Minimum</span>
@@ -44,7 +46,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <span class="badge bg-label-primary p-2"><i class="bx bx-coin-stack text-primary"></i></span>
+                    <span class="badge bg-label-primary p-2">
+                      <i class="bx bx-coin-stack text-primary"></i>
+                    </span>
                     </div>
                   </div>
                 <span>Maximum</span>
@@ -57,7 +61,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <span class="badge bg-label-primary p-2"><i class="bx bx-money text-primary"></i></span>
+                    <span class="badge bg-label-primary p-2">
+                      <i class="bx bx-money text-primary"></i>
+                    </span>
                   </div>
                 </div>
                 <span>Initital Balance</span>
@@ -76,7 +82,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <span class="badge bg-label-primary p-2"><i class="bx bx-wallet text-primary"></i></span>
+                    <span class="badge bg-label-primary p-2">
+                      <i class="bx bx-wallet text-primary"></i>
+                    </span>
                   </div>
                 </div>
                 <span>Final Balance</span>
