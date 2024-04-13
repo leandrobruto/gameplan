@@ -247,7 +247,7 @@
                                     .addClass('text-danger')
                                     .append('<i class="bx bx-error px-1"></i>');
                             
-                                } else {
+                            } else {
                                 $('#attempt_username')
                                     .text(request.term.toLowerCase() + ' is avaliable.')
                                     .addClass('text-success')
