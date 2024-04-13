@@ -35,7 +35,9 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Period Result</span>
-            <h3 class="card-title mb-2"><?= $reports->result_sum; ?></h3>
+            <h3 class="card-title <?= $reports->result_sum > 0 ? 'text-success' : ''; ?> mb-2">
+              $<?= number_format($reports->result_sum, 2); ?>
+            </h3>
           </div>
         </div>
       </div>
@@ -71,7 +73,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">ROI</span>
-            <h3 class="card-title mb-2">
+            <h3 class="card-title <?= $reports->roi > 0 ? 'text-success' : ''; ?> mb-2">
               <?= floatval(number_format($reports->roi, 2)); ?>%
             </h3>
           </div>
@@ -90,7 +92,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Final Balance</span>
-            <h3 class="card-title mb-2">
+            <h3 class="card-title <?= $reports->current_balance > 0 ? 'text-success' : ''; ?> mb-2">
               $<?= $reports->current_balance ? $reports->current_balance : '0.00'; ?>
             </h3>
           </div>
@@ -120,7 +122,7 @@
                 <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
               </div>
             </div>
-            <span class="d-block mb-1">Settled Bets</span>
+            <span class="fw-semibold d-block mb-1">Settled Bets</span>
             <h3 class="card-title text-nowrap mb-2"><?= $reports->total_bets; ?></h3>
           </div>
         </div>
@@ -134,7 +136,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Starting Balance</span>
-              <h3 class="card-title mb-2">$<?= $reports->initial_balance; ?></h3>
+              <h3 class="card-title mb-2">$<?= number_format($reports->initial_balance, 2); ?></h3>
           </div>
         </div>
       </div>
@@ -145,7 +147,8 @@
               <div class="avatar flex-shrink-0">
                 <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
               </div>
-            </div><span>Final Balance</span>
+            </div>
+            <span class="fw-semibold d-block mb-1">Final Balance</span>
             <h3 class="card-title text-nowrap mb-1">
               $<?= $reports->current_balance ? $reports->current_balance : '0.00'; ?>
             </h3>
@@ -159,8 +162,9 @@
               <div class="avatar flex-shrink-0">
                 <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
               </div>
-            </div><span>Bankroll Evolution</span>
-            <h3 class="card-title text-nowrap mb-1">
+            </div>
+            <span class="fw-semibold d-block mb-1">Bankroll Evolution</span>
+            <h3 class="card-title <?= $reports->result_sum  > 0 ? 'text-success' : ''; ?> text-nowrap mb-1">
               <?= $reports->result_sum ? $reports->result_sum : '0'; ?>%
             </h3>
           </div>
@@ -253,7 +257,7 @@
                 <th>Sport</th>
                 <th>Total</th>
                 <th>Stake</th>
-                <th>Result</th>
+                <th>Results</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
@@ -263,7 +267,7 @@
                   <td><?= $bet->sport; ?></td>
                   <td><?= $bet->event; ?></td>
                   <td>$<?= $bet->stake; ?></td>
-                  <td>$<?= $bet->result; ?></td>
+                  <td class="<?= $bet->result > 0 ? 'text-success' : ''; ?>">$<?= $bet->result; ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -306,7 +310,7 @@
                   <td><?= $bet->event; ?></td>
                   <td><?= $bet->strategy; ?></td>
                   <td>$<?= $bet->stake; ?></td>
-                  <td>$<?= $bet->result; ?></td>
+                  <td class="<?= $bet->result > 0 ? 'text-success' : ''; ?>">$<?= $bet->result; ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
