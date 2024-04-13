@@ -48,8 +48,48 @@ class Bets extends BaseController
     public function postStore()
     {
         if ($this->request->getMethod() === 'post') {
-            
             $bet = new Bet($this->request->getPost('bet'));
+            $bet->code = $this->betModel->generateBetCode();
+
+            if ($this->betModel->insert($bet)) {
+
+                $match = new Bet($this->request->getPost('match'));
+                $match->bet_id = $this->betModel->getInsertID();
+                $this->matchModel->insert($match);
+
+                return redirect()->to(site_url("manager/bets"))
+                                ->with('success', "Bet created successfully!");
+            } else {
+                return redirect()->back()->with('errors_model', $this->competitionModel->errors())
+                                        ->with('attention', "Please check the errors below.")
+                                        ->withInput();
+            }
+        } else {
+            /* It's not POST */
+            return redirect()->back();
+        }
+    }
+
+    public function postStoreMultiple()
+    {
+        if ($this->request->getMethod() === 'post') {
+            // dd($this->request->getPost());
+            $match = $this->request->getPost('match');
+            $odd = $this->request->getPost('odd');
+
+            // $array_events = array();
+            // foreach($itens as $key => $i) {
+                
+            //     if(!empty($itens[$key]['id']) && !empty($itens[$key]['qnt'])) {
+            //         $id = $itens[$key]['id'];
+            //         $qtd = $itens[$key]['qnt'];
+            //         $equip = $this->EquipamentoDAO->ler(new Equipamento($id));
+
+            //         array_push($array_itens, new AgendaItem($id, $qtd, null, $equip, null));
+            //     }
+            // }
+            dd($match);
+            
             $bet->code = $this->betModel->generateBetCode();
 
             if ($this->betModel->insert($bet)) {

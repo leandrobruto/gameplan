@@ -224,7 +224,7 @@
           aria-label="Close">
         </button>
       </div>
-      <?= form_open("manager/bets/store"); ?>
+      <?= form_open("manager/bets/storeMultiple"); ?>
         <div class="modal-body">
 
           <?= $this->include('Manager/Bets/multiple_form'); ?>
@@ -256,31 +256,39 @@
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
 
   <script type="text/javascript">
+    
+    var index = 2;
+    
     // add row
     $("#addRow").click(function () {
         var html = '';
         html += '<div class="row" id="inputFormRow">'
-        html += '<div class="col-md-8 col-7 mb-3">'
+
+        html += '<div class="col-lg-6 col-6 mb-3">'
         html += '<label class="form-label" for="selection">Selection</label>'
         html += '<div class="input-group input-group-merge">'
         html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
-        html += '<input type="text" id="selection" name="event[]" class="form-control" />'
+        html += '<input type="text" id="selection" name="match[' + index + '][event]" class="form-control" />'
         html += '</div>'
         html += '</div>'
 
-        html += '<div class="col-md-2 col-3 mb-3">'
+        html += '<div class="col-lg-4 col-4 mb-3">'
         html += '<label for="odd" class="form-label">Odd</label>'
         html += '<div class="input-group input-group-merge">'
-        html += '<input type="text" id="odd" name="odd[]" class="form-control" value="" />'
+        html += '<input type="text" id="odd" name="match[' + index + '][odd]" class="form-control" value="" />'
         html += '</div>'
         html += '</div>'
-        html += '<div class="col-md-2 col-2 px-1 mb-3 d-flex align-self-end">'
-        html += '<button id="removeRow" type="button" class="btn btn-danger p-2">'
-        html += '<i class="bx bx-trash tf-icons"></i></button>'
+
+        html += '<div class="col-lg-2 col-2 mb-3 d-flex justify-content-center align-self-end">'
+        html += '<a id="removeRow" type="button" class="text-danger p-2">'
+        html += '<i class="bx bx-trash tf-icons"></i></a>'
         html += '</div>'
+
         html += '</div>';
 
         $('#newRow').append(html);
+
+        index += 1;
     });
 
     // remove row
