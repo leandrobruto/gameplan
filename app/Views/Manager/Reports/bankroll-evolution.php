@@ -68,11 +68,8 @@
                 </div>
                 <span>Initital Balance</span>
                 <h3 class="card-title text-nowrap mb-1">
-                <?php if (!empty($reports)): ?>
-                    $<?= $reports->initial_balance; ?>
-                  <?php else: ?>
-                    $0.00
-                  <?php endif; ?>
+                    $<?= $reports ? 
+                      number_format($reports->initial_balance, 2) : '0.00'; ?>
                 </h3>
               </div>
             </div>
@@ -89,11 +86,7 @@
                 </div>
                 <span>Final Balance</span>
                 <h3 class="card-title text-nowrap mb-1">
-                  <?php if (!empty($reports)): ?>
-                    $<?= $reports->current_balance; ?>
-                  <?php else: ?>
-                    $0.00
-                  <?php endif; ?>
+                    $<?= $reports ? number_format($reports->current_balance, 2) : '0.00'; ?>
                 </h3>
               </div>
             </div>

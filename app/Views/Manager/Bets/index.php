@@ -89,8 +89,8 @@
                   </div>
                 </div>
                 <span>Result</span>
-                <h3 class="card-title text-nowrap mb-1">
-                  $<?= $reports->result_sum ? $reports->result_sum : '0.00'; ?>
+                <h3 class="card-title text-nowrap mb-1 <?= $reports->result_sum > 0 ? 'text-success' : 'text-dark'; ?>">
+                  $<?= number_format($reports->result_sum, 2); ?>
                 </h3>
               </div>
             </div>
@@ -108,7 +108,7 @@
                   </div>
                 </div>
                 <span>ROI</span>
-                <h3 class="card-title text-nowrap mb-1">
+                <h3 class="card-title text-nowrap mb-1 <?= $reports->roi > 0 ? 'text-success' : 'text-dark'; ?>">
                   <?= floatval(number_format($reports->roi, 2)); ?>%
                 </h3>
               </div>
@@ -121,7 +121,7 @@
 </div>
 
 <!-- Hoverable Table rows -->
-<div class="card">
+<div class="card mb-2">
   <div class="card-body">
 
     <div class="table-responsive text-nowrap">
@@ -145,15 +145,15 @@
               <td><?= $bet->event; ?></td>
               <td><?= $bet->strategy; ?></td>
               <td>$<?= $bet->stake; ?></td>
-              <td>$<?= $bet->result; ?></td>
-              <td><?= number_format($bet->roi, 2); ?>%</td>
+              <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">$<?= $bet->result; ?></td>
+              <td class="<?= $bet->roi > 0 ? 'text-success' : 'text-dark'; ?>"><?= number_format($bet->roi, 2); ?>%</td>
               <td class="d-flex justify-content-end">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#editBetModal" type="button">
                   <i class="bx bx-edit me-3"></i>
                 </a>
 
                 <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteBetModal" type="button">
-                  <i class="bx bx-trash text-danger me-3"></i>
+                  <i class="bx bx-trash'text-dark me-3"></i>
                 </a>
               </td>
             </tr>

@@ -33,7 +33,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Period Result</span>
-            <h3 class="card-title <?= $reports->result_sum > 0 ? 'text-success' : ''; ?> mb-2">
+            <h3 class="card-title <?= $reports->result_sum > 0 ? 'text-success' : 'text-dark'; ?> mb-2">
               $<?= number_format($reports->result_sum, 2); ?>
             </h3>
           </div>
@@ -67,7 +67,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">ROI</span>
-            <h3 class="card-title <?= $reports->roi > 0 ? 'text-success' : ''; ?> mb-2">
+            <h3 class="card-title <?= $reports->roi > 0 ? 'text-success' : 'text-dark'; ?> mb-2">
               <?= floatval(number_format($reports->roi, 2)); ?>%
             </h3>
           </div>
@@ -84,7 +84,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Final Balance</span>
-            <h3 class="card-title <?= $reports->current_balance > 0 ? 'text-success' : ''; ?> mb-2">
+            <h3 class="card-title <?= $reports->current_balance > 0 ? 'text-success' : 'text-dark'; ?> mb-2">
               $<?= $reports->current_balance ? $reports->current_balance : '0.00'; ?>
             </h3>
           </div>
@@ -164,7 +164,7 @@
               </div>
             </div>
             <span class="fw-semibold d-block mb-1">Bankroll Evolution</span>
-            <h3 class="card-title <?= $reports->result_sum  > 0 ? 'text-success' : ''; ?> text-nowrap mb-1">
+            <h3 class="card-title <?= $reports->result_sum  > 0 ? 'text-success' : 'text-dark'; ?> text-nowrap mb-1">
               <?= $reports->result_sum ? $reports->result_sum : '0'; ?>%
             </h3>
           </div>
@@ -275,7 +275,9 @@
                   <td><?= $bet->sport; ?></td>
                   <td><?= $bet->event; ?></td>
                   <td>$<?= $bet->stake; ?></td>
-                  <td class="<?= $bet->result > 0 ? 'text-success' : ''; ?>">$<?= $bet->result; ?></td>
+                  <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">
+                    $<?= $bet->result; ?>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -294,7 +296,7 @@
     </div>
   </div>
 
-  <div class="col-12 col-lg-12 order-5 order-md-3 order-lg-2 mb-4">
+  <div class="col-12 col-lg-12 order-5 order-md-3 order-lg-2 mb-2">
     <!-- Hoverable Table rows -->
     <div class="card">
       <div class="card-body">
@@ -318,7 +320,7 @@
                   <td><?= $bet->event; ?></td>
                   <td><?= $bet->strategy; ?></td>
                   <td>$<?= $bet->stake; ?></td>
-                  <td class="<?= $bet->result > 0 ? 'text-success' : ''; ?>">$<?= $bet->result; ?></td>
+                  <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">$<?= $bet->result; ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
