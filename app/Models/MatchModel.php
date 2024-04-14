@@ -10,7 +10,7 @@ class MatchModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Match';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['bet_id', 'event', 'date', 'odd'];
+    protected $allowedFields    = ['bet_id', 'event', 'odd'];
 
     // Dates
     protected $useTimestamps = true;

@@ -24,9 +24,6 @@ class CreateTableMatches extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
-            'date' => [
-                'type' => 'DATE',
-            ],
             'odd' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',

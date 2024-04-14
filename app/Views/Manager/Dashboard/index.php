@@ -264,7 +264,6 @@
                 <th>Market</th>
                 <th>Sport</th>
                 <th>Total</th>
-                <th>Stake</th>
                 <th>Results</th>
               </tr>
             </thead>
@@ -273,7 +272,6 @@
                 <tr>
                   <td><?= $bet->strategy; ?></td>
                   <td><?= $bet->sport; ?></td>
-                  <td><?= $bet->event; ?></td>
                   <td>$<?= $bet->stake; ?></td>
                   <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">
                     $<?= $bet->result; ?>

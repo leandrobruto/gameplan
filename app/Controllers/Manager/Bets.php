@@ -29,7 +29,7 @@ class Bets extends BaseController
     {
         $user = userLoggedIn();
         $bankroll = defaultBankroll();
-        
+        // dd($this->betModel->getBetsByUser($user, $bankroll)->paginate(10));
         $data = [
             'title' => 'Bets',
             'user' => $user,
@@ -73,30 +73,29 @@ class Bets extends BaseController
     public function postStoreMultiple()
     {
         if ($this->request->getMethod() === 'post') {
-            // dd($this->request->getPost());
-            $match = $this->request->getPost('match');
-            $odd = $this->request->getPost('odd');
-
-            // $array_events = array();
-            // foreach($itens as $key => $i) {
-                
-            //     if(!empty($itens[$key]['id']) && !empty($itens[$key]['qnt'])) {
-            //         $id = $itens[$key]['id'];
-            //         $qtd = $itens[$key]['qnt'];
-            //         $equip = $this->EquipamentoDAO->ler(new Equipamento($id));
-
-            //         array_push($array_itens, new AgendaItem($id, $qtd, null, $equip, null));
-            //     }
-            // }
-            dd($match);
+            
+            $bet =  new Bet($this->request->getPost('bet'));
             
             $bet->code = $this->betModel->generateBetCode();
 
             if ($this->betModel->insert($bet)) {
 
-                $match = new Bet($this->request->getPost('match'));
-                $match->bet_id = $this->betModel->getInsertID();
-                $this->matchModel->insert($match);
+                $matches = $this->request->getPost('match');
+
+                $array_matches = array();
+
+                foreach($matches as $key => $match) {
+
+                    if(!empty($match['event']) && !empty($match['odd'])) {
+
+                        $match['bet_id'] = $this->betModel->getInsertID();
+
+                        array_push($array_matches, $match);
+                    }
+                }
+                // dd($array_matches);
+
+                $this->matchModel->insertBatch($array_matches);
 
                 return redirect()->to(site_url("manager/bets"))
                                 ->with('success', "Bet created successfully!");

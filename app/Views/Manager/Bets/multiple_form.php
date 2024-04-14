@@ -23,7 +23,7 @@
 </div>
 
 <div id="newRow"></div>
-
+    
 <div>
     <button id="addRow" type="button" class="btn btn-primary mb-3">
         <i class="bx bx-add-to-queue tf-icons"></i></button>
@@ -31,6 +31,10 @@
 </div>
 
 <div class="row">
+    <!-- Hidden fields that we will use in the controller -->
+    <input type="hidden" name="bet[user_id]" value="<?= $user->id; ?>" />
+
+
     <div class="col-md-12 mb-3">
         <label class="form-label" for="description">Description</label>
         <div class="input-group input-group-merge">
@@ -41,14 +45,16 @@
 
     <div class="col-md-6 mb-3">
         <label for="bankroll" class="form-label">Bankroll</label>
-        <select class="form-select" id="bankroll" name="bet[bankroll] aria-label="My Bankroll">
-            <option value="1">My Bankroll</option>
+        <select class="form-select" id="bankroll" name="bet[bankroll_id]" aria-label="My Bankroll">
+            <?php foreach($bankrolls as $bankroll): ?>
+                <option value="<?= $bankroll->id; ?>" <?= (old('bet.bankroll_id') == $bankroll->id ? 'selected' : '') ?>><?= $bankroll->name; ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
     
     <div class="col-md-6 mb-3">
         <label for="date" class="col-md-2 col-form-label">Date</label>
-        <input type="date" id="date" name="match[date]" value="<?= old('match.date'); ?>" class="form-control" <?= old('match.date'); ?>
+        <input type="date" id="date" name="bet[date]" value="<?= old('bet.date'); ?>" class="form-control" <?= old('bet.date'); ?>
         />
     </div>
 

@@ -143,7 +143,7 @@
               <td><?= $bet->code; ?></td>
               <td><?= date("F jS, Y", strtotime($bet->date)); ?></td>
               <td><?= $bet->event; ?></td>
-              <td><?= $bet->strategy; ?></td>
+              <td><?= isset($bet->strategy) ? $bet->strategy : ''; ?></td>
               <td>$<?= $bet->stake; ?></td>
               <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">$<?= $bet->result; ?></td>
               <td class="<?= $bet->roi > 0 ? 'text-success' : 'text-dark'; ?>"><?= number_format($bet->roi, 2); ?>%</td>

@@ -10,7 +10,10 @@ class BetModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\Bet';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['user_id', 'bankroll_id', 'sport_id', 'competition_id', 'strategy_id', 'code', 'stake', 'result', 'description', 'is_pending'];
+    protected $allowedFields    = [
+        'user_id', 'bankroll_id', 'sport_id', 'competition_id', 'strategy_id', 
+        'code', 'date', 'stake', 'result', 'description', 'is_pending'
+    ];
 
     // Dates
     protected $useTimestamps = true;
@@ -27,7 +30,7 @@ class BetModel extends Model
     public function getBetsByUser($user, $bankroll) 
     {
         return $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi,
-            matches.event, matches.date,
+            matches.event, bets.date,
             bankrolls.name AS bankroll, 
             sports.name AS sport, 
             competitions.name AS competition, 
@@ -39,7 +42,7 @@ class BetModel extends Model
                 ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
                 ->where('bets.user_id', $user->id)
                 ->where('bets.bankroll_id', $bankroll->id)
-                ->orderBy('matches.date', 'DESC');
+                ->orderBy('bets.date', 'DESC');
     }
 
     public function countAllBetsByUser($user) 

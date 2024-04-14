@@ -29,20 +29,26 @@ class CreateTebleBets extends Migration
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
-            ],
+                'null' => true,
+            ], 
             'competition_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
+                'null' => true,
             ],
             'strategy_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
+                'null' => true,
             ],
             'code' => [
                 'type' => 'VARCHAR',
                 'constraint' => '10',
+            ],
+            'date' => [
+                'type' => 'DATE',
             ],
             'stake' => [
                 'type' => 'DECIMAL',
