@@ -91,11 +91,9 @@
 
     <div class="col-md-12 mb-3">
         <label for="tags" class="form-label">Tags</label>
-        <select class="form-select" id="tags" name="tags" aria-label="Tags">
-            <option value="1">The list is empty</option>
-        </select>
+        <select class="form-control select2" name="tags[]" multiple="multiple" style="width: 100%;"></select>
     </div>
-    
+
     <div class="col-md-12 mb-3">
         <div class="form-check form-switch mb-2">
             <input type="hidden" name="bet[is_pending]" value="0" />

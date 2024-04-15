@@ -36,9 +36,9 @@ class BetModel extends Model
             competitions.name AS competition, 
             strategies.name AS strategy')->asObject()
                 ->join('matches', 'bets.id = matches.bet_id')
-                ->join('sports', 'bets.sport_id = sports.id')
-                ->join('competitions', 'bets.competition_id = competitions.id')
-                ->join('strategies', 'bets.strategy_id = strategies.id')
+                ->join('sports', 'bets.sport_id = sports.id', 'left')
+                ->join('competitions', 'bets.competition_id = competitions.id', 'left')
+                ->join('strategies', 'bets.strategy_id = strategies.id', 'left')
                 ->join('bankrolls', 'bets.bankroll_id = bankrolls.id')
                 ->where('bets.user_id', $user->id)
                 ->where('bets.bankroll_id', $bankroll->id)

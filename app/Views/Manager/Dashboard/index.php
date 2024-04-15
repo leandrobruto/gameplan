@@ -196,7 +196,7 @@
                 </span>
               </div>
             </div>
-            <span class="d-block mb-1">Total Bets Won</span>
+            <span class="fw-semibold d-block mb-1">Total Bets Won</span>
             <h3 class="card-title text-nowrap mb-1">
               <?= $reports->result_sum ? $reports->result_sum : '0'; ?>%
             </h3>

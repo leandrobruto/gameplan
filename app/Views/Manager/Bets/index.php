@@ -10,7 +10,7 @@
 <!-- Here we send the styles to the main template -->
 <?= $this->section('styles'); ?>
 
-
+<link rel="stylesheet" href="<?= site_url('assets/vendor/select2/select2.min.css'); ?>" rel="stylesheet"/>
 
 <?= $this->endSection(); ?>
 
@@ -57,9 +57,9 @@
 
 <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
   <div class="row">
-      <div class="col-lg-12 col-md-4 order-1">
+      <div class="col-lg-12 col-md-12 order-1">
         <div class="row">
-          <div class="col-lg-4 col-md-12 col-6 mb-4">
+          <div class="col-lg-4 col-md-4 col-6 mb-4">
             <div class="card">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
@@ -71,12 +71,12 @@
                     />
                   </div>
                 </div>
-                <span>Bets</span>
+                <span class="fw-semibold d-block mb-1">Bets</span>
                 <h3 class="card-title text-nowrap mb-1"><?= $reports->total_bets; ?></h3>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12 col-6 mb-4">
+          <div class="col-lg-4 col-md-4 col-6 mb-4">
             <div class="card">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
@@ -88,14 +88,14 @@
                     />
                   </div>
                 </div>
-                <span>Result</span>
+                <span class="fw-semibold d-block mb-1">Result</span>
                 <h3 class="card-title text-nowrap mb-1 <?= $reports->result_sum > 0 ? 'text-success' : 'text-dark'; ?>">
                   $<?= number_format($reports->result_sum, 2); ?>
                 </h3>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12 col-6 mb-4">
+          <div class="col-lg-4 col-md-4 col-6 mb-4">
             <div class="card">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
@@ -107,7 +107,7 @@
                     />
                   </div>
                 </div>
-                <span>ROI</span>
+                <span class="fw-semibold d-block mb-1">ROI</span>
                 <h3 class="card-title text-nowrap mb-1 <?= $reports->roi > 0 ? 'text-success' : 'text-dark'; ?>">
                   <?= floatval(number_format($reports->roi, 2)); ?>%
                 </h3>
@@ -255,6 +255,8 @@
   <script src="<?php echo site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
 
+  <script src="<?php echo site_url('assets/vendor/select2/select2.min.js') ?>"></script>
+
   <script type="text/javascript">
     
     var index = 2;
@@ -296,5 +298,30 @@
         $(this).closest('#inputFormRow').remove();
     });
   </script>
+
+<script>
+  $('.select2').select2({
+    data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+    tags: true,
+    maximumSelectionLength: 10,
+    tokenSeparators: [',', ' '],
+    placeholder: "Select or type keywords",
+    //minimumInputLength: 1,
+    //ajax: {
+    //   url: "you url to data",
+    //   dataType: 'json',
+    //  quietMillis: 250,
+    //  data: function (term, page) {
+    //     return {
+    //         q: term, // search term
+    //    };
+    //  },
+    //  results: function (data, page) { 
+    //  return { results: data.items };
+  //   },
+  //   cache: true
+    // }
+  });
+</script>
 
 <?= $this->endSection(); ?>

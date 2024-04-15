@@ -14,6 +14,7 @@ class Bets extends BaseController
     private $competitionModel;
     private $strategyModel;
     private $bankrollModel;
+    private $tagModel;
     
     public function __construct()
     {
@@ -23,6 +24,7 @@ class Bets extends BaseController
         $this->sportModel = new \App\Models\SportModel();
         $this->competitionModel = new \App\Models\CompetitionModel();
         $this->strategyModel = new \App\Models\StrategyModel();
+        $this->tagModel = new \App\Models\TagModel();
     }
 
     public function getIndex()
@@ -53,9 +55,22 @@ class Bets extends BaseController
 
             if ($this->betModel->insert($bet)) {
 
-                $match = new Bet($this->request->getPost('match'));
-                $match->bet_id = $this->betModel->getInsertID();
+                $match = $this->request->getPost('match');
+                $match['bet_id'] = $this->betModel->getInsertID();
                 $this->matchModel->insert($match);
+
+                $tags = $this->request->getPost('tags');
+
+                $array_tags = array();
+
+                foreach ($tags as $tag)
+                {
+                    $data['name'] = $tag;
+                    $data['bet_id'] = $this->betModel->getInsertID();
+                    array_push($array_tags, $data);
+                }
+                
+                $this->tagModel->insertBatch($array_tags);
 
                 return redirect()->to(site_url("manager/bets"))
                                 ->with('success', "Bet created successfully!");
