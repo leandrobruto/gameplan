@@ -54,7 +54,7 @@
     
     <div class="col-md-6 mb-3">
         <label for="date" class="col-md-2 col-form-label">Date</label>
-        <input type="date" id="date" name="bet[date]" value="<?= old('bet.date') ? old('bet.date') : date("Y-m-d"); ?>" class="form-control" <?= old('bet.date'); ?>
+        <input type="date" id="date" name="bet[date]" value="<?= old('bet.date', date("Y-m-d")); ?>" class="form-control" <?= old('bet.date'); ?>
         />
     </div>
 

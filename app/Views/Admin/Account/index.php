@@ -141,13 +141,13 @@
           <input type="hidden" name="user_id" value="<?= $user->id; ?>" />
 
           <div class="mb-3 col-md-6">
-            <label for="firstName" class="form-label">First Name</label>
-            <input class="form-control" type="text" id="firstName" name="firstName" value="<?= $profile->first_name; ?>" autofocus />
+            <label for="first_name" class="form-label">First Name</label>
+            <input class="form-control" type="text" id="first_name" name="first_name" value="<?= $profile->first_name; ?>" autofocus />
           </div>
 
           <div class="mb-3 col-md-6">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input class="form-control" type="text" name="lastName" id="lastName" value="<?= $profile->last_name; ?>" />
+            <label for="last_name" class="form-label">Last Name</label>
+            <input class="form-control" type="text" name="last_name" id="last_name" value="<?= $profile->last_name; ?>" />
           </div>
           
           <div class="mb-3 col-md-6">

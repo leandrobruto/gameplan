@@ -14,6 +14,7 @@ class Account extends BaseController
     private $competitonsModel;
     private $bankrollModel;
     private $currencyModel;
+    private $dateRangeModel;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class Account extends BaseController
         $this->competitionModel = new \App\Models\CompetitionModel();
         $this->currencyModel = new \App\Models\CurrencyModel();
         $this->bankrollModel = new \App\Models\BankrollModel();
+        $this->dateRangeModel = new \App\Models\DateRangeModel();
 
     }
 
@@ -36,12 +38,14 @@ class Account extends BaseController
     {
         $user = userLoggedIn();
         $profile = $this->profileModel->findProfileByUserId($user->id);
-        $user->profile = $profile;
+        // $user->profile = $profile;
 
         $data = [
             'title' => 'Profile',
             'user' => $user,
             'profile' => $profile,
+            'sports' => $this->sportModel->findAll(),
+            'date_ranges' =>$this->dateRangeModel->findAll(),
         ];
         
         return view('Manager/Account/index', $data);
@@ -61,21 +65,37 @@ class Account extends BaseController
             return redirect()->back();
         }
 
-        $post = $this->request->getPost('user');
-        
-        if (empty($post['password'])) {
+        $postUser = $this->request->getPost('user');
+        $postProfile = $this->request->getPost('profile');
+
+        if (empty($postUser['password'])) {
             $this->userModel->disablePasswordValidation();
-            unset($post['password']);
-            unset($post['password_confirmation']);
+            unset($postUser['password']);
+            unset($postUser['password_confirmation']);
         }
 
-        $user->fill($post);
+        $user->fill($postUser);
+
+        $profile = $this->profileModel->findProfileByUserId($user->id);
+        $profile->fill($postProfile);
         
-        if (!$user->hasChanged()) {
+        if (!$user->hasChanged() && !$profile->hasChanged()) {
             return redirect()->back()->with('info', "There is no data to update.");
         }
         
-        if ($this->userModel->protect(false)->save($user)) {
+        $update = false;
+
+        if ($user->hasChanged()) {
+            $this->userModel->save($user);
+            $update = true;
+        }
+        
+        if ($profile->hasChanged()) {
+            $this->profileModel->save($profile);
+            $update = true;
+        }
+
+        if ($update) {
             return redirect()->to(site_url("manager/account/profile"))
                             ->with('success', "User $user->nome updated successfully!");
         } else {

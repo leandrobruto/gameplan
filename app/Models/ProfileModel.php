@@ -32,8 +32,7 @@ class ProfileModel extends Model
      * @return array objetos
      */
     public function findProfileByUserId(int $user_id) {
-        return $this->select('profiles.*, users.*')
-                ->join('users', 'users.id = profiles.user_id')
+        return $this->select('profiles.*')
                 ->where('profiles.user_id', $user_id)
                 ->first();
     }
