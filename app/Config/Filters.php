@@ -26,6 +26,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'admin' => \App\Filters\AdminFilter::class, // Admin filter
         'login' => \App\Filters\LoginFilter::class, // Guest filter
+        'throttle' => \App\Filters\ThrottleFilter::class, // Filter that helps prevent brute force attacks
     ];
 
     /**
@@ -37,7 +38,7 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             // 'honeypot',
-            // 'csrf',
+            'csrf',
             // 'invalidchars',
         ],
         'after' => [
