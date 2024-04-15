@@ -94,6 +94,15 @@
           </div>
         <?php endif; ?>
 
+        <?php if (session()->has('info')): ?>
+          <div class="col-lg-12 mb-2 order-0">
+            <div class="alert alert-primary alert-dismissible" role="alert">
+              <strong>Information!</strong> <?= session('info'); ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <?php endif; ?>
+
         <?php if (session()->has('attention')): ?>
           <div class="alert alert-danger alert-dismissible" role="alert">
             <strong>Attention!</strong> <?= session('attention'); ?>

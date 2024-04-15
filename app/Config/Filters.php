@@ -25,6 +25,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'admin' => \App\Filters\AdminFilter::class, // Admin filter
+        'login' => \App\Filters\LoginFilter::class, // Guest filter
     ];
 
     /**
@@ -67,9 +68,16 @@ class Filters extends BaseConfig
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
     public array $filters = [
+        'login' => [
+            'before' => [
+                'admin/*', // All controllers that are within the 'Admin' namespace will only be accessed after login.
+                'conta(/*)?',
+                'checkout(/*)?',
+            ],
+        ],
         'admin' => [
             'before' => [
-                'admin/*', // Todos os controller que estão dentro do namespace 'Admin' só serão acessados por um adminitrador.
+                'admin/*', // All controllers that are within the 'Admin' namespace will only be accessed by an administrator.
             ],
         ]
     ];

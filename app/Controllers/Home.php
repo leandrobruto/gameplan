@@ -8,6 +8,10 @@ class Home extends BaseController
     {
         $user = service('auth')->getUserLoggedIn();
 
+        // if ($user) {
+        //     return redirect()->to(site_url('manager/dashboard'));
+        // }
+
         $data = [
             'title' => 'Welcome, Cordylus!',
             'user' => $user,

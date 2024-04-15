@@ -153,7 +153,7 @@
                 </a>
 
                 <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteBetModal" type="button">
-                  <i class="bx bx-trash'text-dark me-3"></i>
+                  <i class="bx bx-trash text-danger me-3"></i>
                 </a>
               </td>
             </tr>
