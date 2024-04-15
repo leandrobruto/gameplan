@@ -120,7 +120,7 @@
         
         <?= form_open("login/signIn"); ?>
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label">Username or Email</label>
             <input
               type="text"
               id="email"

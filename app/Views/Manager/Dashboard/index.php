@@ -19,7 +19,7 @@
 
 <?= $this->include('Manager/Bankrolls/initial_balance_form'); ?>
 
-<div class="col-lg-12 col-md-4 order-1">
+<div class="col-lg-12 col-md-4">
   <div class="row">
     <div class="col-lg-3 col-md-12 col-6 mb-4">
       <div class="card">
@@ -92,7 +92,7 @@
   </div>
 </div>
 <!-- Bankroll Evolution -->
-<div class="col-12 col-lg-12 order-2 order-md-2 order-lg-2 mb-4">
+<div class="col-12 col-lg-12 mb-4">
   <div class="card">
     <div class="row row-bordered g-0">
       <div class="col-md-12">
@@ -103,7 +103,7 @@
   </div>
 </div>
 <!--/ Bankroll Evolution -->
-<div class="col-12 col-md-8 col-lg-12 order-3 order-md-2">
+<div class="col-12 col-md-8 col-lg-12">
   <div class="row">
     <div class="col-lg-3 col-md-12 col-6 mb-4">
       <div class="card">
@@ -171,8 +171,9 @@
     </div>
   </div>
 </div>
+
 <!-- Total Revenue -->
-<div class="col-12 col-lg-12 order-2 order-md-4 order-lg-2 mb-4">
+<div class="col-12 col-lg-12 mb-4">
   <div class="card">
     <div class="row row-bordered g-0">
       <div class="col-md-12">
@@ -183,7 +184,8 @@
   </div>
 </div>
 <!--/ Total Revenue -->
-<div class="col-12 col-md-8 col-lg-12 order-3 order-md-2">
+
+<div class="col-12 col-md-8 col-lg-12">
   <div class="row">
     <div class="col-lg-3 col-md-12 col-6 mb-4">
       <div class="card">
@@ -250,7 +252,7 @@
   </div>
 </div>
 
-<div class="col-12 col-lg-12 order-5 order-md-3 order-lg-2 mb-4">
+<div class="col-12 col-md-8 col-lg-12 mb-4">
   <!-- Hoverable Table rows -->
   <div class="card">
     <div class="card-body">
@@ -293,7 +295,7 @@
   </div>
 </div>
 
-<div class="col-12 col-lg-12 order-5 order-md-3 order-lg-2 mb-2">
+<div class="col-12 col-lg-12 mb-4">
   <!-- Hoverable Table rows -->
   <div class="card">
     <div class="card-body">
