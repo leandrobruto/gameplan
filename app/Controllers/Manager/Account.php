@@ -97,7 +97,7 @@ class Account extends BaseController
 
         if ($update) {
             return redirect()->to(site_url("manager/account/profile"))
-                            ->with('success', "User $user->nome updated successfully!");
+                            ->with('success', "User updated successfully!");
         } else {
             return redirect()->back()->with('errors_model', $this->userModel->errors())
                                     ->with('attention', "Please check the errors below.")

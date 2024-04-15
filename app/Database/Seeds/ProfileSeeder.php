@@ -17,6 +17,6 @@ class ProfileSeeder extends Seeder
         
         $profileModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

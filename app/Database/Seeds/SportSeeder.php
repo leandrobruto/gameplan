@@ -20,6 +20,6 @@ class SportSeeder extends Seeder
 
         $sportModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

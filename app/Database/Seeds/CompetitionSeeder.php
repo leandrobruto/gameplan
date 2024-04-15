@@ -36,6 +36,6 @@ class CompetitionSeeder extends Seeder
 
         $competitionModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

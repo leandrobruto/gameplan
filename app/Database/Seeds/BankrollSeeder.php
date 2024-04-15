@@ -29,6 +29,6 @@ class BankrollSeeder extends Seeder
 
         $bankrollModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

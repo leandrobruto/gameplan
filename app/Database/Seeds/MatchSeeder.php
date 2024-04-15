@@ -25,6 +25,6 @@ class MatchSeeder extends Seeder
 
         $matchModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

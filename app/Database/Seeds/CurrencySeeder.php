@@ -18,6 +18,6 @@ class CurrencySeeder extends Seeder
 
         $currencyModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($currency->errors());
+        // dd($data->errors());
     }
 }

@@ -41,6 +41,6 @@ class BetSeeder extends Seeder
 
         $betModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

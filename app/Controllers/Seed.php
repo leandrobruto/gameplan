@@ -21,6 +21,7 @@ class Seed extends BaseController
         $seeder->call('StrategySeeder');
         $seeder->call('BetSeeder');
         $seeder->call('MatchSeeder');
+        $seeder->call('TransactionTypeSeeder');
         
         echo 'Seeded.';
     }

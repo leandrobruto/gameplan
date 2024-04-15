@@ -33,6 +33,6 @@ class StrategySeeder extends Seeder
 
         $strategyModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($bankroll->errors());
+        // dd($data->errors());
     }
 }

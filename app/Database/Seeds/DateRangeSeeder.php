@@ -19,6 +19,6 @@ class DateRangeSeeder extends Seeder
 
         $dateRangeModel->skipValidation(true)->protect(false)->insertBatch($data);
 
-        // dd($currency->errors());
+        // dd($data->errors());
     }
 }
