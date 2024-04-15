@@ -37,7 +37,15 @@
                   </div>
                 </div>
                 <span>Minimum</span>
-                <h3 class="card-title text-nowrap mb-1">$0.00</h3>
+                <?php if ($reports): ?>
+                  <h3 class="card-title text-nowrap <?= $reports->initial_balance > 0 ? 'text-success' : 'text-dark'; ?> mb-1">
+                    $<?= number_format($reports->initial_balance, 2); ?>
+                  </h3>
+                <?php else: ?>
+                  <h3 class="card-title text-nowrap text-dark mb-1">
+                    $0.00
+                  </h3>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -52,7 +60,15 @@
                     </div>
                   </div>
                 <span>Maximum</span>
-                <h3 class="card-title text-nowrap mb-1">$0.00</h3>
+                <?php if ($reports): ?>
+                  <h3 class="card-title text-nowrap <?= $reports->current_balance > 0 ? 'text-success' : 'text-dark'; ?> mb-1">
+                    $<?= number_format($reports->current_balance, 2); ?>
+                  </h3>
+                <?php else: ?>
+                  <h3 class="card-title text-nowrap text-dark mb-1">
+                    $0.00
+                  </h3>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -67,10 +83,15 @@
                   </div>
                 </div>
                 <span>Initital Balance</span>
-                <h3 class="card-title text-nowrap mb-1">
-                    $<?= $reports ? 
-                      number_format($reports->initial_balance, 2) : '0.00'; ?>
-                </h3>
+                <?php if ($reports): ?>
+                  <h3 class="card-title text-nowrap <?= $reports->initial_balance > 0 ? 'text-success' : 'text-dark'; ?> mb-1">
+                    $<?= number_format($reports->initial_balance, 2); ?>
+                  </h3>
+                <?php else: ?>
+                  <h3 class="card-title text-nowrap text-dark mb-1">
+                    $0.00
+                  </h3>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -85,9 +106,15 @@
                   </div>
                 </div>
                 <span>Final Balance</span>
-                <h3 class="card-title text-nowrap mb-1">
-                    $<?= $reports ? number_format($reports->current_balance, 2) : '0.00'; ?>
-                </h3>
+                <?php if ($reports): ?>
+                  <h3 class="card-title text-nowrap <?= $reports->current_balance > 0 ? 'text-success' : 'text-dark'; ?> mb-1">
+                    $<?= number_format($reports->current_balance, 2); ?>
+                  </h3>
+                <?php else: ?>
+                  <h3 class="card-title text-nowrap text-dark mb-1">
+                    $0.00
+                  </h3>
+                <?php endif; ?>
               </div>
             </div>
           </div>

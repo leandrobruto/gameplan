@@ -215,7 +215,7 @@
             </div>
           </div>
           <span class="fw-semibold d-block mb-1">Biggest Win</span>
-          <h3 class="card-title mb-2">$14,857</h3>
+          <h3 class="card-title mb-2">$<?= number_format($reports->max_result, 2); ?></h3>
         </div>
       </div>
     </div>
@@ -230,7 +230,7 @@
             </div>
           </div>
           <span class="fw-semibold d-block mb-1">Total Bets Lost</span>
-          <h3 class="card-title mb-2">$14,857</h3>
+          <h3 class="card-title mb-2">$<?= number_format($reports->total_loss, 2); ?></h3>
         </div>
       </div>
     </div>
@@ -245,7 +245,7 @@
             </div>
           </div>
           <span class="fw-semibold d-block mb-1">Biggest Loss</span>
-          <h3 class="card-title mb-2">$14,857</h3>
+          <h3 class="card-title mb-2">$<?= number_format($reports->max_loss, 2); ?></h3>
         </div>
       </div>
     </div>

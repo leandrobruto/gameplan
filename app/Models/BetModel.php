@@ -68,6 +68,16 @@ class BetModel extends Model
             $reports->roi = ($reports->result_sum / $reports->stake_sum) * 100;             // Cálculo do ROI
             $reports->initial_balance = $bankroll->initial_balance;                         // Intitial Balance
             $reports->current_balance = $bankroll->initial_balance + $reports->result_sum;  // Current Balance
+
+            $max_loss = $this->selectSum('stake', 'total_loss')
+                ->selectMax('stake', 'max_stake')
+                ->where('result', 0)
+                ->where('user_id', $user->id)
+                ->where('bankroll_id', $bankroll->id)
+                ->first();
+
+            $reports->total_loss = $max_loss->total_loss;
+            $reports->max_loss = $max_loss->max_stake;
         }
 
         return $reports;
