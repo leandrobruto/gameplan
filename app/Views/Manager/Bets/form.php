@@ -31,27 +31,45 @@
         <label for="sport" class="form-label">Sport</label>
         <select class="form-select" id="sport" name="bet[sport_id]" aria-label="Sport">
             <?php foreach($sports as $sport): ?>
-                <option value="<?= $sport->id; ?>" <?= (old('bet.sport_id') == $sport->id ? 'selected' : '') ?>><?= $sport->name; ?></option>
+                <option value="<?= $sport->id; ?>" <?= (old('bet.sport_id', $user->default_sport_id) == $sport->id ? 'selected' : '') ?>><?= $sport->name; ?></option>
             <?php endforeach; ?>
         </select>
     </div>
 
     <div class="col-md-6 mb-3">
         <label for="competition" class="form-label">Competition</label>
-        <select class="form-select" id="competition" name="bet[competition_id]" aria-label="Competition">
-            <?php foreach($competitions as $competition): ?>
-                <option value="<?= $competition->id; ?>" <?= (old('bet.competition_id') == $sport->id ? 'selected' : '') ?>><?= $competition->name; ?></option>
-            <?php endforeach; ?>
-        </select>
+        <div class="input-group">
+            <select class="form-select" id="competition" name="bet[competition_id]" aria-label="Competition">
+                <?php foreach($competitions as $competition): ?>
+                    <option value="<?= $competition->id; ?>" <?= (old('bet.competition_id') == $sport->id ? 'selected' : '') ?>>
+                        <?= $competition->name; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <div class="input-group-append">
+                <button type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#createCompetitionModal" for="competition">
+                    <i class="bx bx-plus py-2"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-6 mb-3">
         <label for="strategy" class="form-label">Strategy</label>
-        <select class="form-select" id="strategy" name="bet[strategy_id]" aria-label="Strategy">
-            <?php foreach($strategies as $strategy): ?>
-                <option value="<?= $strategy->id; ?>" <?= (old('bet.strategy_id') == $sport->id ? 'selected' : '') ?>><?= $strategy->name; ?></option>
-            <?php endforeach; ?>
-        </select>
+        <div class="input-group">
+            <select class="form-select" id="strategy" name="bet[strategy_id]" aria-label="Strategy">
+                <?php foreach($strategies as $strategy): ?>
+                    <option value="<?= $strategy->id; ?>" <?= (old('bet.strategy_id') == $sport->id ? 'selected' : '') ?>>
+                        <?= $strategy->name; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <div class="input-group-append">
+                <button type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#storeStrategyModal" for="strategy">
+                    <i class="bx bx-plus py-2"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-4 mb-3">
@@ -60,7 +78,7 @@
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-dollar"></i>
             </span>
-            <input type="text" id="stake" name="bet[stake]" class="form-control money" value="<?= old('bet.stake'); ?>"
+            <input type="text" id="stake" name="bet[stake]" class="form-control money" value="<?= old('bet.stake', $user->default_stake); ?>"
             />
         </div>
     </div>

@@ -247,6 +247,66 @@
 </div>
 <!-- / Multiple Bet Modal -->
 
+<!-- Create Competition Modal -->
+<div class="modal fade" id="createCompetitionModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Competition</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <?= form_open("manager/competitions/store"); ?>
+        <div class="modal-body">
+
+          <?= $this->include('Manager/Competitions/form'); ?>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bx bx-save tf-icons"></i>  
+            Create New Competition
+          </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Create Competition Modal -->
+
+<!-- Store Strategy Modal -->
+<div class="modal fade" id="storeStrategyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Strategy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <?= form_open("manager/strategies/store"); ?>
+        <div class="modal-body">
+
+          <?= $this->include('Manager/Strategies/form'); ?>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bx bx-save tf-icons"></i>  
+            Create New Strategy
+          </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Store Strategy Modal -->
+
 <?= $this->endSection(); ?>
 
 <!-- Here we send the scripts to the main template -->
