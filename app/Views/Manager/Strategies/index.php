@@ -76,22 +76,23 @@
                 <td><?= $strategy->description; ?></td>
                 <td><?= $strategy->sport_name; ?></td>
                 <td class="d-flex justify-content-end">
-                  <a href="#" class="" 
-                    onclick="editModalInfo(
-                      '<?= $strategy->id?>',
-                      '<?= $strategy->name; ?>', 
-                      '<?= $strategy->description; ?>', 
-                      '<?= $strategy->sport_id; ?>')" 
-                      data-bs-toggle="modal" data-bs-target="#editStrategyModal" type="button">
-                      <i class="bx bx-edit me-3"></i>
-                    </a>
-                    <a href="#" class="text-danger" 
-                      data-strategy-id="<?= $strategy->id ?>"
-                      data-strategy-name="<?= $strategy->name ?>"
-                      data-bs-toggle="modal" 
-                      data-bs-target="#deleteStrategyModal" type="button">
-                      <i class="bx bx-trash me-3"></i>
-                    </a>
+                  <a href="#" class="text-primary" 
+                    data-strategy-id="<?= $strategy->id ?>"
+                    data-name="<?= $strategy->name ?>"
+                    data-description="<?= $strategy->description; ?>"
+                    data-sport-id="<?= $strategy->sport_id; ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#editStrategyModal" type="button">
+                    <i class="bx bx-edit-alt me-3"></i>
+                  </a>
+
+                  <a href="#" class="text-danger" 
+                    data-strategy-id="<?= $strategy->id ?>"
+                    data-strategy-name="<?= $strategy->name ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#deleteStrategyModal" type="button">
+                    <i class="bx bx-trash me-3"></i>
+                  </a>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -216,14 +217,18 @@
 
   <script type="text/javascript">
     
-    function editModalInfo(strategy_id, name, description, sport_id) {
+    $('#editStrategyModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      // var strategy_id = button.data('strategyId'); // Extract info from data-* attribute
 
-      $("[name='strategy_id']").val(strategy_id);
-      $("[name='name']").val(name);
-      $("[name='description']").val(description);
-      $("[name='sport']").val(sport);
+      var data = button.data();
+console.log(data);
+      $("[name='strategy_id']").val(data.strategyId);
+      $("[name='name']").val(data.name);
+      $("[name='description']").val(data.description);
+      $("[name='sport_id']").val(data.sportId);
 
-    }
+    });
 
   </script>
 

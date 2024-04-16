@@ -18,7 +18,7 @@
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-sport"></i>
             </span>
-            <input type="text" id="name" name="description" class="form-control" value="" />
+            <input type="text" id="description" name="description" class="form-control" value="" />
         </div>
     </div>
     <div class="col-md-12 mb-3">
