@@ -272,7 +272,7 @@
       var button = $(event.relatedTarget); // Button that triggered the modal
 
       var data = button.data();
-console.log(data);
+
       $("[name='bankroll_id']").val(data.bankrollId);
       $("#bankroll_name").text(data.bankrollName);
     });

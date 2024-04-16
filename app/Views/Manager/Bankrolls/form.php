@@ -5,7 +5,7 @@
 
     <div class="col-md-12 mb-3">
         <label class="form-label" for="name">Name</label>
-        <div class="input-group">
+        <div class="input-group input-group-merge">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-wallet"></i>
             </span>
@@ -15,7 +15,7 @@
 
     <div class="col-md-6 mb-3">
         <label for="currency_id" class="form-label">Currencies</label>
-        <div class="input-group">
+        <div class="input-group input-group-merge">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-dollar"></i>
             </span>
@@ -29,7 +29,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label" for="initial_balance">Initial Balance</label>
-        <div class="input-group">
+        <div class="input-group input-group-merge">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-money"></i>
             </span>
@@ -39,7 +39,7 @@
 
     <div class="col-md-6 mb-3">
         <label for="initial_date" class="form-label">Initial Date</label>
-        <div class="input-group">
+        <div class="input-group input-group-merge">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-calendar"></i>
             </span>
@@ -49,7 +49,7 @@
 
     <div class="col-md-6 mb-3">
         <label for="comission" class="form-label">Comission(%)</label>
-        <div class="input-group">
+        <div class="input-group input-group-merge">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-dollar"></i>
             </span>

@@ -30,7 +30,7 @@ class BetModel extends Model
     public function getBetsByUser($user, $bankroll) 
     {
         return $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi,
-            matches.event, bets.date,
+            matches.event, matches.odd, bets.date,
             bankrolls.name AS bankroll, 
             sports.name AS sport, 
             competitions.name AS competition, 

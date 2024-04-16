@@ -59,18 +59,18 @@ class Bets extends BaseController
                 $match['bet_id'] = $this->betModel->getInsertID();
                 $this->matchModel->insert($match);
 
-                $tags = $this->request->getPost('tags');
+                if ($tags = $this->request->getPost('tags')) {
+                    $array_tags = array();
 
-                $array_tags = array();
-
-                foreach ($tags as $tag)
-                {
-                    $data['name'] = $tag;
-                    $data['bet_id'] = $this->betModel->getInsertID();
-                    array_push($array_tags, $data);
+                    foreach ($tags as $tag)
+                    {
+                        $data['name'] = $tag;
+                        $data['bet_id'] = $this->betModel->getInsertID();
+                        array_push($array_tags, $data);
+                    }
+                    
+                    $this->tagModel->insertBatch($array_tags);
                 }
-                
-                $this->tagModel->insertBatch($array_tags);
 
                 return redirect()->to(site_url("manager/bets"))
                                 ->with('success', "Bet created successfully!");
@@ -108,7 +108,6 @@ class Bets extends BaseController
                         array_push($array_matches, $match);
                     }
                 }
-                // dd($array_matches);
 
                 $this->matchModel->insertBatch($array_matches);
 
@@ -123,5 +122,29 @@ class Bets extends BaseController
             /* It's not POST */
             return redirect()->back();
         }
+    }
+
+    public function postDelete($id = null)
+    {
+        $bet = $this->findBetOr404($this->request->getPost());
+
+        if ($this->request->getMethod() === 'post') {
+            $this->betModel->delete($bet->id);
+            return redirect()->to(site_url('manager/bets'))
+                            ->with('success', "Bet successfully deleted.");
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return object Bet
+     */
+    private function findBetOr404($id = null)
+    {
+        if (!$id || !$bet = $this->betModel->where('id', $id)->first()) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the bet $id");
+        }
+        
+        return $bet;
     }
 }

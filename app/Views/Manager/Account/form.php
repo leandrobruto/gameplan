@@ -3,26 +3,41 @@
     <!-- Hidden fields that we will use in the controller -->
     <input type="hidden" name="profile[user_id]" value="<?= $user->id; ?>" />
 
-    <div class="mb-3 col-md-6">
+    <div class="mb-3 col-md-3">
         <label for="first_name" class="form-label">First Name</label>
-        <input class="form-control" type="text" id="first_name" name="profile[first_name]" value="<?= $user->first_name; ?>" autofocus />
+        <div class="input-group input-group-merge">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-user"></i>
+            </span>
+            <input class="form-control" type="text" id="first_name" name="profile[first_name]" value="<?= $user->first_name; ?>" autofocus />
+        </div>
     </div>
 
-    <div class="mb-3 col-md-6">
+    <div class="mb-3 col-md-3">
         <label for="last_name" class="form-label">Last Name</label>
-        <input class="form-control" type="text" name="profile[last_name]" id="last_name" value="<?= $user->last_name; ?>" />
+        <div class="input-group input-group-merge">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-user"></i>
+            </span>
+            <input class="form-control" type="text" name="profile[last_name]" id="last_name" value="<?= $user->last_name; ?>" />
+        </div>
     </div>
     
     <div class="mb-3 col-md-6">
         <label for="username" class="form-label">Username</label>
-        <input type="text"class=" form-control" id="username" name="user[username]" value="<?= $user->username; ?>" />
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                @
+            </span>
+            <input type="text"class=" form-control" id="username" name="user[username]" value="<?= $user->username; ?>" />
+        </div>
     </div>
 
     <div class="mb-3 col-md-6">
         <label for="email" class="form-label">E-mail</label>
-        <div class="input-group">  
+        <div class="input-group input-group-merge">  
             <span id="icon-name" class="input-group-text">
-                <i class="bx bx-mail"></i>
+                <i class="bx bx-envelope"></i>
             </span>
         <input class="form-control" type="text" id="email" name="user[email]" value="<?= $user->email; ?>" placeholder="@email.com" />
         </div>
@@ -30,7 +45,7 @@
 
     <div class="mb-3 col-md-6">
         <label class="form-label" for="phoneNumber">Phone Number</label>
-        <div class="input-group">  
+        <div class="input-group input-group-merge">  
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-phone"></i>
             </span>
@@ -40,7 +55,7 @@
     
     <div class="mb-3 col-md-6">
         <label for="cpf" class="form-label">CPF</label>
-        <div class="input-group">  
+        <div class="input-group input-group-merge">  
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-id-card"></i>
             </span>
@@ -50,7 +65,7 @@
 
     <div class="mb-3 col-md-6">
         <label for="default_stake" class="form-label">Default Stake</label>
-        <div class="input-group">  
+        <div class="input-group input-group-merge">  
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-money"></i>
             </span>

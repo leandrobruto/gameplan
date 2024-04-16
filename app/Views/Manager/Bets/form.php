@@ -46,11 +46,9 @@
                     </option>
                 <?php endforeach; ?>
             </select>
-            <div class="input-group-append">
-                <button type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#createCompetitionModal" for="competition">
-                    <i class="bx bx-plus py-2"></i>
-                </button>
-            </div>
+            <span id="icon-name" type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#createCompetitionModal" for="competition">
+                <i class="bx bx-plus"></i>
+            </span>
         </div>
     </div>
 
@@ -64,11 +62,9 @@
                     </option>
                 <?php endforeach; ?>
             </select>
-            <div class="input-group-append">
-                <button type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#storeStrategyModal" for="strategy">
-                    <i class="bx bx-plus py-2"></i>
-                </button>
-            </div>
+            <span id="icon-name" type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#createStrategyModal" for="competition">
+                <i class="bx bx-plus"></i>
+            </span>
         </div>
     </div>
 

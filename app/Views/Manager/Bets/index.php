@@ -148,11 +148,27 @@
               <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">$<?= $bet->result; ?></td>
               <td class="<?= $bet->roi > 0 ? 'text-success' : 'text-dark'; ?>"><?= number_format($bet->roi, 2); ?>%</td>
               <td class="d-flex justify-content-end">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#editBetModal" type="button">
-                  <i class="bx bx-edit me-3"></i>
-                </a>
+                <a href="#" class="text-primary" 
+                    data-id="<?= $bet->id ?>"
+                    data-event="<?= $bet->event ?>"
+                    data-date="<?= $bet->date ?>"
+                    data-sport-id="<?= $bet->sport_id ?>"
+                    data-competition-id="<?= $bet->competition_id ?>"
+                    data-strategy-id="<?= $bet->strategy_id ?>"
+                    data-stake="<?= $bet->stake ?>"
+                    data-result="<?= $bet->result ?>"
+                    data-odd="<?= $bet->odd ?>"
+                    data-description="<?= $bet->description ?>"
+                    data-is-pending="<?= $bet->is_pending ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#editSimpleBetModal" type="button">
+                    <i class="bx bx-edit-alt me-3"></i>
+                  </a>
 
-                <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteBetModal" type="button">
+                <a href="#" class="text-danger" 
+                    data-bet-id="<?= $bet->id ?>"
+                    data-bet-event="<?= $bet->event ?>"
+                    data-bs-toggle="modal" data-bs-target="#deleteBetModal" type="button">
                   <i class="bx bx-trash text-danger me-3"></i>
                 </a>
               </td>
@@ -210,6 +226,41 @@
   </div>
 </div>
 <!-- / Simple Bet Modal -->
+
+
+<!-- Hidden Input bet_id to use on update and delete forms -->
+<?php $hidden = ['bet_id' => '']; ?>
+
+<!-- Edit Bet Modal -->
+<div class="modal fade" id="editSimpleBetModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Edit Bet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            
+      <?= form_open("manager/bets/update", '', $hidden); ?>
+        <div class="modal-body">
+
+          <?= $this->include('Manager/Bets/form'); ?>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary mb-2">
+            <i class="bx bx-save tf-icons"></i>  
+            Update
+          </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit Bet Modal -->
 
 <!-- Multiple Bet Modal -->
 <div class="modal fade" id="multipleBetModal" tabindex="-1" aria-hidden="true">
@@ -278,7 +329,7 @@
 <!-- / Create Competition Modal -->
 
 <!-- Store Strategy Modal -->
-<div class="modal fade" id="storeStrategyModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="createStrategyModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -306,6 +357,42 @@
   </div>
 </div>
 <!-- / Store Strategy Modal -->
+
+<!-- Delete Bet Modal -->
+<div class="modal fade" id="deleteBetModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel2">Deleting Bet</h5>
+          <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          </button>
+      </div>
+      <div class="card">
+        <div class="card-body py-2">
+            
+          <?= form_open("manager/bets/delete", '', $hidden); ?>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Attention!</strong> Are you sure about deleting the bet <strong id="bet_event"></strong>?
+            </div>
+
+            <button type="submit" class="btn btn-danger mb-2">
+                <i class="bx bx-trash-alt tf-icons"></i>
+                Delete
+            </button>
+
+          <?= form_close(); ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Delete Bet Modal -->
 
 <?= $this->endSection(); ?>
 
@@ -359,29 +446,59 @@
     });
   </script>
 
-<script>
-  $('.select2').select2({
-    data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
-    tags: true,
-    maximumSelectionLength: 10,
-    tokenSeparators: [',', ' '],
-    placeholder: "Select or type keywords",
-    //minimumInputLength: 1,
-    //ajax: {
-    //   url: "you url to data",
-    //   dataType: 'json',
-    //  quietMillis: 250,
-    //  data: function (term, page) {
-    //     return {
-    //         q: term, // search term
-    //    };
-    //  },
-    //  results: function (data, page) { 
-    //  return { results: data.items };
-  //   },
-  //   cache: true
-    // }
-  });
-</script>
+  <script>
+    $('.select2').select2({
+      data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+      tags: true,
+      maximumSelectionLength: 10,
+      tokenSeparators: [',', ' '],
+      placeholder: "Select or type keywords",
+      //minimumInputLength: 1,
+      //ajax: {
+      //   url: "you url to data",
+      //   dataType: 'json',
+      //  quietMillis: 250,
+      //  data: function (term, page) {
+      //     return {
+      //         q: term, // search term
+      //    };
+      //  },
+      //  results: function (data, page) { 
+      //  return { results: data.items };
+    //   },
+    //   cache: true
+      // }
+    });
+  </script>
+
+  <script>
+    $('#editSimpleBetModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+
+      $("[name='bet_id']").val(data.id);
+      $("[name='match[event]']").val(data.event);
+      $("[name='bet[date]']").val(data.date);
+      $("[name='bet[competition_id]']").val(data.competitionId);
+      $("[name='bet[strategy_id]']").val(data.strategyId);
+      $("[name='bet[stake]']").val(data.stake);
+      $("[name='bet[result]']").val(data.result);
+      $("[name='match[odd]']").val(data.odd);
+      $("[name='bet[description]']").val(data.description);
+      $("[name='bet[is_panding]']").val(data.isPending);
+    });
+  </script>
+
+  <script>
+    $('#deleteBetModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+
+      $("[name='bet_id']").val(data.betId);
+      $("#bet_event").text(data.betEvent);
+    });
+  </script>
 
 <?= $this->endSection(); ?>
