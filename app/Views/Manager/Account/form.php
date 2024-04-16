@@ -20,49 +20,76 @@
 
     <div class="mb-3 col-md-6">
         <label for="email" class="form-label">E-mail</label>
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-mail"></i>
+            </span>
         <input class="form-control" type="text" id="email" name="user[email]" value="<?= $user->email; ?>" placeholder="@email.com" />
+        </div>
     </div>
 
     <div class="mb-3 col-md-6">
         <label class="form-label" for="phoneNumber">Phone Number</label>
-        <div class="input-group input-group-merge">
-            <span class="input-group-text">(+55)</span>
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-phone"></i>
+            </span>
             <input type="text" id="phoneNumber" name="profile[phone]" value="<?= $profile->phone; ?>" class="form-control sp_celphones" placeholder="(xx) xxxxx-xxxx" />
         </div>
     </div>
     
     <div class="mb-3 col-md-6">
         <label for="cpf" class="form-label">CPF</label>
-        <input type="text" class="form-control cpf" name="profile[cpf]" id="cpf" value="<?php echo old('cpf', esc($profile->cpf)); ?>">
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-id-card"></i>
+            </span>
+            <input type="text" class="form-control cpf" name="profile[cpf]" id="cpf" value="<?php echo old('cpf', esc($profile->cpf)); ?>">
+        </div>
     </div>
 
     <div class="mb-3 col-md-6">
         <label for="default_stake" class="form-label">Default Stake</label>
-        <input type="text"class=" form-control" id="default_stake" name="profile[default_stake]" value="<?= $user->default_stake; ?>" />
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-money"></i>
+            </span>
+            <input type="text"class=" form-control" id="default_stake" name="profile[default_stake]" value="<?= $user->default_stake; ?>" />
+        </div>
     </div>
 
     <div class="mb-3 col-md-6">
         <label for="default_date_range_id" class="form-label">Default Date Range</label>
-        <select class="form-select" id="default_date_range_id" name="profile[default_date_range_id]" aria-label="Default Date Range">
-            <?php foreach($date_ranges as $range): ?>
-            <option value="<?= $range->id; ?>" 
-                <?= (old('profile.default_date_range_id', $profile->default_date_range_id) == $range->id ? 'selected' : '') ?>>
-                <?= old('profile.default_date_range_id', $range->name); ?>
-            </option>
-            <?php endforeach; ?>
-        </select>
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-calendar"></i>
+            </span>
+            <select class="form-select" id="default_date_range_id" name="profile[default_date_range_id]" aria-label="Default Date Range">
+                <?php foreach($date_ranges as $range): ?>
+                <option value="<?= $range->id; ?>" 
+                    <?= (old('profile.default_date_range_id', $profile->default_date_range_id) == $range->id ? 'selected' : '') ?>>
+                    <?= old('profile.default_date_range_id', $range->name); ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
     </div>
 
     <div class="mb-3 col-md-6">
         <label for="default_sport_id" class="form-label">Default Sport</label>
-        <select class="form-select" id="sport" name="profile[default_sport_id]" aria-label="Sport">
-            <?php foreach($sports as $sport): ?>
-            <option value="<?= $sport->id; ?>" 
-                <?= (old('profile.default_sport_id', $profile->default_sport_id) == $sport->id ? 'selected' : '') ?>>
-                <?= old('profile.default_sport_id', $sport->name); ?>
-            </option>
-            <?php endforeach; ?>
-        </select>
+        <div class="input-group">  
+            <span id="icon-name" class="input-group-text">
+                <i class="bx bx-trophy"></i>
+            </span>
+            <select class="form-select" id="sport" name="profile[default_sport_id]" aria-label="Sport">
+                <?php foreach($sports as $sport): ?>
+                <option value="<?= $sport->id; ?>" 
+                    <?= (old('profile.default_sport_id', $profile->default_sport_id) == $sport->id ? 'selected' : '') ?>>
+                    <?= old('profile.default_sport_id', $sport->name); ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
     </div>
 </div>
 

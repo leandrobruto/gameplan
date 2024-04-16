@@ -249,7 +249,7 @@
 
 <!-- Create Competition Modal -->
 <div class="modal fade" id="createCompetitionModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel2">Create New Competition</h5>
@@ -268,7 +268,7 @@
           </button>
           <button type="submit" class="btn btn-primary">
             <i class="bx bx-save tf-icons"></i>  
-            Create New Competition
+            Save
           </button>
         </div>
       <?= form_close(); ?>
@@ -279,7 +279,7 @@
 
 <!-- Store Strategy Modal -->
 <div class="modal fade" id="storeStrategyModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel2">Create New Strategy</h5>
@@ -298,7 +298,7 @@
           </button>
           <button type="submit" class="btn btn-primary">
             <i class="bx bx-save tf-icons"></i>  
-            Create New Strategy
+            Save
           </button>
         </div>
       <?= form_close(); ?>

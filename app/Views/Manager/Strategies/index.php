@@ -222,7 +222,7 @@
       // var strategy_id = button.data('strategyId'); // Extract info from data-* attribute
 
       var data = button.data();
-console.log(data);
+
       $("[name='strategy_id']").val(data.strategyId);
       $("[name='name']").val(data.name);
       $("[name='description']").val(data.description);

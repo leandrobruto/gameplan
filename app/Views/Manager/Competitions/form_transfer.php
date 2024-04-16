@@ -5,7 +5,7 @@
 
     <div class="col-md-12 mb-3">
         <label class="form-label" for="name">Old Competition</label>
-        <div class="input-group input-group-merge">
+        <div class="input-group">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-trophy"></i>
             </span>
@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-12 mb-3">
         <label for="competition_id" class="form-label">Competition</label>
-        <div class="input-group input-group-merge">
+        <div class="input-group">
             <span id="icon-name" class="input-group-text">
                 <i class="bx bx-trophy"></i>
             </span>

@@ -128,7 +128,7 @@
             <?php endif; ?>
             <div class="profilepic__content">
               <span class="profilepic__icon">
-                <i class="bx bx-camera me-1"></i>
+                <i class="bx bx-image-add"></i>
               </span>
               <span class="profilepic__text">Change Photo</span>
             </div>
@@ -144,8 +144,8 @@
 
           <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
           <div class="col-lg-12">
-        <span class="fw-semibold d-block">@<?= userLoggedIn()->username; ?></span>
-        </div>
+            <span class="fw-semibold d-block">@<?= userLoggedIn()->username; ?></span>
+          </div>
         </div>
       </div>
     </div>
