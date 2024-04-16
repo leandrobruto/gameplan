@@ -47,7 +47,7 @@ class Bankrolls extends BaseController
     public function postUpdate($id = null)
     {
         if ($this->request->getMethod() === 'post') {
-            $bankroll = $this->findBankrollOr404($id);
+            $bankroll = $this->findBankrollOr404($this->request->getPost('bankroll_id'));
 
             if ($bankroll->deleted_at != null) {
                 return redirect()->back()->with('info', "The bankroll $bankroll->nome is deleted. Therefore, it is not possible to edit it.");
@@ -59,6 +59,7 @@ class Bankrolls extends BaseController
         }
 
         $post = $this->request->getPost();
+        unset($post['bankroll_id']);
 
         $bankroll->fill($post);
 
@@ -67,7 +68,7 @@ class Bankrolls extends BaseController
         }
         
         if ($this->bankrollModel->protect(false)->save($bankroll)) {
-            return redirect()->to(site_url("manager/dashboard"))
+            return redirect()->to(site_url("manager/account/bankrolls"))
                             ->with('success', "Bankroll updated successfully!");
         } else {
             return redirect()->back()->with('errors_model', $this->bankrollModel->errors())
@@ -118,13 +119,24 @@ class Bankrolls extends BaseController
         }
     }
 
+    public function postDelete($id = null)
+    {
+        $bankroll = $this->findBankrollOr404($this->request->getPost());
+
+        if ($this->request->getMethod() === 'post') {
+            $this->bankrollModel->delete($bankroll->id);
+            return redirect()->to(site_url('manager/account/bankrolls'))
+                            ->with('success', "Bankroll successfully deleted.");
+        }
+    }
+
     /**
      * @param int $id
      * @return object Bankroll
      */
     private function findBankrollOr404($id = null)
     {
-        if (!$id || !$bankroll = $this->bankrollModel->withDeleted(true)->where('id', $id)->first()) {
+        if (!$id || !$bankroll = $this->bankrollModel->where('id', $id)->first()) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the bankroll $id");
         }
         

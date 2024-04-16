@@ -228,7 +228,7 @@
   </script>
 
   <script>
-    $('#deleteStrategyModal').on('show.bs.modal', function (event) {console.log(event);
+    $('#deleteStrategyModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
       // var strategy_id = button.data('strategyId'); // Extract info from data-* attribute
 

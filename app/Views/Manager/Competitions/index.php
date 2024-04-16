@@ -251,7 +251,7 @@
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
 
   <script>
-    $('#transferCompetitionModal').on('show.bs.modal', function (event) {console.log(event);
+    $('#transferCompetitionModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
 
       var data = button.data();

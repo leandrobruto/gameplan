@@ -16,13 +16,17 @@ class BankrollSeeder extends Seeder
                 'currency_id' => 1,
                 'name' => 'My Bankroll',
                 'initial_balance' => 100.00,
+                'initial_date' => '2024/04/04',
+                'comission' => 0,
                 'is_default' => 1,
             ],
             [
                 'user_id' => 1,
                 'currency_id' => 2,
                 'name' => 'My Bankroll II',
-                'initial_balance' => 100.00,
+                'initial_balance' => 50.00,
+                'initial_date' => '2024/04/05',
+                'comission' => 0,
                 'is_default' => 0,
             ],
         ];

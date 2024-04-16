@@ -86,12 +86,24 @@
                     <i class="bx bx-refresh me-3"></i>
                   </a>
 
-                  <a href="<?= site_url("manager/strategies/edit/$bankroll->id"); ?>">
+                  <a href="#" class="text-primary" 
+                    data-id="<?= $bankroll->id ?>"
+                    data-name="<?= $bankroll->name ?>"
+                    data-currency-id="<?= $bankroll->currency_id ?>"
+                    data-initial-balance="<?= $bankroll->initial_balance ?>"
+                    data-initial-date="<?= $bankroll->initial_date ?>"
+                    data-comission="<?= $bankroll->comission ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#editBankrollModal" type="button">
                     <i class="bx bx-edit-alt me-3"></i>
                   </a>
                   
-                  <a href="<?= site_url("manager/strategies/edit/$bankroll->id"); ?>">
-                    <i class="bx bx-trash text-danger me-3"></i>
+                  <a href="#" class="text-danger" 
+                    data-bankroll-id="<?= $bankroll->id ?>"
+                    data-bankroll-name="<?= $bankroll->name ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#deleteBankrollModal" type="button">
+                    <i class="bx bx-trash me-3"></i>
                   </a>
                 </td>
               </tr>
@@ -137,6 +149,76 @@
 </div>
 <!-- / Create Bankrolls Modal -->
 
+<!-- Hidden Input bankroll to use on update and delete forms -->
+<?php $hidden = ['bankroll_id' => '']; ?>
+
+<!-- Edit Bankroll Modal -->
+<div class="modal fade" id="editBankrollModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Edit Competition</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            
+      <?= form_open("manager/bankrolls/update", '', $hidden); ?>
+        <div class="modal-body">
+
+          <?= $this->include('Manager/Bankrolls/form'); ?>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary mb-2">
+            <i class="bx bx-save tf-icons"></i>  
+            Update
+          </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit Bankroll Modal -->
+
+<!-- Delete Bankroll Modal -->
+<div class="modal fade" id="deleteBankrollModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Deleting Bankroll</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+      <div class="card">
+        <div class="card-body py-2">
+            
+          <?= form_open("manager/bankrolls/delete", '', $hidden); ?>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Attention!</strong> Are you sure about deleting the bankroll <strong id="bankroll_name"></strong>
+            </div>
+
+            <button type="submit" class="btn btn-danger mb-2">
+              <i class="bx bx-trash-alt tf-icons"></i>
+              Delete
+            </button>
+
+          <?= form_close(); ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Delete Bankroll Modal -->
+
 <?= $this->endSection(); ?>
 
 <!-- Here we send the scripts to the main template -->
@@ -144,5 +226,31 @@
 
   <script src="<?php echo site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
+
+  <script>
+    $('#editBankrollModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+
+      $("[name='bankroll_id']").val(data.id);
+      $("[name='name']").val(data.name);
+      $("[name='currency_id']").val(data.currencyId);
+      $("[name='initial_balance']").val(data.initialBalance);
+      $("[name='initial_date']").val(data.initialDate);
+      $("[name='comission']").val(data.comission);
+    });
+  </script>
+
+  <script>
+    $('#deleteBankrollModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+
+      $("[name='bankroll_id']").val(data.bankrollId);
+      $("#bankroll_name").text(data.bankrollName);
+    });
+  </script>
 
 <?= $this->endSection(); ?>
