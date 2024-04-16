@@ -202,20 +202,21 @@
 
 <!-- Here we send the scripts to the main template -->
 <?= $this->section('scripts'); ?>
-<script>
-  $('#deleteSportModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    var sportID = button.data('sportid'); // Extract info from data-* attribute
+  <script>
+    $('#deleteSportModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var sportID = button.data('sportid'); // Extract info from data-* attribute
 
-    $.ajax({
-        url: '<?= site_url('admin/sports/delete/') ?>' + sportID,
-        method: 'POST',
-        success: function (data) {
-            console.log(data);
-        },
-    }); // End of ajax
-  });
-</script>
+      $.ajax({
+          url: '<?= site_url('admin/sports/delete/') ?>' + sportID,
+          method: 'POST',
+          success: function (data) {
+              console.log(data);
+          },
+      }); // End of ajax
+    });
+  </script>
+
   <script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script>  
   <!-- <script src="<?= site_url('assets/js/sweetalert.js'); ?>"></script> -->
   

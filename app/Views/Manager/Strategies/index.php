@@ -72,19 +72,24 @@
           <tbody class="table-border-bottom-0">
             <?php foreach ($strategies as $strategy): ?>
               <tr>
-                <td id="name"><?= $strategy->name; ?></td>
-                <td id="description"><?= $strategy->description; ?></td>
-                <td id="sport"><?= $strategy->sport_name; ?></td>
+                <td><?= $strategy->name; ?></td>
+                <td><?= $strategy->description; ?></td>
+                <td><?= $strategy->sport_name; ?></td>
                 <td class="d-flex justify-content-end">
                   <a href="#" class="" 
                     onclick="editModalInfo(
+                      '<?= $strategy->id?>',
                       '<?= $strategy->name; ?>', 
                       '<?= $strategy->description; ?>', 
                       '<?= $strategy->sport_id; ?>')" 
                       data-bs-toggle="modal" data-bs-target="#editStrategyModal" type="button">
                       <i class="bx bx-edit me-3"></i>
                     </a>
-                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#createStrategyModal" type="button">
+                    <a href="#" class="text-danger" 
+                      data-strategy-id="<?= $strategy->id ?>"
+                      data-strategy-name="<?= $strategy->name ?>"
+                      data-bs-toggle="modal" 
+                      data-bs-target="#deleteStrategyModal" type="button">
                       <i class="bx bx-trash me-3"></i>
                     </a>
                 </td>
@@ -103,7 +108,7 @@
 
 <!-- Create Strategy Modal -->
 <div class="modal fade" id="createStrategyModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel2">Create New Strategy</h5>
@@ -122,7 +127,7 @@
           </button>
           <button type="submit" class="btn btn-primary">
             <i class="bx bx-save tf-icons"></i>  
-            Create New Strategy
+            Save
           </button>
         </div>
       <?= form_close(); ?>
@@ -131,15 +136,19 @@
 </div>
 <!-- / Create Strategy Modal -->
 
+<!-- Hidden Input strategy_id to use on update and delete forms -->
+<?php $hidden = ['strategy_id' => '']; ?>
+
 <!-- Edit Strategy Modal -->
 <div class="modal fade" id="editStrategyModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Create New Strategy</h5>
+        <h5 class="modal-title" id="exampleModalLabel2">Edit Strategy</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <?= form_open("manager/strategies/store"); ?>
+            
+      <?= form_open("manager/strategies/update", '', $hidden); ?>
         <div class="modal-body">
 
           <?= $this->include('Manager/Strategies/form'); ?>
@@ -150,9 +159,9 @@
             <i class="bx bx-x tf-icons"></i>  
             Close
           </button>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary mb-2">
             <i class="bx bx-save tf-icons"></i>  
-            Update Strategy
+            Update
           </button>
         </div>
       <?= form_close(); ?>
@@ -160,6 +169,42 @@
   </div>
 </div>
 <!-- / Edit Strategy Modal -->
+
+<!-- Delete Sport Modal -->
+<div class="modal fade" id="deleteStrategyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel2">Deleting Strategy</h5>
+          <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          </button>
+      </div>
+      <div class="card">
+        <div class="card-body py-2">
+            
+          <?= form_open("manager/strategies/delete", '', $hidden); ?>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Attention!</strong> Are you sure about deleting the strategy <strong id="strategy_id"></strong>
+            </div>
+
+            <button type="submit" class="btn btn-danger mb-2">
+                <i class="bx bx-trash-alt tf-icons"></i>
+                Delete
+            </button>
+
+          <?= form_close(); ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Delete Sport Modal -->
 
 <?= $this->endSection(); ?>
 
@@ -171,14 +216,27 @@
 
   <script type="text/javascript">
     
-    function editModalInfo(name, description, sport) {
-      console.log(name + ' ' + description + ' ' + sport);
+    function editModalInfo(strategy_id, name, description, sport_id) {
 
+      $("[name='strategy_id']").val(strategy_id);
       $("[name='name']").val(name);
       $("[name='description']").val(description);
       $("[name='sport']").val(sport);
+
     }
 
+  </script>
+
+  <script>
+    $('#deleteStrategyModal').on('show.bs.modal', function (event) {console.log(event);
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      // var strategy_id = button.data('strategyId'); // Extract info from data-* attribute
+
+      var data = button.data();
+
+      $("[name='strategy_id']").val(data.strategyId);
+      $("#strategy_id").text(data.strategyName);
+    });
   </script>
 
 <?= $this->endSection(); ?>
