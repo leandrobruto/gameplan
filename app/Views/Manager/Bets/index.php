@@ -59,7 +59,7 @@
   <div class="row">
       <div class="col-lg-12 col-md-12 order-1">
         <div class="row">
-          <div class="col-lg-4 col-md-12 col-12 mb-4">
+          <div class="col-lg-4 col-md-4 col-12 mb-4">
             <div class="card">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
