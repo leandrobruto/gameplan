@@ -67,7 +67,7 @@ class Bankrolls extends BaseController
             return redirect()->back()->with('info', "There is no data to update.");
         }
         
-        if ($this->bankrollModel->protect(false)->save($bankroll)) {
+        if ($this->bankrollModel->save($bankroll)) {
             return redirect()->to(site_url("manager/account/bankrolls"))
                             ->with('success', "Bankroll updated successfully!");
         } else {
@@ -116,6 +116,43 @@ class Bankrolls extends BaseController
             {
                 return redirect()->back()->with('success', "Default Bankroll was set successfully!");
             }
+        }
+    }
+
+    public function postReset($id = null)
+    {
+        if ($this->request->getMethod() === 'post') {
+            $bankroll = $this->findBankrollOr404($this->request->getPost('bankroll_id'));
+
+            if ($bankroll->deleted_at != null) {
+                return redirect()->back()->with('info', "The bankroll $bankroll->nome is deleted. Therefore, it is not possible to reset it.");
+            }
+
+        } else {
+            /* It's not POST */
+            return redirect()->back();
+        }
+
+        $data = [
+            'currency_id' => 1,
+            'initial_balance' => 0.00,
+            'comission' => 0,
+        ];
+        
+
+        $bankroll->fill($data);
+
+        if (!$bankroll->hasChanged()) {
+            return redirect()->back()->with('info', "There is no data to update.");
+        }
+        
+        if ($this->bankrollModel->save($bankroll)) {
+            return redirect()->to(site_url("manager/account/bankrolls"))
+                            ->with('success', "Bankroll updated successfully!");
+        } else {
+            return redirect()->back()->with('errors_model', $this->bankrollModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
         }
     }
 

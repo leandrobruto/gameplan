@@ -63,7 +63,7 @@ class Competitions extends BaseController
             return redirect()->back()->with('info', "There is no data to update.");
         }
         
-        if ($this->competitionModel->protect(false)->save($competition)) {
+        if ($this->competitionModel->save($competition)) {
             return redirect()->to(site_url("manager/account/competitions"))
                             ->with('success', "Competition updated successfully!");
         } else {

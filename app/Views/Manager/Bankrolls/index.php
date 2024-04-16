@@ -82,7 +82,11 @@
                 <td><?= $bankroll->created_at->humanize(); ?></td>
                 <td><?= $bankroll->comission; ?>%</td>
                 <td class="d-flex justify-content-end">
-                  <a href="<?= site_url("manager/strategies/transfer/$bankroll->id"); ?>">
+                  <a href="#" class="text-primary" 
+                    data-bankroll-id="<?= $bankroll->id ?>"
+                    data-bankroll-name="<?= $bankroll->name ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#resetBankrollModal" type="button">
                     <i class="bx bx-refresh me-3"></i>
                   </a>
 
@@ -151,6 +155,42 @@
 
 <!-- Hidden Input bankroll to use on update and delete forms -->
 <?php $hidden = ['bankroll_id' => '']; ?>
+
+<!-- Reset Bankroll Modal -->
+<div class="modal fade" id="resetBankrollModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Reset Bankroll</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+      <div class="card">
+        <div class="card-body py-2">
+            
+          <?= form_open("manager/bankrolls/reset", '', $hidden); ?>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Attention!</strong> Are you sure about reset the bankroll <strong id="bankroll_name"></strong>
+            </div>
+
+            <button type="submit" class="btn btn-danger mb-2">
+              <i class="bx bx-refresh tf-icons"></i>
+              Reset
+            </button>
+
+          <?= form_close(); ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Reset Bankroll Modal -->
 
 <!-- Edit Bankroll Modal -->
 <div class="modal fade" id="editBankrollModal" tabindex="-1" aria-hidden="true">
@@ -226,6 +266,17 @@
 
   <script src="<?php echo site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
+
+  <script>
+    $('#resetBankrollModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+console.log(data);
+      $("[name='bankroll_id']").val(data.bankrollId);
+      $("#bankroll_name").text(data.bankrollName);
+    });
+  </script>
 
   <script>
     $('#editBankrollModal').on('show.bs.modal', function (event) {

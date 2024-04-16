@@ -63,7 +63,7 @@ class Strategies extends BaseController
             return redirect()->back()->with('info', "There is no data to update.");
         }
         
-        if ($this->strategyModel->protect(false)->save($strategy)) {
+        if ($this->strategyModel->save($strategy)) {
             return redirect()->to(site_url("manager/account/strategies"))
                             ->with('success', "Strategy updated successfully!");
         } else {
