@@ -39,4 +39,61 @@ class Competitions extends BaseController
             return redirect()->back();
         }
     }
+
+    public function postUpdate($id = null)
+    {
+        if ($this->request->getMethod() === 'post') {
+            $competition = $this->findCompetitionOr404($this->request->getPost('competition_id'));
+
+            if ($competition->deleted_at != null) {
+                return redirect()->back()->with('info', "The Competition $competition->nome is deleted. Therefore, it is not possible to edit it.");
+            }
+
+        } else {
+            /* It's not POST */
+            return redirect()->back();
+        }
+
+        $post = $this->request->getPost();
+        unset($post['competition_id']);
+
+        $competition->fill($post);
+        
+        if (!$competition->hasChanged()) {
+            return redirect()->back()->with('info', "There is no data to update.");
+        }
+        
+        if ($this->competitionModel->protect(false)->save($competition)) {
+            return redirect()->to(site_url("manager/account/competitions"))
+                            ->with('success', "Competition updated successfully!");
+        } else {
+            return redirect()->back()->with('errors_model', $this->competitionModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
+        }
+    }
+
+    public function postDelete($id = null)
+    {
+        $competition = $this->findCompetitionOr404($this->request->getPost());
+
+        if ($this->request->getMethod() === 'post') {
+            $this->competitionModel->delete($competition->id);
+            return redirect()->to(site_url('manager/account/competitions'))
+                            ->with('success', "Competition successfully deleted.");
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return object Competition
+     */
+    private function findCompetitionOr404($id = null)
+    {
+        if (!$id || !$competition = $this->competitionModel->where('id', $id)->first()) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("We don't find the competition $id");
+        }
+        
+        return $competition;
+    }
 }

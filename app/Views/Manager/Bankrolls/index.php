@@ -56,7 +56,7 @@
           data-bs-toggle="modal"
           data-bs-target="#createBabkrollsModal">
           <i class="bx bx-plus tf-icons"></i>
-          Create New Bankrolls
+          Create
         </button>
       </h5>
 
@@ -83,7 +83,7 @@
                 <td><?= $bankroll->comission; ?>%</td>
                 <td class="d-flex justify-content-end">
                   <a href="<?= site_url("manager/strategies/transfer/$bankroll->id"); ?>">
-                    <i class="bx bx-transfer me-3"></i>
+                    <i class="bx bx-refresh me-3"></i>
                   </a>
 
                   <a href="<?= site_url("manager/strategies/edit/$bankroll->id"); ?>">
@@ -112,7 +112,7 @@
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Create New Competition</h5>
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Bankroll</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <?= form_open("manager/bankrolls/store"); ?>
@@ -128,7 +128,7 @@
           </button>
           <button type="submit" class="btn btn-primary">
             <i class="bx bx-save tf-icons"></i>  
-            Create New Bankroll
+            Save
           </button>
         </div>
       <?= form_close(); ?>

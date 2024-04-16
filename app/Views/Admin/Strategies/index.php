@@ -122,29 +122,29 @@
   <script>
     $(function () {
       $( "#query" ).autocomplete({
-      source: function (request, response) {      
+        source: function (request, response) {      
           $.ajax({
-              url: '<?= site_url('admin/strategies/search/') ?>',
-              dataType: "json",
-              data: {
-                  term: request.term,
-              },
+            url: '<?= site_url('admin/strategies/search/') ?>',
+            dataType: "json",
+            data: {
+              term: request.term,
+            },
           success: function (data) {
-              if (data.length < 1) {
+            if (data.length < 1) {
               var data = [
-                  {
-                  label: 'strategy not found.',
-                  value: -1
-                  }
+                {
+                label: 'strategy not found.',
+                value: -1
+                }
               ];
-              }
+            }
 
-              response(data); // Here we have no data
+            response(data); // Here we have no data
           },
-          }); // End of ajax
-        },
-        minLength: 1,
-        select: function (event, ui) {
+        }); // End of ajax
+      },
+      minLength: 1,
+      select: function (event, ui) {
           if (ui.item.value == -1) {
             $this.val("");
             return false;

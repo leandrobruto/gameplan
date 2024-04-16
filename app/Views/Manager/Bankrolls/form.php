@@ -34,7 +34,7 @@
 
     <div class="col-md-6 mb-3">
         <label for="initial_date" class="form-label">Initial Date</label>
-        <input type="date" id="initial_date" name="initial_date" value="<?= old('initial_date'); ?>" class="form-control" <?= old('date'); ?>
+        <input type="date" id="initial_date" name="initial_date" value="<?= old('initial_date', date("Y-m-d")); ?>" class="form-control" <?= old('date'); ?>
         />
     </div>
 
