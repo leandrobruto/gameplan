@@ -124,6 +124,56 @@ class Bets extends BaseController
         }
     }
 
+    public function postUpdate($id = null)
+    {
+        // dd($this->request->getPost());
+        if ($this->request->getMethod() === 'post') {
+            $bet = $this->findBetOr404($this->request->getPost('bet_id'));
+
+            if ($bet->deleted_at != null) {
+                return redirect()->back()->with('info', "The bankroll $bet->event is deleted. Therefore, it is not possible to edit it.");
+            }
+
+        } else {
+            /* It's not POST */
+            return redirect()->back();
+        }
+
+        $postBet = $this->request->getPost('bet');
+        $postMatch = $this->request->getPost('match');
+
+        $bet->fill($postBet);
+
+        $match = new \App\Entities\Bet($postMatch);
+        $match->bet_id = $bet->id;
+        $match->fill($postMatch);
+
+        if (!$bet->hasChanged() && !$match->hasChanged()) {
+            return redirect()->back()->with('info', "There is no data to update.");
+        }
+        
+        $update = false;
+
+        if ($bet->hasChanged()) {
+            $this->betModel->save($bet);
+            $update = true;
+        }
+
+        if ($match->hasChanged()) {
+            $this->matchModel->save($match);
+            $update = true;
+        }
+
+        if ($update) {
+            return redirect()->to(site_url("manager/bets"))
+                            ->with('success', "Bet updated successfully!");
+        } else {
+            return redirect()->back()->with('errors_model', $this->betModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
+        }
+    }
+
     public function postDelete($id = null)
     {
         $bet = $this->findBetOr404($this->request->getPost());
