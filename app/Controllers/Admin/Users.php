@@ -139,11 +139,11 @@ class Users extends BaseController
         $profile = $this->profileModel->findProfileByUserId($user->id);
 
         if ($user->deleted_at != null) {
-            return redirect()->back()->with('info', "The user $user->name is deleted. Therefore, it is not possible to edit it.");
+            return redirect()->back()->with('info', "The user $user->username is deleted. Therefore, it is not possible to edit it.");
         }
         
         $data = [
-            'title'     => "Editing the user $user->name",
+            'title'     => "Editing the user $user->username",
             'user' => $user,
             'profile' =>$profile,
         ];
@@ -157,7 +157,7 @@ class Users extends BaseController
             $user = $this->findUserOr404($id);
 
             if ($user->deleted_at != null) {
-                return redirect()->back()->with('info', "The user $user->nome is deleted. Therefore, it is not possible to edit it.");
+                return redirect()->back()->with('info', "The user $user->username is deleted. Therefore, it is not possible to edit it.");
             }
 
         } else {
@@ -181,7 +181,7 @@ class Users extends BaseController
         
         if ($this->userModel->protect(false)->save($user)) {
             return redirect()->to(site_url("admin/users/show/$user->id"))
-                            ->with('success', "User $user->nome updated successfully!");
+                            ->with('success', "User $user->username updated successfully!");
         } else {
             return redirect()->back()->with('errors_model', $this->userModel->errors())
                                     ->with('attention', "Please check the errors below.")

@@ -67,22 +67,37 @@
                     <?= $sport->updated_at->humanize(); ?>
                 </td>
                 <td class="d-flex justify-content-end">
+                  <?php if ($sport->deleted_at): ?>
+                    <span class="badge bg-label-danger me-3">Deleted</span>
+                  <?php endif; ?>
+
                   <a href="#" 
+                    data-sport-id="<?= $sport->id ?>"
+                    data-sport-name="<?= $sport->name ?>"
                     data-bs-toggle="modal"
                     data-bs-target="#editSportModal">
                     <i class="bx bx-edit-alt me-3"></i>
                   </a>
-                  <a href="#"
-                    data-sportid="<?= $sport->id ?>"
-                    data-bs-toggle="modal"
-                    data-bs-target="#deleteSportModal">
-                    <i class="bx bx-trash text-danger me-3"></i>
-                </a>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-        </table>
+
+                  <?php if ($sport->deleted_at): ?>
+                    <a href="<?= site_url('admin/sports/undelete/' . $sport->id); ?>">
+                      <i class="bx bx-undo text-dark me-3"></i>
+                    </a>
+                  <?php else: ?>
+                    
+                    <a href="#"
+                      data-sport-id="<?= $sport->id ?>"
+                      data-sport-name="<?= $sport->name ?>"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteSportModal">
+                      <i class="bx bx-trash text-danger me-3"></i>
+                    </a>
+                  <?php endif; ?>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+          </table>
           <div class="d-flex justify-content-center mt-4">
 
         </div>
@@ -127,6 +142,10 @@
 </div>
 <!-- / Create Sport Modal -->
 
+
+<!-- Hidden Input sport_id to use on update and delete forms -->
+<?php $hidden = ['sport_id' => '']; ?>
+
 <!-- Edit Sport Modal -->
 <div class="modal fade" id="editSportModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
@@ -140,7 +159,7 @@
             aria-label="Close">
             </button>
         </div>
-        <?= form_open("admin/sports/store"); ?>
+        <?= form_open("admin/sports/update", '', $hidden); ?>
             <div class="modal-body">
 
                 <?= $this->include('Admin/Sports/form'); ?>
@@ -178,13 +197,13 @@
         <div class="card">
             <div class="card-body py-2">
                 
-                <?= form_open("admin/sports/delete/$sport->id"); ?>
+                <?= form_open("admin/sports/delete", '', $hidden); ?>
 
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Attention!</strong> Are you sure about deleting the sport <strong><?= esc($sport->name) ?>?</strong>
+                    <strong>Attention!</strong> Are you sure about deleting the sport <strong id="sport_name"></strong>?
                 </div>
 
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-danger mb-2">
                     <i class="bx bx-trash-alt tf-icons"></i>
                     Delete
                 </button>
@@ -202,23 +221,33 @@
 
 <!-- Here we send the scripts to the main template -->
 <?= $this->section('scripts'); ?>
+
+  <script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script>  
+  
+  <script type="text/javascript">
+    
+    $('#editSportModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+
+      $("[name='sport_id']").val(data.sportId);
+      $("[name='name']").val(data.sportName);
+
+    });
+
+  </script>
+
   <script>
     $('#deleteSportModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
-      var sportID = button.data('sportid'); // Extract info from data-* attribute
 
-      $.ajax({
-          url: '<?= site_url('admin/sports/delete/') ?>' + sportID,
-          method: 'POST',
-          success: function (data) {
-              console.log(data);
-          },
-      }); // End of ajax
+      var data = button.data();
+
+      $("[name='sport_id']").val(data.sportId);
+      $("#sport_name").text(data.sportName);
     });
   </script>
-
-  <script src="<?= site_url('assets/vendor/auto-complete/jquery-ui.js') ?>"></script>  
-  <!-- <script src="<?= site_url('assets/js/sweetalert.js'); ?>"></script> -->
   
   <script>
     $(function () {
@@ -256,26 +285,6 @@
       });
     });
 
-    // $('#swal-del-sport').click(function(){
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!"
-    //         // width: '100em'
-    //         }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire({
-    //             title: "Deleted!",
-    //             text: "Sport has been deleted.",
-    //             icon: "success"
-    //             });
-    //         }
-    //     });
-    // });
   </script>
 
 <?= $this->endSection(); ?>

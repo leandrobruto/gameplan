@@ -36,4 +36,12 @@ class SportModel extends Model
                     ->get()
                     ->getResult();
     }
+
+    public function undoDelete(int $id) 
+    {
+        return $this->protect(false)
+                    ->where('id', $id)
+                    ->set('deleted_at', null)
+                    ->update();
+    }
 }

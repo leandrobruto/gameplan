@@ -18,93 +18,74 @@
 <?= $this->section('content'); ?>
 
 <div class="col-xl-12 col-md-12 col-sm-6">
-    <!-- Hoverable Table rows -->
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title d-flex justify-content-between align-items-center"><?= $title ?>
-                <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#createCompetitionModal">
-                <i class="bx bx-plus tf-icons"></i>
-                Create
-                </button>
-            </h5>
-
-            <div class="table-responsive text-nowrap">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th>Name</th>
-                        <th>Sport</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
-                        <?php foreach ($competitions as $competition): ?>
-                            <tr>
-                                <td><?= $competition->name; ?></td>
-                                <td><?= $competition->sport_name; ?></td>
-                                <td class="d-flex justify-content-end mr-2">
-                                <a href="<?= site_url("admin/strategies/transfer/$competition->id"); ?>">
-                                    <i class="bx bx-transfer me-3"></i>
-                                </a>
-
-                                <a href="<?= site_url("admin/strategies/edit/$competition->id"); ?>">
-                                    <i class="bx bx-edit-alt me-3"></i>
-                                </a>
-                                
-                                <a href="<?= site_url("admin/strategies/edit/$competition->id"); ?>">
-                                    <i class="bx bx-trash text-danger me-3"></i>
-                                </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-                <div class="d-flex justify-content-center mt-4">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ Hoverable Table rows -->
-</div>
-
-<!-- Edit User Modal -->
-<div class="modal fade" id="createCompetitionModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Create New Competition</h5>
-        <button
+  <!-- Hoverable Table rows -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title d-flex justify-content-between align-items-center"><?= $title ?>
+          <button
           type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close">
-        </button>
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#createCompetitionModal">
+          <i class="bx bx-plus tf-icons"></i>
+          Create
+          </button>
+      </h5>
+
+      <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+          <thead>
+              <tr>
+              <th>Name</th>
+              <th>Sport</th>
+              </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">
+            <?php foreach ($competitions as $competition): ?>
+              <tr>
+                <td><?= $competition->name; ?></td>
+                <td><?= $competition->sport_name; ?></td>
+                <td class="d-flex justify-content-end mr-2">
+                  <a href="#" class="text-primary" 
+                    data-competition-id="<?= $competition->id ?>"
+                    data-competition-name="<?= $competition->name ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#transferCompetitionModal" type="button">
+                    <i class="bx bx-transfer me-3"></i>
+                  </a>
+
+                  <a href="#" class="text-primary" 
+                    data-competition-id="<?= $competition->id ?>"
+                    data-competition-name="<?= $competition->name ?>"
+                    data-sport-id="<?= $competition->sport_id ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#editCompetitionModal" type="button">
+                    <i class="bx bx-edit-alt me-3"></i>
+                  </a>
+                  
+                  <a href="#" class="text-danger" 
+                    data-competition-id="<?= $competition->id ?>"
+                    data-competition-name="<?= $competition->name ?>"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#deleteCompetitionModal" type="button">
+                    <i class="bx bx-trash me-3"></i>
+                  </a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mt-4">
+
+        </div>
       </div>
-      <?= form_open("admin/competitions/store"); ?>
-        <div class="modal-body">
-
-            <?= $this->include('Admin/Competitions/form'); ?>
-
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                <i class="bx bx-x tf-icons"></i>  
-                Close
-            </button>
-            <button type="submit" class="btn btn-primary">
-                <i class="bx bx-save tf-icons"></i>  
-                Submit
-            </button>
-        </div>
-    <?= form_close(); ?>
     </div>
   </div>
+  <!--/ Hoverable Table rows -->
 </div>
-<!-- / Edit User Modal -->
+
+<!-- Include modas Competitions -->
+<?= $this->include('modals/competition'); ?>
 
 <?= $this->endSection(); ?>
 
