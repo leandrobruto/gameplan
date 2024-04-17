@@ -243,7 +243,7 @@
       <?= form_open("manager/bets/update", '', $hidden); ?>
         <div class="modal-body">
 
-          <?= $this->include('Manager/Bets/form'); ?>
+          <?= $this->include('Manager/Bets/form_update'); ?>
 
         </div>
         <div class="modal-footer">
@@ -278,7 +278,7 @@
       <?= form_open("manager/bets/storeMultiple"); ?>
         <div class="modal-body">
 
-          <?= $this->include('Manager/Bets/multiple_form'); ?>
+          <?= $this->include('Manager/Bets/form_multiple'); ?>
 
         </div>
         <div class="modal-footer">
@@ -417,14 +417,14 @@
         html += '<label class="form-label" for="selection">Selection</label>'
         html += '<div class="input-group input-group-merge">'
         html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
-        html += '<input type="text" id="selection" name="match[' + index + '][event]" class="form-control" />'
+        html += '<input type="text" id="selection" name="event[' + index + '][name]" class="form-control" />'
         html += '</div>'
         html += '</div>'
 
         html += '<div class="col-lg-4 col-4 mb-3">'
         html += '<label for="odd" class="form-label">Odd</label>'
         html += '<div class="input-group input-group-merge">'
-        html += '<input type="text" id="odd" name="match[' + index + '][odd]" class="form-control" value="" />'
+        html += '<input type="text" id="odd" name="event[' + index + '][odd]" class="form-control" value="" />'
         html += '</div>'
         html += '</div>'
 
@@ -478,13 +478,13 @@
       var data = button.data();
 
       $("[name='bet_id']").val(data.id);
-      $("[name='match[event]']").val(data.event);
+      $("[name='event[name]']").val(data.event);
       $("[name='bet[date]']").val(data.date);
       $("[name='bet[competition_id]']").val(data.competitionId);
       $("[name='bet[strategy_id]']").val(data.strategyId);
       $("[name='bet[stake]']").val(data.stake);
       $("[name='bet[result]']").val(data.result);
-      $("[name='match[odd]']").val(data.odd);
+      $("[name='event[odd]']").val(data.odd);
       $("[name='bet[description]']").val(data.description);
       $("[name='bet[is_panding]']").val(data.isPending);
     });

@@ -9,7 +9,7 @@ use App\Entities\Bet;
 class Bets extends BaseController
 {
     private $betModel;
-    private $matchModel;
+    private $eventModel;
     private $sportModel;
     private $competitionModel;
     private $strategyModel;
@@ -19,7 +19,7 @@ class Bets extends BaseController
     public function __construct()
     {
         $this->betModel = new \App\Models\BetModel();
-        $this->matchModel = new \App\Models\MatchModel();
+        $this->eventModel = new \App\Models\EventModel();
         $this->bankrollModel = new \App\Models\BankrollModel();
         $this->sportModel = new \App\Models\SportModel();
         $this->competitionModel = new \App\Models\CompetitionModel();
@@ -55,9 +55,9 @@ class Bets extends BaseController
 
             if ($this->betModel->insert($bet)) {
 
-                $match = $this->request->getPost('match');
-                $match['bet_id'] = $this->betModel->getInsertID();
-                $this->matchModel->insert($match);
+                $event = $this->request->getPost('event');
+                $event['bet_id'] = $this->betModel->getInsertID();
+                $this->eventModel->insert($event);
 
                 if ($tags = $this->request->getPost('tags')) {
                     $array_tags = array();
@@ -95,26 +95,26 @@ class Bets extends BaseController
 
             if ($this->betModel->insert($bet)) {
 
-                $matches = $this->request->getPost('match');
+                $events = $this->request->getPost('event');
 
-                $array_matches = array();
+                $array_events = array();
 
-                foreach($matches as $key => $match) {
+                foreach($events as $key => $event) {
 
-                    if(!empty($match['event']) && !empty($match['odd'])) {
+                    if(!empty($event['event']) && !empty($event['odd'])) {
 
-                        $match['bet_id'] = $this->betModel->getInsertID();
+                        $event['bet_id'] = $this->betModel->getInsertID();
 
-                        array_push($array_matches, $match);
+                        array_push($array_events, $event);
                     }
                 }
 
-                $this->matchModel->insertBatch($array_matches);
+                $this->eventModel->insertBatch($array_events);
 
                 return redirect()->to(site_url("manager/bets"))
                                 ->with('success', "Bet created successfully!");
             } else {
-                return redirect()->back()->with('errors_model', $this->competitionModel->errors())
+                return redirect()->back()->with('errors_model', $this->betModel->errors())
                                         ->with('attention', "Please check the errors below.")
                                         ->withInput();
             }
@@ -140,15 +140,15 @@ class Bets extends BaseController
         }
 
         $postBet = $this->request->getPost('bet');
-        $postMatch = $this->request->getPost('match');
+        $postEvent = $this->request->getPost('event');
 
         $bet->fill($postBet);
 
-        $match = new \App\Entities\Bet($postMatch);
-        $match->bet_id = $bet->id;
-        $match->fill($postMatch);
+        $event = $this->eventModel->where('bet_id', $bet->id)->first();
 
-        if (!$bet->hasChanged() && !$match->hasChanged()) {
+        $event->fill($postEvent);
+
+        if (!$bet->hasChanged() && !$event->hasChanged()) {
             return redirect()->back()->with('info', "There is no data to update.");
         }
         
@@ -159,8 +159,8 @@ class Bets extends BaseController
             $update = true;
         }
 
-        if ($match->hasChanged()) {
-            $this->matchModel->save($match);
+        if ($event->hasChanged()) {
+            $this->eventModel->save($event);
             $update = true;
         }
 

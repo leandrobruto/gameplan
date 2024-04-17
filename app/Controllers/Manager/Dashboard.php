@@ -8,16 +8,14 @@ use CodeIgniter\HTTP\ResponseInterface;
 class Dashboard extends BaseController
 {
     private $betModel;
-    private $matchModel;
+    private $eventModel;
     private $sportModel;
     private $competitionModel;
-    private $strategyModel;
     private $bankrollModel;
 
     public function __construct()
     {
         $this->betModel = new \App\Models\BetModel();
-        $this->matchModel = new \App\Models\MatchModel();
         $this->bankrollModel = new \App\Models\BankrollModel();
     }
 

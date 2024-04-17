@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateTableMatches extends Migration
+class CreateTableEvents extends Migration
 {
     public function up()
     {
@@ -20,7 +20,7 @@ class CreateTableMatches extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
-            'event' => [
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
@@ -47,11 +47,11 @@ class CreateTableMatches extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('bet_id', 'bets', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('matches');
+        $this->forge->createTable('events');
     }
 
     public function down()
     {
-        $this->forge->dropTable('matches');
+        $this->forge->dropTable('events');
     }
 }

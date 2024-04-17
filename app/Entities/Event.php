@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 
-class Match extends Entity
+class Event extends Entity
 {
     protected $dates   = [
         'created_at', 

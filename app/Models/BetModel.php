@@ -30,12 +30,12 @@ class BetModel extends Model
     public function getBetsByUser($user, $bankroll) 
     {
         return $this->select('bets.*, ((bets.result / bets.stake)) * 100 AS roi,
-            matches.event, matches.odd, bets.date,
+            events.name AS event, events.odd, bets.date,
             bankrolls.name AS bankroll, 
             sports.name AS sport, 
             competitions.name AS competition, 
             strategies.name AS strategy')->asObject()
-                ->join('matches', 'bets.id = matches.bet_id')
+                ->join('events', 'bets.id = events.bet_id')
                 ->join('sports', 'bets.sport_id = sports.id', 'left')
                 ->join('competitions', 'bets.competition_id = competitions.id', 'left')
                 ->join('strategies', 'bets.strategy_id = strategies.id', 'left')

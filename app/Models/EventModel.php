@@ -4,13 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MatchModel extends Model
+class EventModel extends Model
 {
-    protected $table            = 'matches';
+    protected $table            = 'events';
     protected $primaryKey       = 'id';
-    protected $returnType       = 'App\Entities\Match';
+    protected $returnType       = 'App\Entities\Event';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['bet_id', 'event', 'odd'];
+    protected $allowedFields    = ['bet_id', 'name', 'odd'];
 
     // Dates
     protected $useTimestamps = true;
