@@ -80,7 +80,7 @@
       <a class="nav-link active" href="<?= site_url('manager/account/profile'); ?>"><i class="bx bx-user me-1"></i> Account</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?= site_url('manager/account/strategies'); ?>"
+      <a class="nav-link" href="<?= site_url('manager/payments'); ?>"
         ><i class="bx bx-credit-card me-1"></i> Billing & Plans</a
       >
     </li>
