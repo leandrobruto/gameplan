@@ -223,12 +223,14 @@
             source: function (request, response) {
                 
                 $('#attempt_username').removeClass();
-                
-                if (request.term.length < 3){
+
+                username = request.term;
+
+                if (username.length < 3){
                     $('#attempt_username')
                         .text('Your username must be at least 3 characters long.');
                 
-                } else if (request.term.length > 15) {
+                } else if (username.length > 15) {
                     $('#attempt_username').text('Your username must be shorter than 15 characters long.');
  
                 } else {
@@ -236,22 +238,28 @@
                         url: '<?= site_url('register/search/') ?>',
                         dataType: "json",
                         data: {
-                            term: request.term,
+                            term: username,
                         },
                         success: function (data) {
 
                             $('#attempt_username').removeClass();
                             
-                            if (data.length > 0 && data[0].value.toLowerCase() === request.term.toLowerCase()) {
-                                $('#attempt_username').text('The username ' + request.term + ' is already in use.')
+                            if (data.length > 0 && data[0].value.toLowerCase() === username.toLowerCase()) {
+                                $('#attempt_username').text('The username ' + username + ' is already in use.')
                                     .addClass('text-danger')
                                     .append('<i class="bx bx-error px-1"></i>');
                             
                             } else {
                                 $('#attempt_username')
-                                    .text(request.term.toLowerCase() + ' is avaliable.')
+                                    .text(username.toLowerCase() + ' is avaliable.')
                                     .addClass('text-success')
                                     .append('<i class="bx bx-check px-1"></i>');
+                            }
+
+                            if (username.indexOf(' ') >= 0) {
+                                $('#attempt_username')
+                                    .text('Your username must not contain blank spaces.')
+                                    .addClass('text-danger');
                             }
 
                             response(data); // Here we have no data
@@ -261,6 +269,14 @@
             },
         });
     });
+
+    function validateForm() {
+  let x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
 
   </script>
 

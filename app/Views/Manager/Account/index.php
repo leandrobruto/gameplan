@@ -152,6 +152,14 @@
     <hr class="my-0" />
     <div class="card-body">
 
+      <?php if (session()->has('errors_model')): ?>
+        <ul>
+            <?php foreach (session('errors_model') as $error): ?>
+                <li class="text-danger"><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
+
       <?= form_open('manager/account/update') ?>
 
         <?= $this->include('Manager/Account/form'); ?>

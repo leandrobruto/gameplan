@@ -166,7 +166,7 @@ class Users extends BaseController
         }
 
         $post = $this->request->getPost();
-        
+
         if (empty($post['password'])) {
             $this->userModel->disablePasswordValidation();
             unset($post['password']);

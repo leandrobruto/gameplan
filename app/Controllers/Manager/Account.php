@@ -86,22 +86,28 @@ class Account extends BaseController
         $update = false;
 
         if ($user->hasChanged()) {
-            $this->userModel->save($user);
-            $update = true;
+            if ($this->userModel->save($user)) {
+                $update = true;
+            } else {
+                return redirect()->back()->with('errors_model', $this->userModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
+            }
         }
         
         if ($profile->hasChanged()) {
-            $this->profileModel->save($profile);
-            $update = true;
+            if ($this->profileModel->save($profile)) {
+                $update = true;  
+            } else {
+                return redirect()->back()->with('errors_model', $this->profileModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
+            }
         }
 
         if ($update) {
             return redirect()->to(site_url("manager/account/profile"))
                             ->with('success', "User updated successfully!");
-        } else {
-            return redirect()->back()->with('errors_model', $this->userModel->errors())
-                                    ->with('attention', "Please check the errors below.")
-                                    ->withInput();
         }
     }
 

@@ -10,7 +10,7 @@ class Validations {
         // Checks if none of the sequences below were entered, if so, returns false
         if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999') {
 
-            $error = 'Por favor digite um CPF válido';
+            $error = 'Please enter a valid CPF';
             return FALSE;
         } else {
             // Calculate the numbers to check if the CPF is true
@@ -20,7 +20,7 @@ class Validations {
                 }
                 $d = ((10 * $d) % 11) % 10;
                 if ($cpf[$c] != $d) {
-                    $error = 'Por favor digite um CPF válido';
+                    $error = 'Please enter a valid CPF';
                     return FALSE;
                 }
             }

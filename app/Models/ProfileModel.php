@@ -17,7 +17,7 @@ class ProfileModel extends Model
 
     // Validation
     // protected $validationRules      = [
-    //     'cpf' => 'exact_length[14]|validateCpf|is_unique[users.cpf]'
+    //     'cpf' => 'exact_length[14]|validateCpf|is_unique[profiles.cpf]'
     // ];
 
     // protected $validationMessages   = [
