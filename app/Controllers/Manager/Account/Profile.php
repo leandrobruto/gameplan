@@ -13,7 +13,7 @@ class Profile extends BaseController
 
     public function __construct()
     {
-        $this->userModel = new \App\Models\usermodel();
+        $this->userModel = new \App\Models\UserModel();
         $this->profileModel = new \App\Models\ProfileModel();
         $this->sportModel = new \App\Models\SportModel();
         $this->dateRangeModel = new \App\Models\DateRangeModel();
