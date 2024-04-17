@@ -246,7 +246,7 @@
                   
                   <?php foreach (myBankrolls() as $bankroll): ?>
                     <li>
-                      <?= form_open("manager/bankrolls/default/$bankroll->id"); ?>
+                      <?= form_open("manager/account/bankrolls/default/$bankroll->id"); ?>
                         <input type="hidden" name="is_default" value="1">
 
                         <button type="submit" class="dropdown-item d-flex align-items-center">
@@ -281,7 +281,7 @@
                     <div class="avatar avatar-online">
                       
                       <?php if ($userLoggedIn->avatar): ?>
-                        <img src="<?= site_url("manager/account/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="<?= site_url("manager/account/profile/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                       <?php else: ?>
                         <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                       <?php endif; ?>
@@ -296,7 +296,7 @@
                             <div class="avatar avatar-online">
                               
                               <?php if ($userLoggedIn->avatar): ?>
-                                <img src="<?= site_url("manager/account/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="<?= site_url("manager/account/profile/image/$userLoggedIn->avatar"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                               <?php else: ?>
                                 <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt class="w-px-40 h-auto rounded-circle" />
                               <?php endif; ?>

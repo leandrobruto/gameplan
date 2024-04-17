@@ -145,7 +145,7 @@
 
       <?= form_open('manager/account/update') ?>
 
-        <?= $this->include('Manager/Account/form'); ?>
+        <?= $this->include('Manager/Account/Profile/form'); ?>
 
       <?= form_close(); ?>
 

@@ -17,7 +17,7 @@
 <!-- Here we send the content to the main template -->
 <?= $this->section('content'); ?>
 
-<?= $this->include('Manager/Bankrolls/initial_balance_form'); ?>
+<?= $this->include('Manager/Account/Bankrolls/initial_balance_form'); ?>
 
 <div class="row">
   <div class="col-md-12">

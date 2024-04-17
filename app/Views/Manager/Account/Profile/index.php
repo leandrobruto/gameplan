@@ -72,7 +72,7 @@
 <!-- Here we send the content to the main template -->
 <?= $this->section('content'); ?>
 
-<?= $this->include('Manager/Bankrolls/initial_balance_form'); ?>
+<?= $this->include('Manager/Account/Bankrolls/initial_balance_form'); ?>
 
 <div class="col-md-12">
   <ul class="nav nav-pills flex-column flex-md-row mb-3">
@@ -114,7 +114,7 @@
           data-bs-target="#uploadPhotoModal">
           <div class="profilepic">
             <?php if ($user->avatar): ?>
-              <img class="profilepic__image" src="<?= site_url("manager/account/image/$user->avatar") ?>" alt="user-avatar"
+              <img class="profilepic__image" src="<?= site_url("manager/account/profile/image/$user->avatar") ?>" alt="user-avatar"
                 class="d-block rounded"
                 height="100"
                 width="100"
@@ -160,9 +160,9 @@
         </ul>
       <?php endif; ?>
 
-      <?= form_open('manager/account/update') ?>
+      <?= form_open('manager/account/profile/update') ?>
 
-        <?= $this->include('Manager/Account/form'); ?>
+        <?= $this->include('Manager/Account/Profile/form'); ?>
 
       <?= form_close(); ?>
 
@@ -178,7 +178,7 @@
           <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
         </div>
       </div>
-        <?= form_open('manager/account/delete'); ?>
+        <?= form_open('manager/account/profile/delete'); ?>
           <div class="form-check mb-3">
             <input
               class="form-check-input"
@@ -213,7 +213,7 @@
       <div class="card">
         <div class="card-body py-2">
 
-          <?= form_open_multipart("manager/account/uploadImage/$profile->user_id"); ?>
+          <?= form_open_multipart("manager/account/profile/uploadImage/$profile->user_id"); ?>
 
             <div class="mb-3">
               <label for="formFile" class="form-label">File input</label>

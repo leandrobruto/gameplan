@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Entities\Strategy;
 
-class Strategies extends BaseController
+class tStrategies extends BaseController
 {
     private $strategyModel;
 

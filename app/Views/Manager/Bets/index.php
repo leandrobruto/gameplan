@@ -17,7 +17,7 @@
 <!-- Here we send the content to the main template -->
 <?= $this->section('content'); ?>
 
-<?= $this->include('Manager/Bankrolls/initial_balance_form'); ?>
+<?= $this->include('Manager/Account/Bankrolls/initial_balance_form'); ?>
 
 <div class="col-xl-12 col-md-12 col-sm-6 mb-4">
 
@@ -306,10 +306,10 @@
         <h5 class="modal-title" id="exampleModalLabel2">Create New Competition</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <?= form_open("manager/competitions/store"); ?>
+      <?= form_open("manager/account/competitions/store"); ?>
         <div class="modal-body">
 
-          <?= $this->include('Manager/Competitions/form'); ?>
+          <?= $this->include('Manager/Account/Competitions/form'); ?>
 
         </div>
         <div class="modal-footer">
@@ -336,10 +336,10 @@
         <h5 class="modal-title" id="exampleModalLabel2">Create New Strategy</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <?= form_open("manager/strategies/store"); ?>
+      <?= form_open("manager/account/strategies/store"); ?>
         <div class="modal-body">
 
-          <?= $this->include('Manager/Strategies/form'); ?>
+          <?= $this->include('Manager/Account/Strategies/form'); ?>
 
         </div>
         <div class="modal-footer">
