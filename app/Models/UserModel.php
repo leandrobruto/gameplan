@@ -92,7 +92,7 @@ class UserModel extends Model
         unset($this->validationRules['phone']);
     }
 
-    public function undoDelete(int $id) 
+    public function undelete(int $id) 
     {
         return $this->protect(false)
                     ->where('id', $id)
@@ -164,7 +164,7 @@ class UserModel extends Model
     }
 
     public function getAllUsersWithProfile() {
-        return $this->select('users.*, profiles.*')
+        return $this->select('users.*, profiles.avatar, profiles.first_name, profiles.last_name')
                 ->join('profiles', 'profiles.user_id = users.id');
     }
 }

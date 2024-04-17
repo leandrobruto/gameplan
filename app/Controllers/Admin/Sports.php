@@ -104,6 +104,10 @@ class Sports extends BaseController
     {
         $sport = $this->findSportOr404($this->request->getPost());
 
+        if ($sport->deleted_at != null) {
+            return redirect()->back()->with('info', "The sport $sport->name is deleted. Therefore, it is not possible to edit it.");
+        }
+
         if ($this->request->getMethod() === 'post') {
             $this->sportModel->delete($sport->id);
             return redirect()->to(site_url('admin/sports'))

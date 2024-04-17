@@ -67,24 +67,22 @@
                     <?= $sport->updated_at->humanize(); ?>
                 </td>
                 <td class="d-flex justify-content-end">
+
                   <?php if ($sport->deleted_at): ?>
                     <span class="badge bg-label-danger me-3">Deleted</span>
-                  <?php endif; ?>
 
-                  <a href="#" 
-                    data-sport-id="<?= $sport->id ?>"
-                    data-sport-name="<?= $sport->name ?>"
-                    data-bs-toggle="modal"
-                    data-bs-target="#editSportModal">
-                    <i class="bx bx-edit-alt me-3"></i>
-                  </a>
-
-                  <?php if ($sport->deleted_at): ?>
                     <a href="<?= site_url('admin/sports/undelete/' . $sport->id); ?>">
                       <i class="bx bx-undo text-dark me-3"></i>
                     </a>
                   <?php else: ?>
-                    
+                    <a href="#" 
+                      data-sport-id="<?= $sport->id ?>"
+                      data-sport-name="<?= $sport->name ?>"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editSportModal">
+                      <i class="bx bx-edit-alt me-3"></i>
+                    </a>
+
                     <a href="#"
                       data-sport-id="<?= $sport->id ?>"
                       data-sport-name="<?= $sport->name ?>"

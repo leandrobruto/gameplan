@@ -52,43 +52,54 @@
                     <tbody class="table-border-bottom-0">
                         <?php foreach ($users as $user): ?>
                             <tr>
-                            <td>
-                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li
-                                        data-bs-toggle="tooltip"
-                                        data-popup="tooltip-custom"
-                                        data-bs-placement="top"
-                                        class="avatar avatar-md pull-up"
-                                        title="@<?= $user->username; ?>"
-                                    >
-                                        <a href="<?= site_url("admin/users/show/$user->id"); ?>">
-                                            <?php if($user->avatar): ?>
-                                                <img src="<?= site_url("admin/profiles/image/$user->avatar"); ?>" alt="user-avatar" class="rounded-circle" />
-                                            <?php else: ?>
-                                                <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt="user-avatar" class="rounded-circle" />
-                                            <?php endif; ?>
+                                <td>
+                                    <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                        <li
+                                            data-bs-toggle="tooltip"
+                                            data-popup="tooltip-custom"
+                                            data-bs-placement="top"
+                                            class="avatar avatar-md pull-up"
+                                            title="@<?= $user->username; ?>"
+                                        >
+                                            <a href="<?= site_url("admin/users/show/$user->id"); ?>">
+                                                <?php if($user->avatar): ?>
+                                                    <img src="<?= site_url("admin/profiles/image/$user->avatar"); ?>" alt="user-avatar" class="rounded-circle" />
+                                                <?php else: ?>
+                                                    <img src="<?= site_url("assets/img/avatars/avatar-default.png"); ?>" alt="user-avatar" class="rounded-circle" />
+                                                <?php endif; ?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <?= $user->first_name . ' ' . $user->last_name; ?>
+                                </td>
+                                <td>
+                                    <?= $user->active ?
+                                        '<span class="badge bg-label-primary me-1">Active</span>' :
+                                        '<span class="badge bg-label-danger me-1">Inactive</span>'
+                                    ?>
+                                </td>
+                                <td class="d-flex justify-content-end p-3">
+                                    <?php if ($user->deleted_at): ?>
+                                        <div class="p-2">
+                                            <span class="badge bg-label-danger me-2">Deleted</span>
+                                        </div>
+
+                                        <a class="p-2" href="<?= site_url('admin/users/undelete/' . $user->id); ?>">
+                                            <i class="bx bx-undo text-dark me-1"></i>
                                         </a>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <?= $user->first_name . ' ' . $user->last_name; ?>
-                            </td>
-                            <td>
-                                <?= $user->active ?
-                                    '<span class="badge bg-label-primary me-1">Active</span>' :
-                                    '<span class="badge bg-label-danger me-1">Inactive</span>'
-                                ?>
-                            </td>
-                            <td class="d-flex justify-content-end p-3">
-                                <a class="btn" href="<?= site_url("admin/users/edit/$user->id"); ?>">
-                                    <i class="bx bx-edit-alt me-1"></i>
-                                </a>
-                                <a class="btn" href="<?= site_url("admin/users/delete/$user->id"); ?>">
-                                    <i class="bx bx-trash text-danger me-1"></i>
-                                </a>
-                            </td>
-                        </tr>
+                                    <?php else: ?>
+                                        <a class="p-2" href="<?= site_url("admin/users/edit/$user->id"); ?>">
+                                            <i class="bx bx-edit-alt me-1"></i>
+                                        </a>
+
+                                        <a class="p-2" href="<?= site_url("admin/users/delete/$user->id"); ?>">
+                                            <i class="bx bx-trash text-danger me-1"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

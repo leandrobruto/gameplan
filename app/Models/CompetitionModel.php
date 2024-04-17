@@ -65,4 +65,12 @@ class CompetitionModel extends Model
                 ->join('sports', 'sports.id = competitions.sport_id')
                 ->where('competitions.user_id', $user->id);
     }
+
+    public function undelete(int $id) 
+    {
+        return $this->protect(false)
+                    ->where('id', $id)
+                    ->set('deleted_at', null)
+                    ->update();
+    }
 }

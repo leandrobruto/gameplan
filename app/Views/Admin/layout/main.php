@@ -155,35 +155,19 @@
               </a>
             </li>
 
-            <!-- Competition -->
-            <li class="menu-item <?= current_url(true)->getSegment(2) === 'competitions' ? 'active' : ''; ?>">
-              <a href="<?= site_url('admin/competitions'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-trophy"></i>
-                <div data-i18n="Basic">Competition</div>
-              </a>
-            </li>
-
-            <!-- Strategy -->
-            <li class="menu-item <?= current_url(true)->getSegment(2) === 'strategies' ? 'active' : ''; ?>">
-              <a href="<?= site_url('admin/strategies'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-abacus"></i>
-                <div data-i18n="Basic">Strategies</div>
-              </a>
-            </li>
-
-            <!-- Tags -->
-            <li class="menu-item <?= current_url(true)->getSegment(2) === 'tags' ? 'active' : ''; ?>">
-              <a href="<?= site_url('admin/tags'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-tag"></i>
-                <div data-i18n="Basic">Tags</div>
-              </a>
-            </li>
-
             <!-- Configurations -->
             <li class="menu-item">
               <a href="<?= site_url('admin/account/profile'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Basic">Configurations</div>
+              </a>
+            </li>
+            
+            <!-- Website -->
+            <li class="menu-item">
+              <a href="<?= site_url('manager/dashboard'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-laptop"></i>
+                <div data-i18n="Basic">Website</div>
               </a>
             </li>
           </ul>

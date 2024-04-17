@@ -220,7 +220,7 @@ class Users extends BaseController
         }
     }
 
-    public function getUndoDelete($id = null)
+    public function getUndelete($id = null)
     {
         $user = $this->findUserOr404($id);
         
@@ -228,7 +228,7 @@ class Users extends BaseController
             return redirect()->back()->with('info', "Only deleted users can be recovered.");
         }
 
-        if ($this->userModel->undoDelete($id)) {
+        if ($this->userModel->undelete($id)) {
             return redirect()->back()->with('success', "Deletion successfully undone!");
         } else {
             return redirect()->back()->with('errors_model', $this->userModel->errors())

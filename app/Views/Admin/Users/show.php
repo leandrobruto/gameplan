@@ -169,7 +169,7 @@
               Back
             </a>
           <?php else: ?>
-            <a title="Undo deletion" href="<?= site_url("admin/users/undoDelete/$user->id"); ?>" class="btn btn-dark mr-2">
+            <a title="Undo deletion" href="<?= site_url("admin/users/undelete/$user->id"); ?>" class="btn btn-dark mr-2">
               <i class="bx bx-undo tf-icons"></i>
               Undo
             </a>

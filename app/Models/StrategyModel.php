@@ -69,4 +69,12 @@ class StrategyModel extends Model
                 ->join('sports', 'sports.id = strategies.sport_id')
                 ->where('strategies.user_id', $user->id);
     }
+
+    public function undelete(int $id) 
+    {
+        return $this->protect(false)
+                    ->where('id', $id)
+                    ->set('deleted_at', null)
+                    ->update();
+    }
 }
