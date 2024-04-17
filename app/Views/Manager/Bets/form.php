@@ -103,7 +103,7 @@
         <textarea class="form-control" id="description" name="bet[description]" rows="3" ><?= old('bet.description'); ?></textarea>
     </div>
 
-    <div class="col-md-12 mb-3">
+    <div class="col-md-12 mb-3 select-parent">
         <label for="tags" class="form-label">Tags</label>
         <select class="form-control select2" name="tags[]" multiple="multiple" style="width: 100%;"></select>
     </div>

@@ -448,6 +448,7 @@
 
   <script>
     $('.select2').select2({
+      dropdownParent: $('.select-parent'),
       data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
       tags: true,
       maximumSelectionLength: 10,
