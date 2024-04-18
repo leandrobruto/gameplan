@@ -11,7 +11,7 @@ class UserModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'App\Entities\User';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['username', 'email', 'password', 'reset_hash', 'reset_expires_in', 'activation_hash'];
+    protected $allowedFields    = ['username', 'email', 'password' , 'active', 'reset_hash', 'reset_expires_in', 'activation_hash'];
 
     // Dates
     protected $useTimestamps = true;

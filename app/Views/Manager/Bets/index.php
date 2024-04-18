@@ -406,44 +406,89 @@
 
   <script type="text/javascript">
     
-    var index = 2;
-    
+    var index = 0;
+
+    var html = '';
+    html += '<div class="row" id="inputFormRow-' + index + '">'
+
+    html += '<div class="col-lg-6 col-6 mb-3">'
+    html += '<label class="form-label" for="name">Selection</label>'
+    html += '<div class="input-group input-group-merge">'
+    html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
+    html += '<input type="text" name="event[' + index + '][name]" class="form-control" />'
+    html += '</div>'
+    html += '</div>'
+
+    html += '<div class="col-lg-4 col-4 mb-3">'
+    html += '<label for="odd" class="form-label">Odd</label>'
+    html += '<div class="input-group input-group-merge">'
+    html += '<input type="text" name="event[' + index + '][odd]" class="form-control target" value="" onkeyup="oddAmount()" />'
+    html += '</div>'
+    html += '</div>'
+
+    html += '<div class="col-lg-2 col-2 mb-3 d-flex justify-content-center align-self-end">'
+    html += '<a id="removeRow" type="button" onclick="removeRow(' + index + ')" class="text-danger p-2">'
+    html += '<i class="bx bx-trash tf-icons"></i></a>'
+    html += '</div>'
+
+    html += '</div>';
+
+    $('#newRow').append(html);
+
+    function oddAmount() {
+      var amount = 0;
+
+      $('.target').each(function(){
+        var valor = Number($(this).val());
+        
+        if (!isNaN(valor)) amount = (amount * valor);
+
+        if (amount == 0) amount = valor;
+      });
+
+      $("#odd_amount").html(amount.toFixed(2));
+    }
+
     // add row
     $("#addRow").click(function () {
-        var html = '';
-        html += '<div class="row" id="inputFormRow">'
 
-        html += '<div class="col-lg-6 col-6 mb-3">'
-        html += '<label class="form-label" for="selection">Selection</label>'
-        html += '<div class="input-group input-group-merge">'
-        html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
-        html += '<input type="text" id="selection" name="event[' + index + '][name]" class="form-control" />'
-        html += '</div>'
-        html += '</div>'
+      index += 1;
 
-        html += '<div class="col-lg-4 col-4 mb-3">'
-        html += '<label for="odd" class="form-label">Odd</label>'
-        html += '<div class="input-group input-group-merge">'
-        html += '<input type="text" id="odd" name="event[' + index + '][odd]" class="form-control" value="" />'
-        html += '</div>'
-        html += '</div>'
+      var html = '';
+      html += '<div class="row" id="inputFormRow-' + index + '">'
 
-        html += '<div class="col-lg-2 col-2 mb-3 d-flex justify-content-center align-self-end">'
-        html += '<a id="removeRow" type="button" class="text-danger p-2">'
-        html += '<i class="bx bx-trash tf-icons"></i></a>'
-        html += '</div>'
+      html += '<div class="col-lg-6 col-6 mb-3">'
+      html += '<label class="form-label" for="name">Selection</label>'
+      html += '<div class="input-group input-group-merge">'
+      html += '<span class="input-group-text"><i class="bx bx-football"></i></span>'
+      html += '<input type="text" name="event[' + index + '][name]" class="form-control" />'
+      html += '</div>'
+      html += '</div>'
 
-        html += '</div>';
+      html += '<div class="col-lg-4 col-4 mb-3">'
+      html += '<label for="odd" class="form-label">Odd</label>'
+      html += '<div class="input-group input-group-merge">'
+      html += '<input type="text" id="input-' + index + '" name="event[' + index + '][odd]" class="form-control target" value="" onkeyup="oddAmount()" />'
+      html += '</div>'
+      html += '</div>'
 
-        $('#newRow').append(html);
+      html += '<div class="col-lg-2 col-2 mb-3 d-flex justify-content-center align-self-end">'
+      html += '<a id="removeRow" type="button" onclick="removeRow(' + index + ')" class="text-danger p-2">'
+      html += '<i class="bx bx-trash tf-icons"></i></a>'
+      html += '</div>'
 
-        index += 1;
+      html += '</div>';
+
+      $('#newRow').append(html);
+
     });
 
     // remove row
-    $(document).on('click', '#removeRow', function () {
-        $(this).closest('#inputFormRow').remove();
-    });
+    function removeRow(rowIndex) {
+      var value = $('#input-' + index).val()
+      console.log(rowIndex + ' ' + value);
+        $('#inputFormRow-' + rowIndex).remove();
+    };
   </script>
 
   <script>

@@ -1,33 +1,14 @@
-
-<div class="row" id="inputFormRow">
-    <div class="col-lg-6 col-6 mb-3">
-        <label class="form-label" for="selection">Selection</label>
-        <div class="input-group input-group-merge">
-            <span class="input-group-text"><i class="bx bx-football"></i></span>
-            <input type="text" id="selection" name="match[1][event]" class="form-control" />
-        </div>
-    </div>
-
-    <div class="col-lg-4 col-4 mb-3">
-        <label for="odd" class="form-label">Odd</label>
-            <div class="input-group input-group-merge">
-            <input type="text" id="odd" name="match[1][odd]" class="form-control" value="" />
-        </div>
-    </div>
-
-    <div class="col-lg-2 col-2 mb-3 d-flex justify-content-center align-self-end">
-        <a id="removeRow" type="button" class="text-danger p-2">
-            <i class="bx bx-trash tf-icons"></i>
-        </a>
-    </div>
-</div>
-
 <div id="newRow"></div>
     
-<div>
-    <button id="addRow" type="button" class="btn btn-primary mb-3">
-        <i class="bx bx-add-to-queue tf-icons"></i></button>
-    </button>
+<div class="row">
+    <div class="col-6">
+        <button id="addRow" type="button" class="btn btn-primary mb-3">
+            <i class="bx bx-add-to-queue tf-icons"></i></button>
+        </button>
+    </div>
+    <div class="col-6 p-2">
+        <div class="text-dark" id="odd_amount"></div>
+    </div>
 </div>
 
 <div class="row">

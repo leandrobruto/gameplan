@@ -165,27 +165,50 @@ class Users extends BaseController
             return redirect()->back();
         }
 
-        $post = $this->request->getPost();
+        $postUser = $this->request->getPost('user');
+        $postProfile = $this->request->getPost('profile');
 
-        if (empty($post['password'])) {
+        if (empty($postUser['password'])) {
             $this->userModel->disablePasswordValidation();
-            unset($post['password']);
-            unset($post['password_confirmation']);
+            unset($postUser['password']);
+            unset($postUser['password_confirmation']);
         }
 
-        $user->fill($post);
+        $user->fill($postUser);
+
+        $profile = $this->profileModel->findProfileByUserId($user->id);
+        $profile->fill($postProfile);
         
-        if (!$user->hasChanged()) {
+        if (!$user->hasChanged() && !$profile->hasChanged()) {
             return redirect()->back()->with('info', "There is no data to update.");
         }
         
-        if ($this->userModel->protect(false)->save($user)) {
-            return redirect()->to(site_url("admin/users/show/$user->id"))
-                            ->with('success', "User $user->username updated successfully!");
-        } else {
-            return redirect()->back()->with('errors_model', $this->userModel->errors())
+        $update = false;
+        // dd($user);
+
+        if ($user->hasChanged()) {
+            if ($this->userModel->save($user)) {
+                $update = true;
+            } else {
+                return redirect()->back()->with('errors_model', $this->userModel->errors())
                                     ->with('attention', "Please check the errors below.")
                                     ->withInput();
+            }
+        }
+        
+        if ($profile->hasChanged()) {
+            if ($this->profileModel->save($profile)) {
+                $update = true;  
+            } else {
+                return redirect()->back()->with('errors_model', $this->profileModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
+            }
+        }
+
+        if ($update) {
+            return redirect()->to(site_url("admin/users/show/$user->id"))
+                            ->with('success', "User updated successfully!");
         }
     }
 

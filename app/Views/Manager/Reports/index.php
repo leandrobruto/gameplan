@@ -80,7 +80,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-line-chart text-primary"></i>
+                        <i class="bx bx-calculator text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -96,7 +96,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-calendar text-primary"></i>
+                        <i class="bx bx-tag text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -112,7 +112,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-coin-stack text-primary"></i>
+                        <i class="bx bx-stats text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -130,7 +130,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-line-chart text-primary"></i>
+                        <i class="bx bx-network-chart text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -146,7 +146,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-calendar text-primary"></i>
+                        <i class="bx bx-trophy text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -162,7 +162,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-coin-stack text-primary"></i>
+                        <i class="bx bx-line-chart text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -180,7 +180,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-line-chart text-primary"></i>
+                        <i class="bx bx-store text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -196,7 +196,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-calendar text-primary"></i>
+                        <i class="bx bx-package text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -212,7 +212,7 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-coin-stack text-primary"></i>
+                        <i class="bx bx-trophy text-primary"></i>
                       </span>
                     </div>
                   </div>
@@ -230,27 +230,11 @@
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-line-chart text-primary"></i>
+                        <i class="bx bx-file text-primary"></i>
                       </span>
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Competitions Details</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-4 col-6 mb-4">
-            <a href="<?= site_url('manager/reports/bankroll-evolution'); ?>" class="text-reset">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-title d-flex align-items-start justify-content-between">
-                    <div class="avatar flex-shrink-0">
-                      <span class="badge bg-label-primary p-2">
-                        <i class="bx bx-calendar text-primary"></i>
-                      </span>
-                    </div>
-                  </div>
-                  <span class="fw-semibold d-block mb-1">Daily Results</span>
                 </div>
               </div>
             </a>
