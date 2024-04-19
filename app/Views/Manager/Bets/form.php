@@ -93,7 +93,9 @@
     <div class="col-md-4 mb-3">
         <label for="odd" class="form-label">Odd</label>
         <div class="input-group input-group-merge">
-            <input type="text" id="odd" name="event[odd]" class="form-control money" value="<?= old('event.odd'); ?>"
+            <input type="text" id="odd" name="event[odd]" 
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                class="form-control" value="<?= old('event.odd'); ?>"
             />
         </div>
     </div>

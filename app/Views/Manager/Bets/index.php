@@ -22,7 +22,7 @@
 <div class="col-xl-12 col-md-12 col-sm-6 mb-4">
 
   <h5 class="card-title"><?= $title ?></h5>
-
+  
   <div class="row">
     <div class="col-6">
       <div class="ui-widget">
@@ -440,12 +440,12 @@
       $('.target').each(function(){
         var value = Number($(this).val());
 
-        if (!isNaN(value) && value > 0) amount = (amount * value);
+        if (!isNaN(value) && value >= 1) amount = (amount * value);
 
       });
 
-      if (amount > 1)
-      $("#odd_amount").html(amount.toFixed(2));
+      if (amount >= 1)
+        $("#odd_amount").html(amount.toFixed(2));
     }
 
     // add row

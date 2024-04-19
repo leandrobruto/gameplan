@@ -84,7 +84,7 @@
           </div>
           <span class="fw-semibold d-block mb-1">Final Balance</span>
           <h3 class="card-title <?= $reports->current_balance > 0 ? 'text-success' : 'text-dark'; ?> mb-2">
-            $<?= $reports->current_balance ? $reports->current_balance : '0.00'; ?>
+            $<?= $reports->current_balance ? number_format($reports->current_balance, 2) : '0.00'; ?>
           </h3>
         </div>
       </div>
