@@ -494,6 +494,31 @@
   </script>
 
   <script>
+
+  $(".teste").select2({
+    minimumInputLength: 2,
+    ajax: {
+      url: '<?= site_url('manager/bets/tags'); ?>',
+      dataType: 'json',
+      data: function (term) {
+        return {
+          term: term
+        };
+      },
+      processResults: function (data) {
+        console.log(data);
+        return {
+          results: $.map(data, function (item) {
+            return {
+              text: 'so tiene mancos',
+              id: 1,
+            }
+          })
+        };
+      }
+    }
+  })
+
     $('.select2').select2({
       dropdownParent: $('.select-parent'),
       data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
@@ -501,22 +526,39 @@
       maximumSelectionLength: 10,
       tokenSeparators: [',', ' '],
       placeholder: "Select or type keywords",
-      //minimumInputLength: 1,
-      //ajax: {
-      //   url: "you url to data",
-      //   dataType: 'json',
-      //  quietMillis: 250,
-      //  data: function (term, page) {
-      //     return {
-      //         q: term, // search term
-      //    };
-      //  },
-      //  results: function (data, page) { 
-      //  return { results: data.items };
-    //   },
-    //   cache: true
-      // }
-    });
+      minimumInputLength: 1,
+      ajax: {
+        url: '<?= site_url('manager/bets/tags'); ?>',
+        dataType: 'json',
+        data: function (params) {
+        return {
+          q: params.term, // search term
+          page: params.page
+        };
+      },
+      processResults: function (data, params) {
+        // parse the results into the format expected by Select2
+        // since we are using custom formatting functions we do not need to
+        // alter the remote JSON data, except to indicate that infinite
+        // scrolling can be used
+        params.page = params.page || 1;
+// console.log(data);
+        // return {
+        //   results: '[{"id": 1,"text": "Option 1"},{"id": 2,"text": "Option 2"}]',
+        //   pagination: {
+        //     more: (params.page * 30) < data.total_count
+        //   }
+        // };
+        $.map(data, function (item) {
+          return {
+              text: 'item.name',
+              id: 'item.id',
+          }
+        })
+      },
+      cache: true
+    }
+  });
   </script>
 
   <script>

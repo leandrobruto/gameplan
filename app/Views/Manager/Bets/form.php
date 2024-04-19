@@ -110,6 +110,11 @@
         <select class="form-control select2" name="tags[]" multiple="multiple" style="width: 100%;"></select>
     </div>
 
+    <div class="col-md-12 mb-3 select-parent">
+        <label for="asd" class="form-label">Tags</label>
+        <select class="form-control teste" name="asd[]" style="width: 100%;"></select>
+    </div>
+
     <div class="col-md-12 mb-3">
         <div class="form-check form-switch mb-2">
             <input type="hidden" name="bet[is_pending]" value="0" />

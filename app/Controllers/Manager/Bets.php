@@ -47,6 +47,27 @@ class Bets extends BaseController
         return view('Manager/Bets/index', $data);
     }
 
+    public function getTags()
+    {
+        if (!$this->request->isAjax()) 
+        {
+            exit('Page not found');
+        }
+
+        $tags = $this->tagModel->search($this->request->getGet('q'));
+
+        $result = [];
+
+        foreach ($tags as $tag) {
+            // $data['id'] = $tag->id;
+            $data['value'] = $tag->name;
+            
+            $result[] = $data;
+        }
+
+        return $this->response->setJson($result);
+    }
+
     public function postStore()
     {
         if ($this->request->getMethod() === 'post') {
