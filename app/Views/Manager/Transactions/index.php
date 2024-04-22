@@ -25,14 +25,17 @@
   
   <div class="row">
     <div class="col-12 d-flex justify-content-start">
-      <a href="#" type="button" class="btn btn-primary me-2">
+      <button 
+        type="button" class="btn btn-primary me-2"
+        data-bs-toggle="modal"
+        data-bs-target="#withdrawalModal">
         <i class="bx bx-up-arrow-alt tf-icons"></i> 
         <strong>Add Withdrawal</strong>
-      </a>
+      </button>
       <button 
         type="button" class="btn btn-secondary me-2"
         data-bs-toggle="modal"
-        data-bs-target="#simpleBetModal">
+        data-bs-target="#depositModal">
         <i class="bx bx-down-arrow-alt tf-icons"></i> 
         <strong>Add deposit</strong>
       </button>
@@ -109,19 +112,45 @@
           <tr>
             <th>Date</th>
             <th>Type</th>
-            <th>Market</th>
             <th>Value</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
+          <?php foreach ($transactions as $transaction): ?>
+            <tr>
+              <td><?= date("F jS, Y", strtotime($transaction->date)); ?></td>
+              <td><?= $transaction->transaction_type_id; ?></td>
+              <td><?= $transaction->value; ?></td>
+              <td class="d-flex justify-content-end">
+                <a href="#" 
+                  data-transaction-id="<?= $transaction->id ?>"
+                  data-transaction-date="<?= $transaction->date ?>"
+                  data-transaction-value="<?= $transaction->value ?>"
+                  data-transaction-type="<?= $transaction->transaction_type_id ?>"
+                  data-description="<?= $transaction->description; ?>"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editTransactionModal">
+                  <i class="bx bx-edit-alt me-3"></i>
+                </a>
+
+                <a href="#"
+                  data-transaction-id="<?= $transaction->id ?>"
+                  data-transaction-type="<?= $transaction->transaction_type_id ?>"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteTransactionModal">
+                  <i class="bx bx-trash text-danger me-3"></i>
+                </a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
       <div class="d-flex justify-content-center mt-4">
-        <?php if (empty($bets)): ?>
-            No Bets Found.
+        <?php if (empty($transactions)): ?>
+            No Transactions Found.
         <?php endif; ?>
 
-        <?php if ($pager->getPageCount() > 1): ?>
+        <?php if ($pager && $pager->getPageCount() > 1): ?>
           <?= $pager->links('default', 'default_pagination'); ?>
         <?php endif; ?>
       </div>
@@ -130,6 +159,150 @@
 </div>
 <!--/ Hoverable Table rows -->
 
+<!-- Create Deposit Modal -->
+<div class="modal fade" id="depositModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">New Deposit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+        <?= form_open("manager/transactions/store", '', ['transaction_type_id' => 1]); ?>
+          <div class="modal-body">
+
+            <?= $this->include('Manager/Transactions/form'); ?>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="bx bx-x tf-icons"></i>  
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="bx bx-save tf-icons"></i>  
+              Save
+            </button>
+          </div>
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Create Deposit Modal -->
+
+<!-- Create Withdrawal Modal -->
+<div class="modal fade" id="withdrawalModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">New Withdrawal</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+        <?= form_open("manager/transactions/store", '', ['transaction_type_id' => 2]); ?>
+          <div class="modal-body">
+
+            <?= $this->include('Manager/Transactions/form'); ?>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="bx bx-x tf-icons"></i>  
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="bx bx-save tf-icons"></i>  
+              Save
+            </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Create Withdrawal Modal -->
+
+<!-- Hidden Input transaction_id to use on update and delete forms -->
+<?php $hidden = ['transaction_id' => '']; ?>
+
+<!-- Edit Transaction Modal -->
+<div class="modal fade" id="editTransactionModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel2">Edit Transaction</h5>
+          <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          </button>
+        </div>
+        <?= form_open("manager/transactions/update", '', $hidden); ?>
+            <div class="modal-body">
+
+                <?= $this->include('Manager/Transactions/form'); ?>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="bx bx-x tf-icons"></i>  
+                    Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bx bx-save tf-icons"></i>  
+                    Save
+                </button>
+            </div>
+        <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Edit Transaction Modal -->
+
+<!-- Delete Transaction Modal -->
+<div class="modal fade" id="deleteTransactionModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel2">Deleting Sport</h5>
+          <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-body py-2">
+              
+            <?= form_open("manager/transactions/delete", '', $hidden); ?>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Attention!</strong> Are you sure about deleting the Transaction <strong id="transaction_type"></strong>?
+            </div>
+
+            <button type="submit" class="btn btn-danger mb-2">
+                <i class="bx bx-trash-alt tf-icons"></i>
+                Delete
+            </button>
+
+          </div>
+        </div>
+
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Delete Transaction Modal -->
+
 <?= $this->endSection(); ?>
 
 <!-- Here we send the scripts to the main template -->
@@ -137,5 +310,34 @@
 
   <script src="<?php echo site_url('assets/vendor/mask/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo site_url('assets/vendor/mask/app.js') ?>"></script>
+
+  <script type="text/javascript">
+    
+    $('#editTransactionModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+      console.log(data);
+
+      $("[name='transaction_id']").val(data.transactionId);
+      $("[name='date']").val(data.transactionDate);
+      $("[name='value']").val(data.transactionValue);
+      $("[name='transaction_type_id']").val(data.transactionType);
+      $("[name='description']").val(data.description);
+
+    });
+
+  </script>
+
+  <script>
+    $('#deleteTransactionModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+
+      $("[name='transaction_id']").val(data.transactionId);
+      $("#transaction_type").text(data.transactionType);
+    });
+  </script>
 
 <?= $this->endSection(); ?>
