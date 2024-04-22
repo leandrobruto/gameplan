@@ -54,6 +54,7 @@ class CreateTableTransactions extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('bankroll_id', 'bankrolls', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('transaction_type_id', 'transactions_types', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('transactions');
     }
 

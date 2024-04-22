@@ -17,11 +17,13 @@ class Transactions extends BaseController
 
     public function getIndex()
     {
-        // dd($this->transactionModel->findAll());
+        $bankroll = defaultBankroll();
+
         $data = [
             'title' => 'Transactions',
-            'transactions' => $this->transactionModel->findAll(),
+            'transactions' => $this->transactionModel->getTransactions($bankroll)->paginate(10),
             'bankroll' => defaultBankroll(),
+            'reports' =>$this->transactionModel->getTransactionsReports($bankroll),
             'pager' => $this->transactionModel->pager,
         ];
         
