@@ -58,7 +58,7 @@
                   </div>
                 </div>
                 <span class="fw-semibold d-block mb-1">Withdrawals</span>
-                <h3 class="card-title text-nowrap mb-1">$<?= $reports->withdraw; ?></h3>
+                <h3 class="card-title text-nowrap mb-1">$<?= $reports->withdrawal; ?></h3>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@
                   </div>
                 </div>
                 <span class="fw-semibold d-block mb-1">Result</span>
-                <h3 class="card-title text-nowrap mb-1">
+                <h3 class="card-title text-nowrap mb-1 <?= $reports->deposit < $reports->withdrawal ? 'text-success' : 'text-danger'; ?>">
                   $<?= number_format($reports->result, 2); ?>
                 </h3>
               </div>
@@ -118,9 +118,16 @@
         <tbody class="table-border-bottom-0">
           <?php foreach ($transactions as $transaction): ?>
             <tr>
-              <td><?= date("F jS, Y", strtotime($transaction->date)); ?></td>
-              <td><?= $transaction->name; ?></td>
-              <td class="<?= $transaction->name == 'Deposit' ? 'text-success' : ''; ?>">
+              <td>
+                <?php if ($transaction->type == 'Deposit'): ?>
+                  <i class='bx bx-sm bx-down-arrow-alt text-success'></i>
+                <?php else: ?>
+                  <i class='bx bx-sm bx-up-arrow-alt text-danger'></i>
+                <?php endif; ?>
+                <?= date("F jS, Y", strtotime($transaction->date)); ?>
+              </td>
+              <td><?= $transaction->type; ?></td>
+              <td class="<?= $transaction->type == 'Deposit' ? 'text-success' : ''; ?>">
                 $<?= $transaction->value; ?></td>
               <td class="d-flex justify-content-end">
                 <a href="#" 
