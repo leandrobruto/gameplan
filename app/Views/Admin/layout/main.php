@@ -203,39 +203,10 @@
               </div>
               <!-- /Search -->
 
-              <div class="btn-group" id="dropdown-icon-demo">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary dropdown-toggle hide-arrow"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  data-bs-offset="10,20"
-                >
-                  <i class="bx bx-wallet"></i> <?= defaultBankroll()->name; ?>
-                </button>
-                <ul class="dropdown-menu">
-                  
-                  <?php foreach (myBankrolls() as $bankroll): ?>
-                    <li>
-                      <?= form_open("manager/account/bankrolls/default/$bankroll->id"); ?>
-                        <input type="hidden" name="is_default" value="1">
-
-                        <button type="submit" class="dropdown-item d-flex align-items-center">
-                          <i class="bx bx-wallet scaleX-n1-rtl px-1"></i><?= $bankroll->name; ?>
-                        </button>
-                      <?= form_close(); ?>
-                    </li>
-                  <?php endforeach; ?>
-
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a href="<?= site_url('manager/account/bankrolls'); ?>" class="dropdown-item d-flex align-items-center"
-                      ><i class="bx bx-cog scaleX-n1-rtl px-1"></i> Manage Bankroll</a
-                    >
-                  </li>
-                </ul>
+              <div class="btn-group">
+                <a href="<?= site_url('manager/dashboard'); ?>" type="button" class="btn btn-outline-primary">
+                  <i class="bx bx-laptop me-1"></i> Website
+                </a>
               </div>
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">

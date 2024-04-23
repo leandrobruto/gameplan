@@ -157,20 +157,20 @@
             </li>
 
             <!-- Targets -->
-            <li class="menu-item <?= current_url(true)->getSegment(2) === 'targets' ? 'active' : ''; ?>">
+            <!-- <li class="menu-item <?= current_url(true)->getSegment(2) === 'targets' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/targets'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-target-lock"></i>
                 <div data-i18n="Basic">Targets</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Diary -->
-            <li class="menu-item <?= current_url(true)->getSegment(2) === 'diary' ? 'active' : ''; ?>">
+            <!-- <li class="menu-item <?= current_url(true)->getSegment(2) === 'diary' ? 'active' : ''; ?>">
               <a href="<?= site_url('manager/diary'); ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-notepad"></i>
                 <div data-i18n="Basic">Diary</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Reports -->
             <li class="menu-item <?= current_url(true)->getSegment(2) === 'reports' ? 'active' : ''; ?>">
