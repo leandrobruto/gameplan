@@ -23,7 +23,8 @@ class TransactionModel extends Model
     {            
         return $this->select('transactions.*, transactions_types.name AS type')
                 ->join('transactions_types', 'transactions_types.id = transactions.transaction_type_id')
-                ->where('transactions.bankroll_id', $bankroll->id);
+                ->where('transactions.bankroll_id', $bankroll->id)
+                ->orderBy('transactions.created_at', 'DESC');
     }
 
     public function getTransactionsReports($bankroll) 

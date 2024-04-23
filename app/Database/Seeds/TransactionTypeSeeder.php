@@ -12,7 +12,7 @@ class TransactionTypeSeeder extends Seeder
 
         $data = [
             ['name' => 'Deposit'],
-            ['name' => 'Withdraw'],
+            ['name' => 'Withdrawal'],
         ];
 
         $transactionTypeModel->skipValidation(true)->protect(false)->insertBatch($data);

@@ -58,7 +58,7 @@
                   </div>
                 </div>
                 <span class="fw-semibold d-block mb-1">Withdrawals</span>
-                <h3 class="card-title text-nowrap mb-1">$<?= $reports->withdrawal; ?></h3>
+                <h3 class="card-title text-nowrap mb-1">$<?= number_format($reports->withdrawal, 2); ?></h3>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@
                 </div>
                 <span class="fw-semibold d-block mb-1">Deposits</span>
                 <h3 class="card-title text-nowrap mb-1">
-                  $<?= $reports->deposit; ?>
+                  $<?= number_format($reports->deposit, 2); ?>
                 </h3>
               </div>
             </div>
