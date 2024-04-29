@@ -29,13 +29,16 @@ class Bets extends BaseController
 
     public function getIndex()
     {
+        // $this->request->getGet();
+        
         $user = userLoggedIn();
         $bankroll = defaultBankroll();
-        // dd($this->betModel->getBetsByUser($user, $bankroll)->paginate(10));
+        $pending = $this->request->getGet('pending');
+
         $data = [
             'title' => 'Bets',
             'user' => $user,
-            'bets' => $this->betModel->getBetsByUser($user, $bankroll)->paginate(10),
+            'bets' => $this->betModel->getBetsByStatus($user, $bankroll, $pending)->paginate(10),
             'bankrolls' => $this->bankrollModel->getUserBankrolls($user),
             'sports' => $this->sportModel->findAll(),
             'competitions' => $this->competitionModel->getCompetitionsByUser($user)->find(),
@@ -43,6 +46,14 @@ class Bets extends BaseController
             'reports' => $this->betModel->getBetsReports($user, $bankroll),
             'pager' => $this->betModel->pager,
         ];
+
+        // if ($pending == 1) {
+        //     $data['bets'] = $this->betModel->where('user_id', $user->id)->where('bankroll_id', $bankroll->id)->where('is_pending', 1)->paginate(10);
+        // } else {
+        //     $data['bets'] = $this->betModel->getBetsByUser($user, $bankroll)->paginate(10);
+        // }
+
+        // $data['pager'] = $this->betModel->pager;
 
         return view('Manager/Bets/index', $data);
     }
