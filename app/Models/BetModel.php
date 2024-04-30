@@ -52,7 +52,7 @@ class BetModel extends Model
             bankrolls.name AS bankroll, 
             sports.name AS sport, 
             competitions.name AS competition, 
-            strategies.name AS strategy')->asObject()
+            strategies.name AS strategy')
                 ->join('events', 'bets.id = events.bet_id')
                 ->join('sports', 'bets.sport_id = sports.id', 'left')
                 ->join('competitions', 'bets.competition_id = competitions.id', 'left')
@@ -67,6 +67,12 @@ class BetModel extends Model
     public function countAllBetsByUser($user) 
     {
         return $this->where('bets.user_id', $user->id)
+            ->countAllResults();
+    }
+
+    public function countBetsByStatus($status) 
+    {
+        return $this->selectSum('*')->where('bets.is_pending', $status)
             ->countAllResults();
     }
 

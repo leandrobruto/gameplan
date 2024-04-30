@@ -122,10 +122,20 @@
 
 <ul class="nav nav-pills flex-column flex-md-row mb-3">
   <li class="nav-item">
-    <a class="nav-link active" href="<?= site_url('manager/bets?pending=0'); ?>"><i class="bx bx-trophy me-1"></i> Completed</a>
+    <a class="nav-link active" href="<?= site_url('manager/bets?pending=0'); ?>">
+      <i class="bx bx-trophy me-1"></i> Completed
+      <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-info">
+        <?= $countCompleted ?>
+      </span>
+    </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="<?= site_url('manager/bets?pending=1'); ?>"><i class="bx bx-hourglass me-1"></i> Pending</a>
+    <a class="nav-link" href="<?= site_url('manager/bets?pending=1'); ?>">
+      <i class="bx bx-hourglass me-1"></i> Pending
+      <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-warning">
+        <?= $countPending ?>
+      </span>
+    </a>
   </li>
 </ul>
 
@@ -142,8 +152,13 @@
             <th>Event</th>
             <th>Market</th>
             <th>Stake</th>
-            <th>Result</th>
-            <th>ROI</th>
+            <?php if (!$pending): ?>
+              <th>Result</th>
+              <th>ROI</th>
+            <?php else: ?>
+              <th>ODD</th>
+              <th>Potential Profit</th>
+            <?php endif; ?>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -154,8 +169,15 @@
               <td><?= $bet->event; ?></td>
               <td><?= isset($bet->strategy) ? $bet->strategy : ''; ?></td>
               <td>$<?= $bet->stake; ?></td>
-              <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">$<?= $bet->result; ?></td>
-              <td class="<?= $bet->roi > 0 ? 'text-success' : 'text-dark'; ?>"><?= number_format($bet->roi, 2); ?>%</td>
+
+              <?php if (!$pending): ?>
+                <td class="<?= $bet->result > 0 ? 'text-success' : 'text-dark'; ?>">$<?= $bet->result; ?></td>
+                <td class="<?= $bet->roi > 0 ? 'text-success' : 'text-dark'; ?>"><?= number_format($bet->roi, 2); ?>%</td>    
+              <?php else: ?>
+                <td><?= $bet->odd; ?></td>
+                <td><?= number_format($bet->result, 2); ?></td>
+              <?php endif; ?>
+            
               <td class="d-flex justify-content-end">
                 <a href="#" class="text-primary" 
                     data-id="<?= $bet->id ?>"
@@ -180,6 +202,29 @@
                     data-bs-toggle="modal" data-bs-target="#deleteBetModal" type="button">
                   <i class="bx bx-trash text-danger me-3"></i>
                 </a>
+
+                <?php if ($pending): ?>
+                  <a href="#" class="text-danger" 
+                    data-bet-id="<?= $bet->id ?>"
+                    data-bet-event="<?= $bet->event ?>"
+                    data-bs-toggle="modal" data-bs-target="#updateBetModal" type="button">
+                  <i class="bx bx-check text-success me-3"></i>
+                  </a>
+                  
+                  <a href="#" class="text-danger" 
+                      data-bet-id="<?= $bet->id ?>"
+                      data-bet-event="<?= $bet->event ?>"
+                      data-bs-toggle="modal" data-bs-target="#updateBetModal" type="button">
+                    <i class="bx bx-x text-danger me-3"></i>
+                  </a>
+                  
+                  <a href="#" class="text-danger" 
+                      data-bet-id="<?= $bet->id ?>"
+                      data-bet-event="<?= $bet->event ?>"
+                      data-bs-toggle="modal" data-bs-target="#updateBetModal" type="button">
+                    <i class="bx bx-pause text-primary me-3"></i>
+                  </a>
+                <?php endif; ?>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -270,6 +315,49 @@
   </div>
 </div>
 <!-- / Edit Bet Modal -->
+
+<!-- Update Bet Modal -->
+<div class="modal fade" id="updateBetModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Final Result</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            
+      <?= form_open("manager/bets/update", '', $hidden); ?>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="result" class="form-label">Result</label>
+              <div class="input-group input-group-merge">
+                <span id="icon-name" class="input-group-text">
+                    <i class="bx bx-dollar"></i>
+                </span>
+                <input type="text" id="result" name="bet[result]" class="form-control money" value="<?= old('bet.result'); ?>"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bx bx-x tf-icons"></i>  
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary mb-2">
+            <i class="bx bx-save tf-icons"></i>  
+            Update
+          </button>
+        </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+</div>
+<!-- / Update Bet Modal -->
+
 
 <!-- Multiple Bet Modal -->
 <div class="modal fade" id="multipleBetModal" tabindex="-1" aria-hidden="true">

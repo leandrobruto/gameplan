@@ -28,9 +28,7 @@ class Bets extends BaseController
     }
 
     public function getIndex()
-    {
-        // $this->request->getGet();
-        
+    {        
         $user = userLoggedIn();
         $bankroll = defaultBankroll();
         $pending = $this->request->getGet('pending');
@@ -44,12 +42,15 @@ class Bets extends BaseController
             'competitions' => $this->competitionModel->getCompetitionsByUser($user)->find(),
             'strategies' => $this->strategyModel->getStrategiesByUser($user)->find(),
             'reports' => $this->betModel->getBetsReports($user, $bankroll),
+            'countCompleted' => $this->betModel->countBetsByStatus(0),
+            'countPending' => $this->betModel->countBetsByStatus(1),
+            'pending' => $pending,
         ];
 
         if ($pending) {
             $data['bets'] = $this->betModel->getBetsByStatus($user, $bankroll, $pending)->paginate(10);
         } else {
-            $data['bets'] = $this->betModel->getBetsByUser($user, $bankroll)->paginate(10);
+            $data['bets'] = $this->betModel->getBetsByStatus($user, $bankroll, 0)->paginate(10);
         }
 
         $data['pager'] = $this->betModel->pager;
