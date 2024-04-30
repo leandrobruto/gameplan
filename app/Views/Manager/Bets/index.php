@@ -206,7 +206,7 @@
                 </a>
 
                 <?php if ($pending): ?>
-                  <a href="#" class="text-danger" 
+                  <a href="#" 
                     data-bet-id="<?= $bet->id ?>"
                     data-bet-result="<?= $bet->result ?>"
                     data-is-pending="0"
@@ -214,16 +214,16 @@
                   <i class="bx bx-check text-success me-3"></i>
                   </a>
                   
-                  <a href="#" class="text-danger" 
+                  <a href="#" 
                       data-bet-id="<?= $bet->id ?>"
-                      data-bet-event="<?= $bet->event ?>"
+                      data-bet-result="<?= $bet->stake * -1 ?>"
                       data-bs-toggle="modal" data-bs-target="#updateBetModal" type="button">
                     <i class="bx bx-x text-danger me-3"></i>
                   </a>
                   
-                  <a href="#" class="text-danger" 
+                  <a href="#" 
                       data-bet-id="<?= $bet->id ?>"
-                      data-bet-event="<?= $bet->event ?>"
+                      data-bet-result="0"
                       data-bs-toggle="modal" data-bs-target="#updateBetModal" type="button">
                     <i class="bx bx-pause text-primary me-3"></i>
                   </a>
