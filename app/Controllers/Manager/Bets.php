@@ -158,7 +158,6 @@ class Bets extends BaseController
 
     public function postUpdate($id = null)
     {
-        // dd($this->request->getPost());
         if ($this->request->getMethod() === 'post') {
             $bet = $this->findBetOr404($this->request->getPost('bet_id'));
 
@@ -197,6 +196,38 @@ class Bets extends BaseController
         }
 
         if ($update) {
+            return redirect()->to(site_url("manager/bets"))
+                            ->with('success', "Bet updated successfully!");
+        } else {
+            return redirect()->back()->with('errors_model', $this->betModel->errors())
+                                    ->with('attention', "Please check the errors below.")
+                                    ->withInput();
+        }
+    }
+
+    public function postUpdateResult($id = null)
+    {
+        if ($this->request->getMethod() === 'post') {
+            $bet = $this->findBetOr404($this->request->getPost('bet_id'));
+
+            if ($bet->deleted_at != null) {
+                return redirect()->back()->with('info', "The bankroll $bet->event is deleted. Therefore, it is not possible to edit it.");
+            }
+
+        } else {
+            /* It's not POST */
+            return redirect()->back();
+        }
+
+        $postBet = $this->request->getPost();
+
+        $bet->fill($postBet);
+
+        if (!$bet->hasChanged()) {
+            return redirect()->back()->with('info', "There is no data to update.");
+        }
+
+        if ($this->betModel->save($bet)) {
             return redirect()->to(site_url("manager/bets"))
                             ->with('success', "Bet updated successfully!");
         } else {

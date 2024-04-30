@@ -177,7 +177,7 @@
                 <td class="<?= $bet->roi > 0 ? 'text-success' : 'text-dark'; ?>"><?= number_format($bet->roi, 2); ?>%</td>    
               <?php else: ?>
                 <td><?= $bet->odd; ?></td>
-                <td><?= number_format($bet->result, 2); ?></td>
+                <td>$<?= number_format($bet->result, 2); ?></td>
               <?php endif; ?>
             
               <td class="d-flex justify-content-end">
@@ -208,7 +208,8 @@
                 <?php if ($pending): ?>
                   <a href="#" class="text-danger" 
                     data-bet-id="<?= $bet->id ?>"
-                    data-bet-event="<?= $bet->event ?>"
+                    data-bet-result="<?= $bet->result ?>"
+                    data-is-pending="0"
                     data-bs-toggle="modal" data-bs-target="#updateBetModal" type="button">
                   <i class="bx bx-check text-success me-3"></i>
                   </a>
@@ -327,18 +328,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
             
-      <?= form_open("manager/bets/update", '', $hidden); ?>
+      <?= form_open("manager/bets/updateResult", '', $hidden); ?>
         <div class="modal-body">
 
           <div class="row">
+            <!-- Hidden fields that we will use in the controller -->
+            <input type="hidden" name="is_pending" value="" />
+
             <div class="col-md-12 mb-3">
               <label for="result" class="form-label">Result</label>
               <div class="input-group input-group-merge">
                 <span id="icon-name" class="input-group-text">
                     <i class="bx bx-dollar"></i>
                 </span>
-                <input type="text" id="result" name="bet[result]" class="form-control money" value="<?= old('bet.result'); ?>"
-                />
+                <input type="text" id="result" name="result" class="form-control money" value="<?= old('bet.result'); ?>"/>
               </div>
             </div>
           </div>
@@ -679,6 +682,18 @@
     });
   </script>
 
+  <script>
+    $('#updateBetModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+
+      var data = button.data();
+console.log(data.betResult);
+      $("[name='bet_id']").val(data.betId);
+      $("[name='result']").val(data.betResult);
+      $("[name='is_pending']").val(data.isPending);
+    });
+  </script>
+  
   <script>
     $('#deleteBetModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
