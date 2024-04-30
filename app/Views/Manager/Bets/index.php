@@ -120,9 +120,11 @@
   </div>
 </div>
 
+<?php $request = \Config\Services::request(); ?>
+  
 <ul class="nav nav-pills flex-column flex-md-row mb-3">
   <li class="nav-item">
-    <a class="nav-link active" href="<?= site_url('manager/bets?pending=0'); ?>">
+    <a class="nav-link <?= $request->uri->getQuery() == 'pending=0' ? 'active' : ''; ?>" href="<?= site_url('manager/bets?pending=0'); ?>">
       <i class="bx bx-trophy me-1"></i> Completed
       <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-info">
         <?= $countCompleted ?>
@@ -130,7 +132,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="<?= site_url('manager/bets?pending=1'); ?>">
+    <a class="nav-link <?= $request->uri->getQuery() == 'pending=1' ? 'active' : ''; ?>" href="<?= site_url('manager/bets?pending=1'); ?>">
       <i class="bx bx-hourglass me-1"></i> Pending
       <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-warning">
         <?= $countPending ?>
