@@ -133,7 +133,7 @@ class Bets extends BaseController
 
                 foreach($events as $key => $event) {
 
-                    if(!empty($event['event']) && !empty($event['odd'])) {
+                    if(!empty($event['name']) && !empty($event['odd'])) {
 
                         $event['bet_id'] = $this->betModel->getInsertID();
 
