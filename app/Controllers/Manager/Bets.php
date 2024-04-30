@@ -38,22 +38,21 @@ class Bets extends BaseController
         $data = [
             'title' => 'Bets',
             'user' => $user,
-            'bets' => $this->betModel->getBetsByStatus($user, $bankroll, $pending)->paginate(10),
+            // 'bets' => $this->betModel->getBetsByStatus($user, $bankroll, $pending)->paginate(10),
             'bankrolls' => $this->bankrollModel->getUserBankrolls($user),
             'sports' => $this->sportModel->findAll(),
             'competitions' => $this->competitionModel->getCompetitionsByUser($user)->find(),
             'strategies' => $this->strategyModel->getStrategiesByUser($user)->find(),
             'reports' => $this->betModel->getBetsReports($user, $bankroll),
-            'pager' => $this->betModel->pager,
         ];
 
-        // if ($pending == 1) {
-        //     $data['bets'] = $this->betModel->where('user_id', $user->id)->where('bankroll_id', $bankroll->id)->where('is_pending', 1)->paginate(10);
-        // } else {
-        //     $data['bets'] = $this->betModel->getBetsByUser($user, $bankroll)->paginate(10);
-        // }
+        if ($pending) {
+            $data['bets'] = $this->betModel->getBetsByStatus($user, $bankroll, $pending)->paginate(10);
+        } else {
+            $data['bets'] = $this->betModel->getBetsByUser($user, $bankroll)->paginate(10);
+        }
 
-        // $data['pager'] = $this->betModel->pager;
+        $data['pager'] = $this->betModel->pager;
 
         return view('Manager/Bets/index', $data);
     }

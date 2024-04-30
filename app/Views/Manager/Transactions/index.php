@@ -143,7 +143,8 @@
 
                 <a href="#"
                   data-transaction-id="<?= $transaction->id ?>"
-                  data-transaction-type="<?= $transaction->transaction_type_id ?>"
+                  data-value="<?= $transaction->value ?>"
+                  data-transaction-type="<?= $transaction->type ?>"
                   data-bs-toggle="modal"
                   data-bs-target="#deleteTransactionModal">
                   <i class="bx bx-trash text-danger me-3"></i>
@@ -294,7 +295,7 @@
             <?= form_open("manager/transactions/delete", '', $hidden); ?>
 
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Attention!</strong> Are you sure about deleting the Transaction <strong id="transaction_type"></strong>?
+                <strong>Attention!</strong> Are you sure about deleting the <strong id="transaction_content"></strong>?
             </div>
 
             <button type="submit" class="btn btn-danger mb-2">
@@ -344,7 +345,8 @@
       var data = button.data();
 
       $("[name='transaction_id']").val(data.transactionId);
-      $("#transaction_type").text(data.transactionType);
+      $("#transaction_content").append(data.transactionType + ' $');
+      $("#transaction_content").append(data.value);
     });
   </script>
 
